@@ -21,4 +21,4 @@
 
 ## 附录
 
-- [mdbook参考](mdbook-cheat-sheet.md)
+- [mdBook参考](mdbook-cheat-sheet.md)

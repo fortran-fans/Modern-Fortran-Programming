@@ -1,2 +1,9 @@
-# modern-fortran-programming
-现代Fortran程序设计
+# 现代Fortran程序设计
+
+Modern Fortran Programming
+
+
+## mdbook
+本教程使用[mdBook](https://github.com/rust-lang/mdBook)排版，可在线阅读，也可导出PDF文件。目前存在的问题是缺少中文关键词搜索。本项目修改了mdBook自带的[highlight.js](https://highlightjs.org/)，从而高亮Fortran代码。
+
+
