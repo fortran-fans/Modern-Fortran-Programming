@@ -1,5 +1,7 @@
 # 现代Fortran程序设计
 
+[![Actions Status](https://github.com/fortran-fans/modern-fortran-programming/workflows/mdbook/badge.svg)](https://github.com/fortran-fans/modern-fortran-programming/actions)
+
 Modern Fortran Programming
 
 
