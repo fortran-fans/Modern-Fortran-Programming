@@ -8,6 +8,8 @@ src = "src"
 
 [output.html]
 mathjax-support = true
+git-repository-url = "https://github.com/fortran-fans/modern-fortran-programming/tree/main/"
+edit-url-template = "https://github.com/fortran-fans/modern-fortran-programming/edit/main/{path}"
 
 [output.html.playground]
 editable = false
