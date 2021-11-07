@@ -1,0 +1,12 @@
+name = "chapter2"
+version = "0.1.0"
+license = "license"
+author = "Jane Doe"
+maintainer = "jane.doe@example.com"
+copyright = "Copyright 2021, Jane Doe"
+[build]
+auto-executables = true
+auto-tests = true
+auto-examples = true
+[install]
+library = false
