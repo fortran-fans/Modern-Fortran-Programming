@@ -151,7 +151,51 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h1 id="安装fortran开发环境"><a class="header" href="#安装fortran开发环境">安装Fortran开发环境</a></h1>
+<p>本教程使用Msys2-GFortran编译器进行Fortran开发，它的优点有：</p>
+<ul>
+<li>可以生成Windows本地化执行程序；</li>
+<li>国人更熟悉Windows环境；</li>
+<li>方便管理和升级；</li>
+<li>性能很好。</li>
+</ul>
+<p>缺点有：</p>
+<ul>
+<li>运行时更详细的堆栈错误信息缺失；</li>
+<li>调试不算方便；</li>
+<li>可能存在配套工具Windows环境不适应的问题。</li>
+</ul>
+<p>即使它有如上缺点，但它仍是一款很强的Fortran编译器，且随着用户的使用和MSYS2的进步，它也会越来越好用。</p>
+<h2 id="安装msys2-gfortran软件"><a class="header" href="#安装msys2-gfortran软件">安装MSYS2-GFortran软件</a></h2>
+<p>前往MSYS2官网下载安装MSYS2安装包，并阅读相关文档。</p>
+<p>这里列出一些有用的部分命令：</p>
+<pre><code class="language-sh">pacman -Syu                  # 升级msys2内部组件和仓库信息
+pacman -Ss &lt;package_name&gt;    # 搜索软件
+pacman -S  &lt;package_name&gt;    # 安装软件
+pacman -Qs &lt;package_name&gt;    # 查询本地安装的特定软件
+pacman -Rs &lt;package_name&gt;    # 卸载软件
+pacman -R --help             # 查询命令的帮助文档
+...
+</code></pre>
+<p>我们可以通过以下命令安装MSYS2-GFortran：</p>
+<pre><code class="language-sh">pacman -Ss fortran           # 查询名字中含“Fortran”字符的包
+pacman -S  ucrt64/mingw-w64-ucrt-x86_64-gcc-fortran    # 安装ucrt64版本的gfortran
+</code></pre>
+<p>为了方便我们在MSYS2环境之外使用MSYS2-GFortran，我们需要设置如下环境变量：</p>
+<pre><code class="language-sh">C:/msys64/ucrt64/bin         # UCRT64环境的二进制可执行程序所在路径
+C:/msys64/usr/bin            # MSYS2 环境的二进制可执行程序所在路径
+</code></pre>
+<p>我们可以在Windows下的CMD中使用以下命令核对环境变量是否设置正确：</p>
+<pre><code class="language-sh">$ gfortran
+GNU Fortran (Rev2, Built by MSYS2 project) 11.2.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</code></pre>
+<blockquote>
+<p>🔰 提示：这里默认我们现在大多数使用的硬件是64位的，且使用较新的MSYS2环境（UCRT），有个性化需求可以进行自定义。</p>
+</blockquote>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
