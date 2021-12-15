@@ -30,6 +30,6 @@ code .                      # 使用VS Code打开当前文件夹
 ...
 ```
 
-![hello_world](../media/hello_world-in-code.png)
+![hello_world](./media/hello_world-in-code.png)
 
 > 🔰 提示：`fpm build`类似Visual Studio的Debug模式，`fpm build --profile release`类似Visual Studio的Release模式。
