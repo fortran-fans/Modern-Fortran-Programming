@@ -3,6 +3,13 @@
 [现代Fortran程序设计](title-page.md)
 [序言](preface.md)
 
+## 新手村任务
+
+- [新手村任务](./新手村任务/README.md)
+  - [查找两者之间最大的数](./新手村任务/task1.md)
+  - [计算10的阶乘](./新手村任务/task2.md)
+  - [根据半径求一个圆的面积](新手村任务/task3.md)
+
 ## 基础语法
 
 - [初识Fortran](ch01-00-getting-started.md)

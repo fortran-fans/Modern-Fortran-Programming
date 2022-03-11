@@ -2,6 +2,7 @@
 title = "现代Fortran程序设计"
 authors = ["Fortran-Fans"]
 desciption = "面向初学者的现代Fortran教程"
+version = "0.1.0"
 language = "zh"
 multilingual = false
 src = "src"
