@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li><li class="chapter-item expanded "><a href="ch01-04-program-unit.html"><strong aria-hidden="true">1.4.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> 第一个Fortran程序（暂定）</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="新手村任务/index.html"><strong aria-hidden="true">1.</strong> 新手村任务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="新手村任务/task1.html"><strong aria-hidden="true">1.1.</strong> 查找两者之间最大的数</a></li><li class="chapter-item expanded "><a href="新手村任务/task2.html"><strong aria-hidden="true">1.2.</strong> 计算10的阶乘</a></li><li class="chapter-item expanded "><a href="新手村任务/task3.html"><strong aria-hidden="true">1.3.</strong> 根据半径求一个圆的面积</a></li></ol></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">2.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">2.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">2.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">2.3.</strong> fpm基本操作</a></li><li class="chapter-item expanded "><a href="ch01-04-program-unit.html"><strong aria-hidden="true">2.4.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 第一个Fortran程序（暂定）</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 变量与数组</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">7.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -169,6 +169,91 @@
 <li><a href="https://fortran-lang.org/learn/quickstart">Quickstart Fortran Tutorial</a> - fortan-lang</li>
 <li><a href="https://book.douban.com/subject/30388255/">Fortran程序设计（第四版）</a> - Stephen J. Chapman</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="新手村任务介绍"><a class="header" href="#新手村任务介绍">新手村任务介绍</a></h1>
+<p>为了提高学习编程的趣味性，我们提供了一个新手村任务，你可以在这里获得更多的经验，希望你会喜欢。</p>
+<p>你如果想用在线编译器，可以使用<a href="https://godbolt.org/">godbolt.org</a>编译本书示例代码。</p>
+<div align="center">
+<img src="新手村任务/newfish.jpg" alt="新手" width="300">
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="查找两者之间最大的数"><a class="header" href="#查找两者之间最大的数">查找两者之间最大的数</a></h1>
+<p>查找两者之间最大的数，输入两个数，输出两者之间最大的数。</p>
+<pre><code class="language-fortran">program main
+
+    integer a, b
+    
+    write (*, '(a)', advance='no') &quot;Enter two numbers: &quot;
+    read (*, *) a, b
+    
+    write (*, '(a,i0)') &quot;The maxium number is: &quot;, max(a, b)
+
+end program main
+</code></pre>
+<p><strong>知识点：</strong></p>
+<ul>
+<li><code>integer a</code>：变量、函数先声明后，再调用；</li>
+<li><code>max</code>：<code>max</code>是Fortran内置函数；</li>
+<li><code>advance='no'</code>：IO操作后，控制光标不换行；</li>
+<li><code>i0</code>：控制整型格式输出, 字宽由整型的长度决定。</li>
+</ul>
+<p>还有一些知识，待之后再进一步了解。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="计算10的阶乘"><a class="header" href="#计算10的阶乘">计算10的阶乘</a></h1>
+<p>如何计算10的阶乘？</p>
+<pre><code class="language-fortran">program main
+
+    integer i, res
+    
+    res = 1
+    do i = 1, 10
+        res = res*i
+    end do
+    
+    write (*, *) &quot;Factorial of 10: &quot;, res
+
+end program main
+</code></pre>
+<p><strong>知识点：</strong></p>
+<ul>
+<li><code>do</code>：三大流程控制之一，循环，记住这个一般形式。</li>
+<li><code>write(*,*)</code>：第一个<code>*</code>表示屏幕输出，第二个<code>*</code>表示默认输出格式（表控）。</li>
+</ul>
+<p>我们还要另一种写法，利用内置函数<code>product</code>，Fortran有这180多个内置例程：</p>
+<pre><code class="language-fortran">program main
+    
+    integer i
+    integer :: ten(10) = [(i, i=1, 10)]
+
+    write (*, *) &quot;Factorial of 10: &quot;, product(ten)
+
+end program main
+</code></pre>
+<p><strong>知识点：</strong></p>
+<ul>
+<li><code>product</code>：内置函数，计算数组元素的乘积；</li>
+<li><code>[(i, i=1, 10)]</code>：这是一个隐式<code>do</code>循环，构造一维数组数据；</li>
+<li><code>::</code>：当声明变量时，变量有初始化值或其他属性，如可分配<code>allocatable</code>，则需要用<code>::</code>分隔。</li>
+</ul>
+<p>还有一些知识，待之后再进一步了解。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="根据半径求一个圆的面积"><a class="header" href="#根据半径求一个圆的面积">根据半径求一个圆的面积</a></h1>
+<p>从下节开始，难度将提高到2级，本节及之前的为1级。</p>
+<pre><code class="language-fortran">program main
+
+    real :: PI = acos(-1.0)
+    real r
+    
+    write(*, &quot;(a)&quot;, advance='no') &quot;Enter the radius of the circle: &quot;
+    read(*, *) r
+    
+    write(*, &quot;(a,f6.2)&quot;) &quot;The area of the circle is: &quot;, PI*r**2
+
+end program main
+</code></pre>
+<p><strong>知识点：</strong></p>
+<ul>
+<li><code>PI = acos(-1.0)</code>：Fortran没有内置PI等物理常数，需要自己定义；</li>
+<li><code>r**2</code>：Fortran中的<strong>幂指数次方</strong>，需要用<code>x**n</code>表示；</li>
+<li><code>f6.2</code>：Fortran中的<strong>浮点数</strong>控制格式，<code>6</code>代表总宽，<code>2</code>代表小数位数。</li>
+</ul>
+<p>还有一些知识，待之后再进一步了解。</p>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="安装fortran开发环境"><a class="header" href="#安装fortran开发环境">安装Fortran开发环境</a></h1>
 <p>本教程使用Msys2-GFortran编译器进行Fortran开发，它的优点有：</p>
 <ul>
