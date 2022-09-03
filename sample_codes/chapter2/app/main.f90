@@ -1,17 +1,11 @@
 program main
-    use iso_fortran_env, only: real32
-    use julia_set_m, only: generate_julia_set, draw_julia_set
-    use save_julia_set_image, only: julia_set_image
+    use Stern_Gerlach_experiment ! 引入模块，从而能够使用其中定义的变量及过程
     implicit none
-    integer, parameter :: width = 80
-    integer, parameter :: height = 50
-    integer, dimension(height, width) :: julia_set
-    complex(real32), parameter :: c = (-0.835, -0.2321)
+    integer, parameter :: emission_times = 5 ! 实验的观察次数
+    integer :: i
 
-    call generate_julia_set(julia_set, -1.5, 1.5, -1., 1., c, 1000)
+    do i = 1, emission_times
+        call emit_atom()
+    end do
 
-    call draw_julia_set(julia_set)
-
-    call julia_set_image(julia_set)
-
-end program main
+end program
