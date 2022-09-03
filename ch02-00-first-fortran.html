@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Fortran语言单元 - 现代Fortran程序设计</title>
+        <title>第一个Fortran程序 - 现代Fortran程序设计</title>
                 
 
         <!-- Custom HTML head -->
@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="新手村任务/index.html"><strong aria-hidden="true">1.</strong> 新手村任务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="新手村任务/task1.html"><strong aria-hidden="true">1.1.</strong> 查找两者之间最大的数</a></li><li class="chapter-item expanded "><a href="新手村任务/task2.html"><strong aria-hidden="true">1.2.</strong> 计算10的阶乘</a></li><li class="chapter-item expanded "><a href="新手村任务/task3.html"><strong aria-hidden="true">1.3.</strong> 根据半径求一个圆的面积</a></li></ol></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">2.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">2.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">2.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">2.3.</strong> fpm基本操作</a></li><li class="chapter-item expanded "><a href="ch01-04-program-unit.html" class="active"><strong aria-hidden="true">2.4.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 第一个Fortran程序（暂定）</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 变量与数组</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">7.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html" class="active"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -122,7 +122,7 @@
                                                                         <a href="https://github.com/fortran-fans/modern-fortran-programming/tree/main/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch01-04-program-unit.md" title="Suggest an edit" aria-label="Suggest an edit">
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch02-00-first-fortran.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                         
@@ -151,7 +151,78 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h1 id="第一个fortran程序"><a class="header" href="#第一个fortran程序">第一个Fortran程序</a></h1>
+<p>本章会讲解一个简单的小程序，一方面能让你继续熟练使用你的编程环境，另一方面是让你对Fortran有初步的了解。</p>
+<p>我们会尽可能详细地讲解每一行代码的含义，但是请放心，如果你对理解特定语句暂时感到困难，请直接跳过。通过后续章节循序渐进地学习，你最终还是可以学会相关语法。</p>
+<p>在命令行中执行<code>fpm new first-fortran</code>创建新项目。在fpm项目的<code>src</code>目录中新建名为<code>Stern_Gerlach_experiment.f90</code>的文件（别忘了删除默认生成的.f90文件），并将以下内容写到该文件中：</p>
+<pre><code class="language-fortran">module Stern_Gerlach_experiment
+    implicit none
+    private
+    public :: emit_atom
+
+contains
+
+    subroutine emit_atom()
+        real :: raw_number
+        integer :: spin ! 0代表spin up，1代表spin down
+
+        call random_number(raw_number) ! raw_number的范围是[0,1)
+        spin = nint(raw_number) ! 四舍五入得到0或1
+
+        if (spin == 0) then ! 判断spin的值，若等于0，则执行下面语句
+            write (*, *) &quot;Emit an atom with spin up.&quot;
+        else ! 否则执行这一部分
+            write (*, *) &quot;Emit an atom with spin down.&quot;
+        end if
+
+    end subroutine
+
+end module
+</code></pre>
+<p>接下来修改<code>app</code>中的<code>main.f90</code>，将其中的内容改为：</p>
+<pre><code class="language-fortran">program main
+    use Stern_Gerlach_experiment ! 引入模块，从而能够使用其中定义的变量及过程
+    implicit none
+    integer, parameter :: emission_times = 5 ! 实验的观察次数
+    integer :: i
+
+    do i = 1, emission_times
+        call emit_atom()
+    end do
+
+end program
+</code></pre>
+<p>完成以上步骤后，在命令行中执行<code>fpm run</code>。如果项目能够成功编译并执行，你会在命令行中看到类似于这样的执行结果</p>
+<pre><code> Emit an atom with spin down.
+ Emit an atom with spin up.
+ Emit an atom with spin up.
+ Emit an atom with spin down.
+ Emit an atom with spin up.
+</code></pre>
+<p>在详细解释代码之前，我们先简要介绍这段代码所描述的物理过程。这个小程序模拟的是<a href="https://zh.wikipedia.org/wiki/%E6%96%BD%E7%89%B9%E6%81%A9%EF%BC%8D%E6%A0%BC%E6%8B%89%E8%B5%AB%E5%AE%9E%E9%AA%8C">施特恩－格拉赫实验</a>。
+<img src="media/Stern_Gerlach_experiment.png" alt="施特恩－格拉赫实验" />
+电子具有自旋角动量，可以产生自旋磁矩。由于其自旋角动量的取值是量子化的，且仅有两种取值（我们将其分别标记为spin up和spin down），因而磁矩也仅有两种取向。因此，如果将含有未成对电子的原子束打向非均匀的磁场，其中的原子因磁矩的不同，会偏转产生不同方向的两束原子。这个实验使人们第一次观察到原子磁矩的量子化。</p>
+<p>我们的第一个程序将依次「发射一个原子」，这个原子的自旋角动量是随机的，然后程序将观察结果打印到屏幕中。</p>
+<p>首先来看<code>Stern_Gerlach_experiment.f90</code>。这个文件中的<code>module Stern_Gerlach_experiment</code>和<code>end module</code>，以及它们包含的内容，构成了一个Fortran模块（module）。模块就像一个工具箱，把关于同一个任务的变量、函数、子程序等都打包在一起，提供给使用这个模块的程序其他部分。<code>Stern_Gerlach_experiment</code>是模块的名字，表明这个模块会提供模拟施特恩－格拉赫实验的功能。</p>
+<p><code>implicit none</code>告诉编译器，在这个模块中的所有变量，都必须显式（explicit）地声明后才能使用。我们建议你在编写程序时，始终使用这个语句，可以有效地避免出现计算结果的错误。接下来的<code>private</code>语句，会隐藏模块中的定义的所有变量和函数等内容。明明模块是为了提供给他人使用的，为什么还要隐藏其中的内容呢？有两点原因：</p>
+<ol>
+<li>首先模块中并非所有内容都是应当对外公开的，就像一台仪器，需要用外壳将其机身封装起来，使用者只会操作其外部的按钮。模块中也有一部分是仅供模块内部使用的，将其暴露在外，使用者可能会将其修改，导致错误的结果；</li>
+<li>其次，一个设计良好的模块，在完成其功能的前提下，应尽可能减少对外提供的内容。这样可以减小使用者的记忆量，更加友好。</li>
+</ol>
+<p><code>public :: emit_atom</code>语句说明<code>emit_atom</code>这个功能是公开的，使用了这个模块的代码就可以调用<code>emit_atom</code>。</p>
+<p>在这个模块中，我们只定义了一个子程序（subroutine）<code>emit_atom</code>。子程序和函数（function）都定义在模块的<code>contains</code>语句之后。与模块的定义非常相似，子程序定义在<code>subroutine emit_atom()</code>和<code>end subroutine</code>之中。<code>subroutine emit_atom()</code>中的括号用于放置虚参列表，不过该子程序并没有虚参，所以这里为空。</p>
+<pre><code class="language-fortran">real :: raw_number
+integer :: spin ! 0代表alpha自旋，1代表beta自旋
+</code></pre>
+<p>这两行分别定义了一个<code>real</code>类型的变量<code>raw_number</code>和<code>integer</code>类型的变量<code>spin</code>，在该子程序后续内容中，我们可以使用<code>raw_number</code>和<code>spin</code>来储存数值，并用于计算、判断等操作。<code>real</code>类型的变量类似于数学中的实数，可储存包含小数部分的数值，也被称为「浮点数」；<code>integer</code>类型的变量则类似数学中的整数，不包含小数部分。我们定义的<code>spin</code>将可能取值<code>0</code>或<code>1</code>，分别表示spin up状态和spin down状态。</p>
+<p>在Fortran中，<code>!</code>用于标记对代码的注释。从<code>!</code>开始一直到行尾的内容都是注释。注释对程序执行不起任何作用，它只是注解代码的功能，方便阅读者理解代码，提高代码的可维护性。我们鼓励读者适当地在代码中添加注释，无论是对于自己还是其他阅读代码的人，都是有好处的。</p>
+<p>接下来则是子程序的具体执行部分。</p>
+<pre><code class="language-fortran">call random_number(raw_number) ! raw_number的范围是[0,1)
+spin = nint(raw_number) ! 四舍五入得到0或1
+</code></pre>
+<p>我们首先调用了Fortran内置的子程序<code>random_number</code>，<code>raw_number</code>作为参数接收<code>random_number</code>执行产生的结果。<code>random_number</code>会随机产生均匀落在\([0,1)\)区间的浮点数，因此<code>raw_number</code>的数值就在这个范围里。</p>
+<p>之后我们调用内置的函数<code>nint</code>根据<code>raw_number</code>的值四舍五入得到整数0或者1，并将该结果赋值给<code>spin</code>。这里的<code>=</code>表示赋值操作，将右边变量的值复制给左边的变量。</p>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -160,7 +231,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="mdbook-cheat-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="ch02-01-program-unit.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -174,7 +245,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="mdbook-cheat-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="ch02-01-program-unit.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
