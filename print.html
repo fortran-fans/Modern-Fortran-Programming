@@ -245,6 +245,7 @@ code .                      # 使用VS Code打开当前文件夹
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第一个fortran程序"><a class="header" href="#第一个fortran程序">第一个Fortran程序</a></h1>
 <p>本章会讲解一个简单的小程序，一方面能让你继续熟练使用你的编程环境，另一方面是让你对Fortran有初步的了解。</p>
 <p>我们会尽可能详细地讲解每一行代码的含义，但是请放心，如果你对理解特定语句暂时感到困难，请直接跳过。通过后续章节循序渐进地学习，你最终还是可以学会相关语法。</p>
+<h2 id="讲解前的准备"><a class="header" href="#讲解前的准备">讲解前的准备</a></h2>
 <p>在命令行中执行<code>fpm new first-fortran</code>创建新项目。在fpm项目的<code>src</code>目录中新建名为<code>Stern_Gerlach_experiment.f90</code>的文件（别忘了删除默认生成的.f90文件），并将以下内容写到该文件中：</p>
 <pre><code class="language-fortran">module Stern_Gerlach_experiment
     implicit none
@@ -292,18 +293,20 @@ end program
 </code></pre>
 <p>在详细解释代码之前，我们先简要介绍这段代码所描述的物理过程。这个小程序模拟的是<a href="https://zh.wikipedia.org/wiki/%E6%96%BD%E7%89%B9%E6%81%A9%EF%BC%8D%E6%A0%BC%E6%8B%89%E8%B5%AB%E5%AE%9E%E9%AA%8C">施特恩－格拉赫实验</a>。
 <img src="media/Stern_Gerlach_experiment.png" alt="施特恩－格拉赫实验" />
-电子具有自旋角动量，可以产生自旋磁矩。由于其自旋角动量的取值是量子化的，且仅有两种取值（我们将其分别标记为spin up和spin down），因而磁矩也仅有两种取向。因此，如果将含有未成对电子的原子束打向非均匀的磁场，其中的原子因磁矩的不同，会偏转产生不同方向的两束原子。这个实验使人们第一次观察到原子磁矩的量子化。</p>
+电子具有自旋角动量，可以产生自旋磁矩。由于其自旋角动量的取值是量子化的，且仅有两种取值（我们将其分别标记为spin up和spin down），因而磁矩也仅有两种取向。因此，如果将含有未成对电子的原子束打向非均匀的磁场，其中的原子因磁矩的不同，会偏转产生不同方向的两束原子，在照相板上产生两条分立的沉积痕迹。这个实验使人们第一次观察到电子自旋磁矩的量子化。</p>
 <p>我们的第一个程序将依次「发射一个原子」，这个原子的自旋角动量是随机的，然后程序将观察结果打印到屏幕中。</p>
+<h2 id="模块部分"><a class="header" href="#模块部分">模块部分</a></h2>
 <p>首先来看<code>Stern_Gerlach_experiment.f90</code>。这个文件中的<code>module Stern_Gerlach_experiment</code>和<code>end module</code>，以及它们包含的内容，构成了一个Fortran模块（module）。模块就像一个工具箱，把关于同一个任务的变量、函数、子程序等都打包在一起，提供给使用这个模块的程序其他部分。<code>Stern_Gerlach_experiment</code>是模块的名字，表明这个模块会提供模拟施特恩－格拉赫实验的功能。</p>
-<p><code>implicit none</code>告诉编译器，在这个模块中的所有变量，都必须显式（explicit）地声明后才能使用。我们建议你在编写程序时，始终使用这个语句，可以有效地避免出现计算结果的错误。接下来的<code>private</code>语句，会隐藏模块中的定义的所有变量和函数等内容。明明模块是为了提供给他人使用的，为什么还要隐藏其中的内容呢？有两点原因：</p>
+<p><code>implicit none</code>告诉编译器，在这个模块中的所有变量，都必须显式（explicit）地声明后才能使用。我们建议你在编写程序时，始终使用这个语句，可以有效地避免出现计算结果的错误。</p>
+<p>接下来的<code>private</code>语句，会隐藏模块中的定义的所有变量和函数等内容。明明模块是为了提供给他人使用的，为什么还要隐藏其中的内容呢？有两点原因：</p>
 <ol>
 <li>首先模块中并非所有内容都是应当对外公开的，就像一台仪器，需要用外壳将其机身封装起来，使用者只会操作其外部的按钮。模块中也有一部分是仅供模块内部使用的，将其暴露在外，使用者可能会将其修改，导致错误的结果；</li>
 <li>其次，一个设计良好的模块，在完成其功能的前提下，应尽可能减少对外提供的内容。这样可以减小使用者的记忆量，更加友好。</li>
 </ol>
-<p><code>public :: emit_atom</code>语句说明<code>emit_atom</code>这个功能是公开的，使用了这个模块的代码就可以调用<code>emit_atom</code>。</p>
+<p>然后利用<code>public :: emit_atom</code>语句说明<code>emit_atom</code>这个功能是公开的，使用了这个模块的代码就可以调用<code>emit_atom</code>。</p>
 <p>在这个模块中，我们只定义了一个子程序（subroutine）<code>emit_atom</code>。子程序和函数（function）都定义在模块的<code>contains</code>语句之后。与模块的定义非常相似，子程序定义在<code>subroutine emit_atom()</code>和<code>end subroutine</code>之中。<code>subroutine emit_atom()</code>中的括号用于放置虚参列表，不过该子程序并没有虚参，所以这里为空。</p>
 <pre><code class="language-fortran">real :: raw_number
-integer :: spin ! 0代表alpha自旋，1代表beta自旋
+integer :: spin ! 0代表spin up，1代表spin down
 </code></pre>
 <p>这两行分别定义了一个<code>real</code>类型的变量<code>raw_number</code>和<code>integer</code>类型的变量<code>spin</code>，在该子程序后续内容中，我们可以使用<code>raw_number</code>和<code>spin</code>来储存数值，并用于计算、判断等操作。<code>real</code>类型的变量类似于数学中的实数，可储存包含小数部分的数值，也被称为「浮点数」；<code>integer</code>类型的变量则类似数学中的整数，不包含小数部分。我们定义的<code>spin</code>将可能取值<code>0</code>或<code>1</code>，分别表示spin up状态和spin down状态。</p>
 <p>在Fortran中，<code>!</code>用于标记对代码的注释。从<code>!</code>开始一直到行尾的内容都是注释。注释对程序执行不起任何作用，它只是注解代码的功能，方便阅读者理解代码，提高代码的可维护性。我们鼓励读者适当地在代码中添加注释，无论是对于自己还是其他阅读代码的人，都是有好处的。</p>
@@ -311,8 +314,39 @@ integer :: spin ! 0代表alpha自旋，1代表beta自旋
 <pre><code class="language-fortran">call random_number(raw_number) ! raw_number的范围是[0,1)
 spin = nint(raw_number) ! 四舍五入得到0或1
 </code></pre>
-<p>我们首先调用了Fortran内置的子程序<code>random_number</code>，<code>raw_number</code>作为参数接收<code>random_number</code>执行产生的结果。<code>random_number</code>会随机产生均匀落在\([0,1)\)区间的浮点数，因此<code>raw_number</code>的数值就在这个范围里。</p>
-<p>之后我们调用内置的函数<code>nint</code>根据<code>raw_number</code>的值四舍五入得到整数0或者1，并将该结果赋值给<code>spin</code>。这里的<code>=</code>表示赋值操作，将右边变量的值复制给左边的变量。</p>
+<p>我们首先调用了Fortran内置的子程序<code>random_number</code>，<code>raw_number</code>作为参数接收<code>random_number</code>执行产生的结果。<code>random_number</code>会随机产生均匀落在\([0,1)\)区间的浮点数，因此<code>raw_number</code>的数值就在这个范围里。之后我们调用内置的函数<code>nint</code>根据<code>raw_number</code>的值四舍五入得到整数<code>0</code>或者<code>1</code>，并将该结果赋值给<code>spin</code>。这里的<code>=</code>表示赋值操作，将右边变量的值复制给左边的变量。</p>
+<p>对比这两行语句，可以看出子程序与函数调用方式的不同。虽然子程序和函数并没有本质上的不同，但是函数相比子程序多了一个「返回值」。在这个例子中，<code>random_number</code>子程序内部产生随机的值，然后赋值给<code>raw_number</code>，然后我们就可以使用这个值；而<code>nint</code>函数则是根据<code>raw_number</code>的值进行四舍五入，并不会直接修改<code>raw_number</code>，计算得到的整数<code>0</code>或<code>1</code>是通过返回值的方式赋值给<code>spin</code>。当然函数也可以直接修改被传入的参数，我们将在函数与子程序章节讲解。</p>
+<p>现在我们随机产生了具有不同自旋状态的原子，我们要观测它们的自旋，并把观测结果输出到屏幕。</p>
+<pre><code class="language-fortran">if (spin == 0) then ! 判断spin的值，若等于0，则执行下面语句
+    write (*, *) &quot;Emit an atom with spin up.&quot;
+else ! 否则执行这一部分
+    write (*, *) &quot;Emit an atom with spin down.&quot;
+end if
+</code></pre>
+<p><code>spin == 0</code>表达式会将<code>spin</code>的值与<code>0</code>进行比较，如果<code>spin</code>的值等于<code>0</code>，得到<code>.true.</code>（<code>logical</code>变量真），反之则得到<code>.false.</code>（<code>logical</code>变量假）。因此，经过比较，如果<code>spin</code>的值为<code>0</code>，就会执行第一个语句，将<code>Emit an atom with spin up.</code>打印到屏幕。</p>
+<p>注意，在代码中我们并不是直接写<code>Emit an atom with spin up.</code>，而是用双引号<code>&quot;</code>将其限定。这样得到的是一个字符串，其中的内容为<code>Emit an atom with spin up.</code>。</p>
+<p>相应地，如果<code>spin</code>的值为<code>1</code>，就不会执行第一条语句，而是进入到第二条语句，向屏幕输出<code>Emit an atom with spin down.</code></p>
+<h2 id="主函数部分"><a class="header" href="#主函数部分">主函数部分</a></h2>
+<p>到此为止，我们已经介绍完<code>Stern_Gerlach_experiment</code>模块的内容，我们现在来看<code>main.f90</code>中的内容。这个源代码文件中定义了<code>program</code>，这是我们程序的「主函数」。主函数是一个可执行Fortran程序必不可少的部分，因为它是程序执行的入口。当执行编译得到的程序时，首先会进入到<code>program</code>中，开始依次执行其中的语句。<code>main</code>是我们为主函数起的名字，你也可以换成其他名字，只要不与程序其他部分的名字冲突。</p>
+<pre><code class="language-fortran">use Stern_Gerlach_experiment ! 引入模块，从而能够使用其中定义的变量及过程
+</code></pre>
+<p>我们在主函数开头引入此前定义的模块，这样我们就可以在主函数中使用这个模块提供的功能。</p>
+<p>同样地，我们在主函数中也使用<code>implicit none</code>语句。注意它与<code>use</code>模块语句的顺序，<code>implicit none</code>必须在所有<code>use</code>语句之后出现。</p>
+<pre><code class="language-fortran">integer, parameter :: emission_times = 5 ! 实验的观察次数
+integer :: i
+</code></pre>
+<p>然后我们为主函数定义必要的变量。<code>i</code>的定义与前面你看到的<code>spin</code>类似，但是你会注意到<code>emission_times</code>有所不同。对于<code>emission_times</code>，除了标记其类型的<code>integer</code>以外，还多了一个<code>parameter</code>。<code>parameter</code>说明了<code>emission_times</code>是一个「常量」，或者说「不可变」的变量，在定义之后就不可再修改其值。显然常量在定义时需要同时指定值，我们将<code>emission_times</code>的值定义为<code>5</code>。</p>
+<pre><code class="language-fortran">do i = 1, emission_times
+    call emit_atom()
+end do
+</code></pre>
+<p>主函数的主体是一个循环结构。所谓循环，就是重复执行一些语句。我们知道<code>emission_times</code>的值为<code>5</code>，循环开头实际的含义就是<code>do i = 1, 5</code>。这会使<code>i</code>分别被赋值为<code>1, 2, 3, 4, 5</code>，而其中的<code>call emit_atom()</code>语句也会相应执行五次。每次执行<code>emit_atom()</code>，其内部会随机产生一个原子，并打印对原子的观察结果。这样就完成了五次观察实验。</p>
+<h2 id="练习"><a class="header" href="#练习">练习</a></h2>
+<ul>
+<li>尝试更改<code>emission_times</code>的值，例如将其改为<code>10</code>或者<code>0</code>。重新编译并执行，看看结果有何不同。</li>
+<li>在执行<code>call random_number(raw_number)</code>之后打印出<code>raw_number</code>的值，对比其四舍五入后是否与<code>spin</code>的值一致。</li>
+<li>在<code>do</code>循环中打印<code>i</code>的值。</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
 <pre><code class="language-fortran">program main
     implicit none
