@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.</strong> 变量与数组</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -347,7 +347,91 @@ end do
 <li>在执行<code>call random_number(raw_number)</code>之后打印出<code>raw_number</code>的值，对比其四舍五入后是否与<code>spin</code>的值一致。</li>
 <li>在<code>do</code>循环中打印<code>i</code>的值。</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="变量的定义"><a class="header" href="#变量的定义">变量的定义</a></h1>
+<p>本节介绍Fortran中的变量定义，介绍内置的数据类型。</p>
+<h2 id="fortran变量的规则"><a class="header" href="#fortran变量的规则">Fortran变量的规则</a></h2>
+<p>Fortran中的变量定义分为了两个部分，前者是数据类型，后者是数据的属性，一个变量只能有一个类型，但是可以有多个属性。</p>
+<h2 id="基本的数据类型"><a class="header" href="#基本的数据类型">基本的数据类型</a></h2>
+<p>Fortran中的基本数据类型有5种，每一种还具有不同的kind值，用来表示不同的精度。</p>
+<table><thead><tr><th align="center">类型名</th><th align="center">含义</th><th align="center">kind</th><th align="center">默认kind</th></tr></thead><tbody>
+<tr><td align="center"><code>integer</code></td><td align="center">整数</td><td align="center">1,2,4,8</td><td align="center">4</td></tr>
+<tr><td align="center"><code>real</code></td><td align="center">小数</td><td align="center">4,8,16</td><td align="center">4</td></tr>
+<tr><td align="center"><code>complex</code></td><td align="center">复数</td><td align="center">4,8,16</td><td align="center">4</td></tr>
+<tr><td align="center"><code>character(len=[num])</code></td><td align="center">字符串</td><td align="center">1,4</td><td align="center">1</td></tr>
+<tr><td align="center"><code>logical</code></td><td align="center">逻辑类型</td><td align="center">1,2,4,8</td><td align="center">4</td></tr>
+</tbody></table>
+<ul>
+<li><code>real</code>类型在编程中通常称为浮点数，而其对应的kind=4，8，16称为单精度，双精度，四精度浮点数。</li>
+<li><code>integer</code>类型在编程中称为整型，而其对应的kind=4，8称为整型，长整型。</li>
+</ul>
+<h2 id="变量命名规则"><a class="header" href="#变量命名规则">变量命名规则</a></h2>
+<p>Fortran中的可用于变量命名的字符包括数字，下划线，英文字母且不区分大小写。合法的变量名必须以英文字母开始。类型和变量名之间用<code>::</code>分隔，具有相同类型的变量可以写在同一行并用逗号隔开。</p>
+<p>给出一个简单的定义变量的例子</p>
+<pre><code class="language-fortran">program main
+   implicit none
+   real::a,sqrt_2
+   integer::i,number_of_particles
+   complex::c
+   character(len=10)::str
+   logical::flag
+end program main
+</code></pre>
+<p>这些定义使用的都是默认精度，如果想使用更高的精度，可以在对应的类型后加括号，例如</p>
+<pre><code class="language-fortran">program main
+   implicit none
+   real(8)::a
+   integer(1)::i
+   complex(16)::c16
+   logical(2)::flag
+end program main
+</code></pre>
+<h2 id="字面值"><a class="header" href="#字面值">字面值</a></h2>
+<p>Fortran中的字面值拥有的是<strong>对应变量类型的默认精度</strong>，比如1.0是一个单精度浮点数，如果需要定义更高精度的字面值，在其后加下划线，并标注出kind值，例如</p>
+<pre><code class="language-fortran">&quot;hello Fortran&quot;                                     ! 字符串
++1.234_8,1.2345e10_8,-1.2345e10_8                   ! 双精度浮点数
+4294967296_8,-1234_8                                ! 长整型
+(1.0,2.0)                                           ! 单精度复数
+.true.,.false.                                      ! 逻辑值
+</code></pre>
+<ul>
+<li>这是Fortran中的一个易错点，因为大部分的编程语言默认的精度都是双精度，所以在切换到Fortran的时候很容易遇到精度不足的问题。</li>
+</ul>
+<h2 id="变量赋值"><a class="header" href="#变量赋值">变量赋值</a></h2>
+<p>Fortran中的变量赋值使用的是<code>=</code>，使用<code>write</code>输出</p>
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::i
+   real::pi
+   character(len=8)::str
+   i=42
+   pi=3.14159
+   str=&quot;Fortran&quot;
+   write(*,*)i,pi,str
+end program main
+</code></pre>
+<h2 id="常量属性"><a class="header" href="#常量属性">常量属性</a></h2>
+<p>在实际的编程中，有些数是不会变的，比如圆周率pi,重力加速度g，这时候就可以将其定义为常量。常量使用<code>parameter</code>来标记，是我们学习到的第一个属性。</p>
+<pre><code class="language-fortran">program main
+   implicit none
+   real,parameter::pi=3.1415926
+   real,parameter::g=9.8
+   write(*,*)pi,g
+end program main
+</code></pre>
+<p>常量是不可修改的。</p>
+<h2 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h2>
+<ul>
+<li>Fortran中的变量只能在程序块的开头定义，执行语句（比如赋值语句）不能出现在变量定义的部分。</li>
+<li>Fortran的赋值可以在变量定义时使用，比如<code>real::a=123.4</code>,出于一些特别的原因，本教程不使用这种语法。</li>
+<li>在书写程序的时候，尽量使用有意义的变量名，并搭配合理的注释，使得程序更加清晰明了。</li>
+</ul>
+<h2 id="思考题"><a class="header" href="#思考题">思考题</a></h2>
+<ul>
+<li>如果变量不定义直接输出，会出现什么问题？</li>
+<li>如果把一个双精度浮点数的字面值赋值给单精度浮点数变量，会输出什么？</li>
+<li>对一个带有<code>parameter</code>属性的量进行修改，会发生什么事情？</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
 <pre><code class="language-fortran">program main
     implicit none
 
