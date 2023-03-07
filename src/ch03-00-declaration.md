@@ -81,7 +81,7 @@ end program main
 ``` fortran
 program main
    implicit none
-   real,parameter::pi=3.1415936
+   real,parameter::pi=3.1415926
    real,parameter::g=9.8
    write(*,*)pi,g
 end program main
