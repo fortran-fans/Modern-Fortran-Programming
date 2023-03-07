@@ -23,7 +23,7 @@
     - [Fortran语言单元](ch02-01-program-unit.md)
 
 - [变量与数组]()
-    - [变量的定义] (ch03-00-declaration.md)
+    - [变量的定义](ch03-00-declaration.md)
     - [变量的表示范围和精度](ch03-01-precision.md)
 
 - [流程控制]()
