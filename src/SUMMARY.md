@@ -27,6 +27,7 @@
     - [变量的表示范围和精度](ch03-01-precision.md)
     - [运算符](ch03-02-operation.md)
     - [数组](ch03-03-array.md)
+    - [字符串数组](ch03-04-character-array.md)
 
 - [流程控制]()
 
