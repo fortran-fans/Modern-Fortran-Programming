@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>fpm基本操作 - 现代Fortran程序设计</title>
+        <title>字符串数组 - 现代Fortran程序设计</title>
                 
 
         <!-- Custom HTML head -->
@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html" class="active"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html" class="active"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -122,7 +122,7 @@
                                                                         <a href="https://github.com/fortran-fans/modern-fortran-programming/tree/main/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch01-03-fpm.md" title="Suggest an edit" aria-label="Suggest an edit">
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch03-04-character-array.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                         
@@ -151,43 +151,62 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="fpm基本操作"><a class="header" href="#fpm基本操作">fpm基本操作</a></h1>
-<p>Fortran Package Manager（fpm）是Fortran-Lang组织主导、为Fortran语言专门定制开发的免费、开源的包管理器和构建系统。</p>
-<p>gfortran是Fortran编译器，当项目源代码文件增多时，我们需要依靠Make、CMake、XMake、fpm来管理和
-构建项目，这会为我们节约很多构建代码的时间和精力。</p>
-<p>我们可以前往<a href="https://github.com/fortran-lang/fpm">fpm仓库</a>获取最新的安装教程和安装包，
-并阅读相关文档。</p>
-<p>我们也可以通过MSYS2安装fpm：</p>
-<pre><code class="language-sh">pacman -Ss fpm              # 查询名字中含“fpm”字符的包
-pacman -S ucrt64/mingw-w64-ucrt-x86_64-fpm  # 安装fpm软件
+                        <h1 id="字符串数组"><a class="header" href="#字符串数组">字符串数组</a></h1>
+<h2 id="字符串切片"><a class="header" href="#字符串切片">字符串切片</a></h2>
+<p>Fortran中的字符串也支持切片操作，但是相对于数组切片要弱一些，例如，取字符串的第i个字符需要使用<code>str(i:i)</code>，<strong>不能反向切片</strong>，<strong>不能间隔切片</strong>等</p>
+<pre><code class="language-fortran">program string
+  implicit none
+  character(11)::str
+  str=&quot;hello world&quot;
+  write(*,*)str(:5)
+  !write(*,*)str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
+end program string
 </code></pre>
-<p>现在，fpm已经有了面向用户的中文文档网页（<a href="https://fpm.fortran-lang.org/zh_CN/index.html">fpm.fortran-lang.org</a>）了。</p>
-<blockquote>
-<p>🔰 提示：fortran-lang/fpm不仅支持GFortran，还支持OneAPI和LFortran等其他Fortran编译器。</p>
-</blockquote>
-<h2 id="创建fpm项目演示"><a class="header" href="#创建fpm项目演示">创建fpm项目演示</a></h2>
-<p>我们可以搭配命令行终端（cmd、pwsh、bash、fish）使用fpm，使用vs code编辑代码：</p>
-<pre><code class="language-sh">fpm new hello_world &amp;&amp; cd hello_world       # 新建FPM项目并切换到文件夹下: hello_world
-fpm build                   # 编译FPM项目
-fpm run                     # 运行主程序🚀
-fpm test --help             # 获取特定命令行参数的帮助文档
-code .                      # 使用VS Code打开当前文件夹
-...
+<h2 id="可分配字符串"><a class="header" href="#可分配字符串">可分配字符串</a></h2>
+<p>在Fortran2003引入了可分配的字符串，使用起来更加灵活，可以显式的分配内存，也可以自动分配内存。</p>
+<p>使用可分配字符串可以有效的避免字符串拼接之后尾部空格的问题</p>
+<pre><code class="language-fortran">program allocatable_string
+  implicit none
+
+  character(:), allocatable :: first_name
+  character(:), allocatable :: last_name
+  character(:), allocatable :: full_name
+
+  ! 显式分配内存
+  allocate(character(4) :: first_name)
+  first_name = 'John'
+
+  ! 自动分配内存
+  last_name = 'Smith'
+
+  full_name = first_name//' '//last_name
+  write(*,*)full_name
+end program allocatable_string
 </code></pre>
-<p><img src="./media/hello_world-in-code.png" alt="hello_world" /></p>
-<blockquote>
-<p>🔰 提示：<code>fpm build</code>类似Visual Studio的Debug模式，<code>fpm build --profile release</code>类似Visual Studio的Release模式。</p>
-</blockquote>
+<h2 id="字符串数组-1"><a class="header" href="#字符串数组-1">字符串数组</a></h2>
+<p>在Fortran中，字符串数组中的数组长度<strong>必须相同</strong>，使用数组构造器时也必须相同</p>
+<pre><code class="language-fortran">program string_array
+  implicit none
+  character(len=10), dimension(2) :: keys
+  character(len=:) , allocatable  :: vals(:)    !可分配的字符串数组，定义的时候必须都是可分配的
+  !character(len=4) , allocatable  :: vals(:)    !错误
+
+  keys = [character(len=10) :: &quot;apple&quot;, &quot;tree&quot;] !这样可以给定构造器中字符串的长度
+  write(*,*)keys(1)(1:3)                        !字符串数支持这类链式语法
+
+  allocate(character(len=4)::vals(4))           !显式分配内存
+end program main
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="ch01-02-gfortran.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="ch03-03-array.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="ch02-00-first-fortran.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="mdbook-cheat-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -197,11 +216,11 @@ code .                      # 使用VS Code打开当前文件夹
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="ch01-02-gfortran.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="ch03-03-array.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="ch02-00-first-fortran.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="mdbook-cheat-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>

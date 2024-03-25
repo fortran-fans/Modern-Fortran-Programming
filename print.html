@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -670,6 +670,52 @@ end program allocatable
 <li>对二维数组使用数组切片操作，观察其输出</li>
 <li>对二维数组使用数组作为下标，观察其输出</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="字符串数组"><a class="header" href="#字符串数组">字符串数组</a></h1>
+<h2 id="字符串切片"><a class="header" href="#字符串切片">字符串切片</a></h2>
+<p>Fortran中的字符串也支持切片操作，但是相对于数组切片要弱一些，例如，取字符串的第i个字符需要使用<code>str(i:i)</code>，<strong>不能反向切片</strong>，<strong>不能间隔切片</strong>等</p>
+<pre><code class="language-fortran">program string
+  implicit none
+  character(11)::str
+  str=&quot;hello world&quot;
+  write(*,*)str(:5)
+  !write(*,*)str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
+end program string
+</code></pre>
+<h2 id="可分配字符串"><a class="header" href="#可分配字符串">可分配字符串</a></h2>
+<p>在Fortran2003引入了可分配的字符串，使用起来更加灵活，可以显式的分配内存，也可以自动分配内存。</p>
+<p>使用可分配字符串可以有效的避免字符串拼接之后尾部空格的问题</p>
+<pre><code class="language-fortran">program allocatable_string
+  implicit none
+
+  character(:), allocatable :: first_name
+  character(:), allocatable :: last_name
+  character(:), allocatable :: full_name
+
+  ! 显式分配内存
+  allocate(character(4) :: first_name)
+  first_name = 'John'
+
+  ! 自动分配内存
+  last_name = 'Smith'
+
+  full_name = first_name//' '//last_name
+  write(*,*)full_name
+end program allocatable_string
+</code></pre>
+<h2 id="字符串数组-1"><a class="header" href="#字符串数组-1">字符串数组</a></h2>
+<p>在Fortran中，字符串数组中的数组长度<strong>必须相同</strong>，使用数组构造器时也必须相同</p>
+<pre><code class="language-fortran">program string_array
+  implicit none
+  character(len=10), dimension(2) :: keys
+  character(len=:) , allocatable  :: vals(:)    !可分配的字符串数组，定义的时候必须都是可分配的
+  !character(len=4) , allocatable  :: vals(:)    !错误
+
+  keys = [character(len=10) :: &quot;apple&quot;, &quot;tree&quot;] !这样可以给定构造器中字符串的长度
+  write(*,*)keys(1)(1:3)                        !字符串数支持这类链式语法
+
+  allocate(character(len=4)::vals(4))           !显式分配内存
+end program main
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
 <pre><code class="language-fortran">program main
     implicit none
