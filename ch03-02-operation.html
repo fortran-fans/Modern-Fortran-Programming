@@ -188,13 +188,13 @@ end program main
 <li>复数不能用来比较</li>
 </ul>
 <h2 id="逻辑类型"><a class="header" href="#逻辑类型">逻辑类型</a></h2>
-<p>逻辑类型之间也有自己的运算，分别为与<code>.and.</code> 或 <code>.or.</code> 非 <code>.not.</code> 异或<code>.neqv.</code> 同或 <code>.eqv.</code>,运算之后返回一个逻辑类型。
-| 逻辑值A   | 逻辑值B   | <code>.and.</code>   | <code>.or.</code>    | <code>.neqv.</code>  | <code>.eqv.</code>   |
-| :-:       | :-:       | :-:       | :-:       | :-:       | :-:       |
-| <code>.true.</code>  | <code>.true.</code>  | <code>.true.</code>  | <code>.true.</code>  | <code>.false.</code> | <code>.true.</code>  |
-| <code>.true.</code>  | <code>.false.</code> | <code>.false.</code> | <code>.true.</code>  | <code>.true.</code>  | <code>.false.</code> |
-| <code>.false.</code> | <code>.true.</code>  | <code>.false.</code> | <code>.true.</code>  | <code>.true.</code>  | <code>.false.</code> |
-| <code>.false.</code> | <code>.false.</code> | <code>.false.</code> | <code>.false.</code> | <code>.false.</code> | <code>.true.</code>  |</p>
+<p>逻辑类型之间也有自己的运算，分别为与<code>.and.</code> 或 <code>.or.</code> 非 <code>.not.</code> 异或<code>.neqv.</code> 同或 <code>.eqv.</code>,运算之后返回一个逻辑类型。</p>
+<table><thead><tr><th align="center">逻辑值A</th><th align="center">逻辑值B</th><th align="center"><code>.and.</code></th><th align="center"><code>.or.</code></th><th align="center"><code>.neqv.</code></th><th align="center"><code>.eqv.</code></th></tr></thead><tbody>
+<tr><td align="center"><code>.true.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.true.</code></td></tr>
+<tr><td align="center"><code>.true.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.false.</code></td></tr>
+<tr><td align="center"><code>.false.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.true.</code></td><td align="center"><code>.false.</code></td></tr>
+<tr><td align="center"><code>.false.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.false.</code></td><td align="center"><code>.true.</code></td></tr>
+</tbody></table>
 <p>举例</p>
 <pre><code class="language-fortran">program main
    implicit none
