@@ -76,7 +76,6 @@ end program main
 ``` fortran
 program main
    implicit none
-   real::x
    write(*,*)"hello "//"world!" 
 end program main
 ```
