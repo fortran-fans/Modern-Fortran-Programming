@@ -762,7 +762,7 @@ end if
 <li>Fortran中的if语句并没有短路机制，所以例如<code>if( n &lt; 11 .and. a(n) &gt; 1) </code>这样的语法并不能保证a(n)的下标不会越界</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="select-选择语句"><a class="header" href="#select-选择语句">select 选择语句</a></h1>
-<p><code>select</code>语句可以对参数进行匹配判断，满足匹配条件的进入对应的<code>case</code>。 其中，只能用于<strong>整型，字符串，逻辑型</strong>*</p>
+<p><code>select</code>语句可以对参数进行匹配判断，满足匹配条件的进入对应的<code>case</code>。 其中，只能用于<strong>整型，字符串，逻辑型</strong></p>
 <p>举例</p>
 <pre><code class="language-fortran">select case(move)              ! move有wasd四种可能性
 case(&quot;w&quot;);write(*,*)&quot;上&quot;       !使用;一行可以写多个语句，可读性更好
