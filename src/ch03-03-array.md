@@ -115,7 +115,18 @@ end program allocatable
 - 可分配数组的大小可以不确定，但是维数必须确定
 - 可分配数组分配之后就可以像普通数组一样使用，但是有一个**重分配**的机制，即`a=[1,2,3]`如果`a`是一个可分配数组，那么此时a就会重新分配内存，变成一个具有3个元素的数组
 
+## 数组常量
 
+因为常量在定义之后就不能更改了，所以数组常量的定义可以不写具体的大小，只使用`(*)`代替
+
+``` fortran
+program allocatable
+  implicit none
+  integer,parameter::a(3)=[1,2,3]
+  integer,parameter::b(*)=[1,2,3]  !使用*代替
+  integer,parameter::c(0:*)=[4,5,6]!也可以自定义起点
+end program allocatable
+```
 
 ## 思考题
 - 对二维数组使用数组切片操作，观察其输出
