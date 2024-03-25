@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li><li class="chapter-item expanded "><a href="ch04-01-select.html"><strong aria-hidden="true">4.2.</strong> select选择语句</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -760,6 +760,37 @@ end if
 </code></pre>
 <ul>
 <li>Fortran中的if语句并没有短路机制，所以例如<code>if( n &lt; 11 .and. a(n) &gt; 1) </code>这样的语法并不能保证a(n)的下标不会越界</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="select-选择语句"><a class="header" href="#select-选择语句">select 选择语句</a></h1>
+<p><code>select</code>语句可以对参数进行匹配判断，满足匹配条件的进入对应的<code>case</code>。 其中，只能用于<strong>整型，字符串，逻辑型</strong>*</p>
+<p>举例</p>
+<pre><code class="language-fortran">select case(move)              ! move有wasd四种可能性
+case(&quot;w&quot;);write(*,*)&quot;上&quot;       !使用;一行可以写多个语句，可读性更好
+case(&quot;a&quot;);write(*,*)&quot;左&quot;
+case(&quot;s&quot;);write(*,*)&quot;下&quot;
+case(&quot;d&quot;);write(*,*)&quot;右&quot;
+case default;write(*,*)&quot;错误的方向&quot; !默认的case,可以省略
+end select
+</code></pre>
+<p>同时，<code>case</code> 语句支持指定多个条件进行匹配，也支持范围</p>
+<pre><code class="language-fortran">!数字范围
+select case(i)      
+case(1:9)  ;write(*,*)&quot;一位数&quot; 
+case(10:99);write(*,*)&quot;两位数&quot;
+end select
+!字符范围
+select case(i)      
+case('a':'z')  ;write(*,*)&quot;小写字母&quot; 
+case('A':'Z')  ;write(*,*)&quot;大写字母&quot;
+end select
+
+select case(i)
+case(2,3,5,7)  ;write(*,*)&quot;质数&quot;
+case default   ;write(*,*)&quot;不是质数&quot;
+end select
+</code></pre>
+<ul>
+<li>不支持<code>1:4:2</code>这类范围</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
 <pre><code class="language-fortran">program main
