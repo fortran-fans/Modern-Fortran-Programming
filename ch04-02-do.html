@@ -241,6 +241,7 @@ print *, result_sin
 <p>在数组构造器中，我们可以使用隐式循环</p>
 <pre><code class="language-fortran">program main
   implicit none
+  integer::i
   integer::a(4)
   a=[(i,i=1,4)]
   a=[(j,integer::j=1,4)] !也可以内部定义循环变量，目前`gfortran`不支持，`ifx,flang`支持
@@ -248,7 +249,9 @@ end program main
 </code></pre>
 <p>在输出的时候也可以使用隐式循环</p>
 <pre><code class="language-fortran">program main
+  implicit none
   integer::a(4)
+  integer::i
   a=[(i,i=1,4)]
   write(*,*)(a(i),i=1,4)
 end program main
