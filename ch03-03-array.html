@@ -187,7 +187,7 @@ end program arrays
 <p>数组的初始化有多种方式。</p>
 <p>首先，Fortran支持将数组整体赋值，例如 <code>a=1</code>的形式就是将数组a中的元素全部赋值为1</p>
 <p>其次就是数组构造器，语法是<code>[]</code></p>
-<p>同时数组还支持整体操作，包括运算符<code>+-*/</code>以及<code>**</code>，还有所有的逻辑运算符，对应的操作就是数组的对应位置做相应的算数操作，因此<strong>数组整体操作的时候数组大小和维度必须相同，或者为标量</strong></p>
+<p>同时数组还支持整体操作，包括运算符<code>+-*/</code>以及<code>**</code>，还有所有的逻辑运算符。对应的就是<strong>数组的相应位置做对应的算数操作</strong>，因此<strong>数组整体操作的时候数组大小和维度必须相同，或者为标量</strong></p>
 <pre><code class="language-fortran">program arrays
   implicit none
   integer :: array1(10)
