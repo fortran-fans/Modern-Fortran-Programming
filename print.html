@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -558,6 +558,108 @@ end program main
 <p>字符串也有一系列的比较运算符，按照ascii码来进行比较，特别的</p>
 <ul>
 <li>Fortran字符串中的尾部空格不会计入比较即，<code>&quot;abc&quot;==&quot;abc   &quot;</code>,两者是相等的</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="数组"><a class="header" href="#数组">数组</a></h1>
+<p>在实际的程序编写过程中，我们有时候需要存储和操作一长串数字，而不是单个标量变量，例如存储100个粒子的位置，50个城市的经纬度。在计算机编程中，此类数据结构称为数组<code>array</code> 。</p>
+<h2 id="数组的声明"><a class="header" href="#数组的声明">数组的声明</a></h2>
+<p>我们可以声明任意类型的数组，数组的声明需要用到<code>dimension</code>属性，这是我们学到的第二个属性</p>
+<p>如果数组的大小在编写程序的时候就是已知的，那么就可以按照如下的方式定义，称为<strong>静态数组</strong></p>
+<pre><code class="language-fortran">program arrays
+  implicit none
+
+  ! 一维 integer 数组
+  integer, dimension(10) :: array1
+
+  ! dimension的语法糖，和上面的等价
+  integer :: array2(10)
+
+  ! 二维数组 
+  real(8), dimension(10, 10) :: array3,array4
+
+  ! 自定义数组的上标和下标
+  real :: array5(0:9)
+  real(8) :: array6(-5:5)
+
+ ! 也可以使用parameter来定义
+  integer,parameter::n=10
+  real(8) :: array7(n)
+
+end program arrays
+</code></pre>
+<ul>
+<li>Fortran支持数组的最高维度是15维</li>
+<li>Fortran的数组<strong>下标从1</strong>开始，且定义的时候是左闭右闭，和其他语言不同</li>
+<li>此类静态数组声明时的大小只能是常数或者具有<code>parameter</code>属性的常量</li>
+</ul>
+<h2 id="数组初始化与构造器"><a class="header" href="#数组初始化与构造器">数组初始化与构造器</a></h2>
+<p>数组的初始化有多种方式。</p>
+<p>首先，Fortran支持将数组整体赋值,例如 <code>a=1</code>的形式就是将数组a中的元素全部赋值为1</p>
+<p>其次就是数组构造器,语法是<code>[]</code></p>
+<p>同时数组还支持整体操作,包括运算符<code>+-*/</code>以及<code>**</code>，还有所有的逻辑运算符,对应的操作就是数组的对应位置做相应的算数操作,因此<strong>数组整体操作的时候数组大小和维度必须相同，或者为标量</strong></p>
+<pre><code class="language-fortran">program arrays
+  implicit none
+  integer :: array1(10)
+  real::array2(3)
+  array1=1 !整体初始化
+  array1=[1,2,3,4,5,6,7,8,9,10] !数组构造器
+  array2=[real::1.0,2.1,3.2]    !使用real::语句可以设定数组构造器的类型
+  array2=array2+[1.0,1.0,2.0]   
+  array2=array2+2.3             !也可以是标量 
+end program arrays
+</code></pre>
+<h2 id="数组的切片"><a class="header" href="#数组的切片">数组的切片</a></h2>
+<p>数组的切片使用的语法是<code>(start:end[:step])</code>,其中step可以是任意的整数，包括负数。</p>
+<ul>
+<li>当<code>step=1</code>时，可以省略</li>
+<li>当<code>end</code>表示的是数组末尾的时候，可以省略</li>
+<li>当<code>start</code>表示的是数组开头的时候，可以省略</li>
+</ul>
+<p>同时数组切片还可以和数组的整体操作运算结合起来，这为Fortran的数组提供了强大的语法糖。</p>
+<pre><code class="language-fortran">program arrays
+  implicit none
+  integer :: array1(10)
+  array1=[1,2,3,4,5,6,7,8,9,10]
+  write(*,*)array1(1:10:2)               !输出所有的奇数位
+  array1(6:)=array(:5)+array(1:10:2)     !利用数组切片加整体运算
+  write(*,*)array1(10:1:-1)              !倒序输出
+end program arrays
+</code></pre>
+<p>同时Fortran还支持使用数组作为数组的下标，<strong>此时会产生临时数组</strong></p>
+<pre><code class="language-fortran">program arrays
+  implicit none
+  integer :: array1(10),idx(3)
+  array1=[1,2,3,4,5,6,7,8,9,10]
+  idx=[4,6,5]
+  write(*,*)array1(idx) 
+end program arrays
+</code></pre>
+<h2 id="可分配数组动态数组"><a class="header" href="#可分配数组动态数组">可分配数组(动态数组)</a></h2>
+<p>有时候，数组的大小需要在计算中才能得出，前面使用的静态数组由于大小是固定的，有时候并不能满足相应的需求。这时候就需要动态数组。
+定义动态数组需要用的<code>allocatable</code>属性</p>
+<pre><code class="language-fortran">program allocatable
+  implicit none
+
+  integer, allocatable :: array1(:)  ! 定义一维的可分配数组
+  integer, allocatable :: array2(:,:)! 定义二维的可分配数组
+
+  allocate(array1(10))   !分配大小
+  allocate(array2(10,10))
+
+  ! ...
+
+  deallocate(array1) !释放
+  deallocate(array2)
+
+end program allocatable
+</code></pre>
+<ul>
+<li>可分配数组的大小可以不确定，但是维数必须确定</li>
+<li>可分配数组分配之后就可以像普通数组一样使用，但是有一个<strong>重分配</strong>的机制，即<code>a=[1,2,3]</code>如果<code>a</code>是一个可分配数组，那么此时a就会重新分配内存，变成一个具有3个元素的数组</li>
+</ul>
+<h2 id="思考题-2"><a class="header" href="#思考题-2">思考题</a></h2>
+<ul>
+<li>对二维数组使用数组切片操作，观察其输出</li>
+<li>对二维数组使用数组作为下标，观察其输出</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
 <pre><code class="language-fortran">program main
