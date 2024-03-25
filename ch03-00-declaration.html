@@ -232,6 +232,22 @@ end program main
    write(*,*)a
 end program main
 </code></pre>
+<h2 id="block语句"><a class="header" href="#block语句">block语句</a></h2>
+<p>Fortran2008之前，变量的定义必须在程序的开头完成，Fortran2008引入了<code>block</code>语句，这样我们就可以在程序任意位置定义变量</p>
+<pre><code class="language-fortran">program main
+    implicit none
+    real :: x
+
+    block
+        real :: y ! 局部变量
+        y = 2.0
+        x = y ** n
+        write(*,*) y
+    end block
+    ! write(*,*) y !y出了作用域，已经不存在了
+    write(*,*) x   ! 输出 4.00000000
+end program main
+</code></pre>
 <h2 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h2>
 <ul>
 <li>Fortran中的变量只能在程序块的开头定义，执行语句（比如赋值语句）不能出现在变量定义的部分。</li>
