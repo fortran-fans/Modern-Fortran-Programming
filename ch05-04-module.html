@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>if条件语句 - 现代Fortran程序设计</title>
+        <title>模块的其他特性 - 现代Fortran程序设计</title>
                 
 
         <!-- Custom HTML head -->
@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html" class="active"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li><li class="chapter-item expanded "><a href="ch04-01-select.html"><strong aria-hidden="true">4.2.</strong> select选择语句</a></li><li class="chapter-item expanded "><a href="ch04-02-do.html"><strong aria-hidden="true">4.3.</strong> do循环</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-00-function.html"><strong aria-hidden="true">5.1.</strong> 函数</a></li><li class="chapter-item expanded "><a href="ch05-01-subroutine.html"><strong aria-hidden="true">5.2.</strong> 子程序</a></li><li class="chapter-item expanded "><a href="ch05-02-funckeyword.html"><strong aria-hidden="true">5.3.</strong> 过程的其他特性</a></li><li class="chapter-item expanded "><a href="ch05-03-callback.html"><strong aria-hidden="true">5.4.</strong> 回调函数</a></li><li class="chapter-item expanded "><a href="ch05-04-module.html"><strong aria-hidden="true">5.5.</strong> 模块的其他特性</a></li></ol></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li><li class="chapter-item expanded "><a href="ch04-01-select.html"><strong aria-hidden="true">4.2.</strong> select选择语句</a></li><li class="chapter-item expanded "><a href="ch04-02-do.html"><strong aria-hidden="true">4.3.</strong> do循环</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-00-function.html"><strong aria-hidden="true">5.1.</strong> 函数</a></li><li class="chapter-item expanded "><a href="ch05-01-subroutine.html"><strong aria-hidden="true">5.2.</strong> 子程序</a></li><li class="chapter-item expanded "><a href="ch05-02-funckeyword.html"><strong aria-hidden="true">5.3.</strong> 过程的其他特性</a></li><li class="chapter-item expanded "><a href="ch05-03-callback.html"><strong aria-hidden="true">5.4.</strong> 回调函数</a></li><li class="chapter-item expanded "><a href="ch05-04-module.html" class="active"><strong aria-hidden="true">5.5.</strong> 模块的其他特性</a></li></ol></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -122,7 +122,7 @@
                                                                         <a href="https://github.com/fortran-fans/modern-fortran-programming/tree/main/" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch04-00-if.md" title="Suggest an edit" aria-label="Suggest an edit">
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch05-04-module.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
                         
@@ -151,61 +151,69 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="if条件语句"><a class="header" href="#if条件语句">if条件语句</a></h1>
-<p>Fortran中使用条件语句<code>if(&lt;condition&gt;)then</code>来表示某条语句在满足条件时被执行，其中<code>&lt;condition&gt;</code>必须是一个逻辑值。</p>
-<h2 id="单分支"><a class="header" href="#单分支">单分支</a></h2>
-<p>当<code>if</code>结构中的语句<strong>只有一行</strong>时，可是省略<code>then</code>和<code>end if</code>,写为一行</p>
-<pre><code class="language-fortran">if (angle &lt; 90) then
-    write(*,*)&quot;锐角&quot;
-end if
-!等价形式
-if(angle &lt; 90) write(*,*)&quot;锐角&quot; 
+                        <h1 id="模块的其他特性"><a class="header" href="#模块的其他特性">模块的其他特性</a></h1>
+<p>我们也可以将变量存放在模块中。注意，模块中存放的<strong>都是定义</strong>，不能有执行语句。借助模块，我们可以对变量和过程进行封装，提高代码的可读性，一致性，可移植性。</p>
+<p>模块中的变量和过程有三种属性<code>private(私有),public(公有),protected(保护，模块内可以修改，模块外只能访问不能修改)</code>，默认的属性是<code>public</code></p>
+<h2 id="变量属性"><a class="header" href="#变量属性">变量属性</a></h2>
+<pre><code class="language-fortran">module my_mod
+  implicit none
+
+  private                           !第一种定义方式全局其效果
+  public::public_var, print_matrix  !第二种定义方式，只对限定的起效果
+
+  real, parameter :: public_var = 2
+  integer :: private_var
+  integer,protected:: cnt=0          !第三种直接在声明时添加
+
+contains
+
+  subroutine print_matrix(A)
+    real, intent(in) :: A(:,:)  !另一种数组传递的方式，可以省略一些虚参，并提供接口检查，推荐使用
+
+    integer :: i
+
+    cnt=cnt+1 !统计函数调用次数
+
+    do i = 1, size(A,1)
+      print *, A(i,:)
+    end do
+
+  end subroutine print_matrix
+
+end module my_mod
 </code></pre>
-<ul>
-<li>在 if 结构中缩进代码是一种很好的做法，以使代码更具可读性。 </li>
-</ul>
-<h2 id="两个分支"><a class="header" href="#两个分支">两个分支</a></h2>
-<p>当有两个分支时，需要增加<code>else</code>语句或<code>else if</code>语句</p>
-<pre><code class="language-fortran">if (angle &lt; 90) then
-  write(*,*)&quot;锐角&quot;
-else
-  write(*,*)&quot;不是锐角&quot;
-end if
-!
-if (angle &lt; 90) then
-  write(*,*)&quot;锐角&quot;
-else if(angle == 90) then
-  write(*,*)&quot;直角&quot;
-end if
+<h2 id="其他的导入形式"><a class="header" href="#其他的导入形式">其他的导入形式</a></h2>
+<pre><code class="language-fortran">program use_mod
+  use my_mod !使用这个模块
+  implicit none
+  real :: mat(10, 10)
+
+  mat(:,:) = public_var
+  call print_matrix(mat)
+
+end program use_mod
 </code></pre>
-<ul>
-<li><strong>注意</strong><code>else if</code>后面还有一个<code>then</code></li>
-</ul>
-<h2 id="多个分支"><a class="header" href="#多个分支">多个分支</a></h2>
-<p>可以使用多个<code>else if</code>一直连接下去</p>
-<pre><code class="language-fortran">if (angle &lt; 90) then
-  write(*,*)&quot;锐角&quot;
-else if(angle == 90) then
-  write(*,*)&quot;直角&quot;
-else if(angle &lt; 180) then
-  write(*,*)&quot;钝角&quot;
-else if(angle == 180) then
-  write(*,*)&quot;平角&quot;
-end if
+<p>同时还可以显式导入</p>
+<pre><code class="language-fortran">use my_mod, only: public_var
 </code></pre>
+<p>为了防止命名冲突，还可以使用别名导入</p>
+<pre><code class="language-fortran">use my_mod, only: printMat=&gt;print_matrix
+</code></pre>
+<h2 id="多文件"><a class="header" href="#多文件">多文件</a></h2>
+<p>可以将不同的不同的<code>module</code>保存到不同的文件中，这样在使用的时候可以编译对应的模块，也可以提高移植性。可以提前编写一些通用的模块，提高代码的复用程度。</p>
 <ul>
-<li>Fortran中的if语句并没有短路机制，所以例如<code>if( n &lt; 11 .and. a(n) &gt; 1) </code>这样的语法并不能保证a(n)的下标不会越界</li>
+<li>现代的Fortran程序应当是<strong>一个主程序和多个<code>module</code>组成</strong></li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="ch03-04-character-array.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="ch05-03-callback.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="ch04-01-select.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="mdbook-cheat-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -215,11 +223,11 @@ end if
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="ch03-04-character-array.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="ch05-03-callback.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="ch04-01-select.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="mdbook-cheat-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
