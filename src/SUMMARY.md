@@ -38,6 +38,7 @@
     - [子程序](ch05-01-subroutine.md)
     - [过程的其他特性](ch05-02-funckeyword.md)
     - [回调函数](ch05-03-callback.md)
+    - [模块的其他特性](ch05-04-module.md)
 ## 附录
 
 - [mdBook参考](mdbook-cheat-sheet.md)
