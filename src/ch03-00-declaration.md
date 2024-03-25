@@ -98,6 +98,24 @@ program main
    write(*,*)a
 end program main
 ```
+## block语句
+
+Fortran2008之前，变量的定义必须在程序的开头完成，Fortran2008引入了`block`语句，这样我们就可以在程序任意位置定义变量
+``` fortran
+program main
+    implicit none
+    real :: x
+
+    block
+        real :: y ! 局部变量
+        y = 2.0
+        x = y ** n
+        write(*,*) y
+    end block
+    ! write(*,*) y !y出了作用域，已经不存在了
+    write(*,*) x   ! 输出 4.00000000
+end program main
+```
 
 ## 注意事项
 
