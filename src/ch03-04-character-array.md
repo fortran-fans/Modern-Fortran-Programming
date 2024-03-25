@@ -52,5 +52,5 @@ program string_array
   write(*,*)keys(1)(1:3)                        !字符串数支持这类链式语法
 
   allocate(character(len=4)::vals(4))           !显式分配内存
-end program main
+end program string_array
 ``` 
