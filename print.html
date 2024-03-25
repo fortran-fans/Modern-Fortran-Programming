@@ -582,13 +582,14 @@ end program main
  ! 也可以使用parameter来定义
   integer,parameter::n=10
   real(8) :: array7(n)
-
+  write(*,*)array7(3)   !输出单个数组元素
 end program arrays
 </code></pre>
 <ul>
 <li>Fortran支持数组的最高维度是15维</li>
 <li>Fortran的数组<strong>下标从1</strong>开始，且定义的时候是左闭右闭，和其他语言不同</li>
 <li>此类静态数组声明时的大小只能是常数或者具有<code>parameter</code>属性的常量</li>
+<li>数组的上下标<strong>不能超过定义时的大小</strong>，这类错误称为<strong>数组越界</strong>，在科学计算中十分常见。</li>
 </ul>
 <h2 id="数组初始化与构造器"><a class="header" href="#数组初始化与构造器">数组初始化与构造器</a></h2>
 <p>数组的初始化有多种方式。</p>
