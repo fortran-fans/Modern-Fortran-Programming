@@ -185,9 +185,9 @@ end program arrays
 </ul>
 <h2 id="数组初始化与构造器"><a class="header" href="#数组初始化与构造器">数组初始化与构造器</a></h2>
 <p>数组的初始化有多种方式。</p>
-<p>首先，Fortran支持将数组整体赋值,例如 <code>a=1</code>的形式就是将数组a中的元素全部赋值为1</p>
-<p>其次就是数组构造器,语法是<code>[]</code></p>
-<p>同时数组还支持整体操作,包括运算符<code>+-*/</code>以及<code>**</code>，还有所有的逻辑运算符,对应的操作就是数组的对应位置做相应的算数操作,因此<strong>数组整体操作的时候数组大小和维度必须相同，或者为标量</strong></p>
+<p>首先，Fortran支持将数组整体赋值，例如 <code>a=1</code>的形式就是将数组a中的元素全部赋值为1</p>
+<p>其次就是数组构造器，语法是<code>[]</code></p>
+<p>同时数组还支持整体操作，包括运算符<code>+-*/</code>以及<code>**</code>，还有所有的逻辑运算符，对应的操作就是数组的对应位置做相应的算数操作，因此<strong>数组整体操作的时候数组大小和维度必须相同，或者为标量</strong></p>
 <pre><code class="language-fortran">program arrays
   implicit none
   integer :: array1(10)
@@ -200,7 +200,7 @@ end program arrays
 end program arrays
 </code></pre>
 <h2 id="数组的切片"><a class="header" href="#数组的切片">数组的切片</a></h2>
-<p>数组的切片使用的语法是<code>(start:end[:step])</code>,其中step可以是任意的整数，包括负数。</p>
+<p>数组的切片使用的语法是<code>(start:end[:step])</code>，其中step可以是任意的整数，包括负数。</p>
 <ul>
 <li>当<code>step=1</code>时，可以省略</li>
 <li>当<code>end</code>表示的是数组末尾的时候，可以省略</li>
