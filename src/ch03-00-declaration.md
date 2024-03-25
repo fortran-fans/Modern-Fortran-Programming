@@ -88,6 +88,17 @@ end program main
 ```
 常量是不可修改的。
 
+同时，我们也可以使用常量来为字面量设置精度
+``` fortran
+program main
+   implicit none
+   integer,parameter::sp=4
+   real(sp)::a
+   a=1.234_sp
+   write(*,*)a
+end program main
+```
+
 ## 注意事项
 
 - Fortran中的变量只能在程序块的开头定义，执行语句（比如赋值语句）不能出现在变量定义的部分。
