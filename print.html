@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">6.</strong> mdBook参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -716,6 +716,51 @@ end program allocatable_string
   allocate(character(len=4)::vals(4))           !显式分配内存
 end program string_array
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="if条件语句"><a class="header" href="#if条件语句">if条件语句</a></h1>
+<p>Fortran中使用条件语句<code>if(&lt;condition&gt;)then</code>来表示某条语句在满足条件时被执行，其中<code>&lt;condition&gt;</code>必须是一个逻辑值。</p>
+<h2 id="单分支"><a class="header" href="#单分支">单分支</a></h2>
+<p>当<code>if</code>结构中的语句<strong>只有一行</strong>时，可是省略<code>then</code>和<code>end if</code>,写为一行</p>
+<pre><code class="language-fortran">if (angle &lt; 90) then
+    write(*,*)&quot;锐角&quot;
+end if
+!等价形式
+if(angle &lt; 90) write(*,*)&quot;锐角&quot; 
+</code></pre>
+<ul>
+<li>在 if 结构中缩进代码是一种很好的做法，以使代码更具可读性。 </li>
+</ul>
+<h2 id="两个分支"><a class="header" href="#两个分支">两个分支</a></h2>
+<p>当有两个分支时，需要增加<code>else</code>语句或<code>else if</code>语句</p>
+<pre><code class="language-fortran">if (angle &lt; 90) then
+  write(*,*)&quot;锐角&quot;
+else
+  write(*,*)&quot;不是锐角&quot;
+end if
+!
+if (angle &lt; 90) then
+  write(*,*)&quot;锐角&quot;
+else if(angle == 90) then
+  write(*,*)&quot;直角&quot;
+end if
+</code></pre>
+<ul>
+<li><strong>注意</strong><code>else if</code>后面还有一个<code>then</code></li>
+</ul>
+<h2 id="多个分支"><a class="header" href="#多个分支">多个分支</a></h2>
+<p>可以使用多个<code>else if</code>一直连接下去</p>
+<pre><code class="language-fortran">if (angle &lt; 90) then
+  write(*,*)&quot;锐角&quot;
+else if(angle == 90) then
+  write(*,*)&quot;直角&quot;
+else if(angle &lt; 180) then
+  write(*,*)&quot;钝角&quot;
+else if(angle == 180) then
+  write(*,*)&quot;平角&quot;
+end if
+</code></pre>
+<ul>
+<li>Fortran中的if语句并没有短路机制，所以例如<code>if( n &lt; 11 .and. a(n) &gt; 1) </code>这样的语法并不能保证a(n)的下标不会越界</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="fortran代码环境"><a class="header" href="#fortran代码环境">Fortran代码环境</a></h2>
 <pre><code class="language-fortran">program main
     implicit none
