@@ -28,13 +28,14 @@ program arrays
  ! 也可以使用parameter来定义
   integer,parameter::n=10
   real(8) :: array7(n)
-
+  write(*,*)array7(3)   !输出单个数组元素
 end program arrays
 ```
 -  Fortran支持数组的最高维度是15维
 -  Fortran的数组**下标从1**开始，且定义的时候是左闭右闭，和其他语言不同
 -  此类静态数组声明时的大小只能是常数或者具有`parameter`属性的常量
-
+-  数组的上下标**不能超过定义时的大小**，这类错误称为**数组越界**，在科学计算中十分常见。
+  
 ## 数组初始化与构造器
 
 数组的初始化有多种方式。
