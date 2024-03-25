@@ -22,7 +22,7 @@ case(1:9)  ;write(*,*)"一位数"
 case(10:99);write(*,*)"两位数"
 end select
 !字符范围
-select case(i)      
+select case(c)      
 case('a':'z')  ;write(*,*)"小写字母" 
 case('A':'Z')  ;write(*,*)"大写字母"
 end select
