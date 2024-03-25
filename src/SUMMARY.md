@@ -36,6 +36,7 @@
 - [函数与子程序]()
     - [函数](ch05-00-function.md)
     - [子程序](ch05-01-subroutine.md)
+    - [过程的其他特性](ch05-02-funckeyword.md)
 ## 附录
 
 - [mdBook参考](mdbook-cheat-sheet.md)
