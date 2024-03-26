@@ -1250,8 +1250,8 @@ close(11)
 <tr><td align="center">通用格式</td><td align="center"><code>g0</code></td><td align="center">输出时使用，适用于任意字符</td></tr>
 <tr><td align="center">空格</td><td align="center"><code>x</code></td><td align="center">输出一个空格</td></tr>
 </tbody></table>
-<p>Fortran支持在每个描述符的前面添加次数标记例如<code>10i3</code>,<code>20(f10.5,i10)</code>，这样的格式可以多层嵌套，组合出多样的格式。</p>
-<p>同时可以使用<code>*</code>作为标记次数，此时的含义是能输出的最大次数</p>
+<p>Fortran支持在每个描述符的前面添加次数标记，例如<code>10i3</code>,<code>20(f10.5,i10)</code>，这样就可以多层嵌套，组合出更多的格式。</p>
+<p>同时可以使用<code>*</code>作为标记次数，此时表示的是能输出的最大次数</p>
 <pre><code class="language-fortran">  write(*,&quot;(i3)&quot;)123
   write(*,&quot;(3f10.4)&quot;)[1.0,2.0,3.0]
   write(*,&quot;(*(g0,1x)&quot;))1.0,&quot;hello&quot;,2 
@@ -1260,8 +1260,9 @@ close(11)
 <pre><code class="language-fortran">  real::a(3,3)
   write(*,&quot;(3f10.4)&quot;)a !此时输出的是一个3*3的矩阵形式
 </code></pre>
-<p>在默认格式<code>*</code>中，中每个<code>read</code>会<strong>至少读取一行</strong>，所以一个空的<code>read</code>可以跳过当前行，而<code>read</code>后如果是一个数组，则它会一直读取直到数组全部读取</p>
-<pre><code class="language-fortran">  real::a(10,10)
+<p>在默认格式<code>*</code>中，每个<code>read</code>会<strong>至少读取一行</strong>，所以一个空的<code>read</code>可以<strong>跳过当前行</strong>，而<code>read</code>后如果是一个数组或者多个元素，则它会一直读取直到所有元素全部读取</p>
+<pre><code class="language-fortran">  !读取一个数组
+  real::a(10,10)
   read(10,*)a  !文件中至少需要100个real型数字
 </code></pre>
 <ul>
