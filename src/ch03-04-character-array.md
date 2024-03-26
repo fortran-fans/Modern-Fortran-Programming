@@ -9,7 +9,7 @@ program string
   character(11)::str
   str="hello world"
   write(*,*)str(:5)
-  !write(*,*)str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
+  !write(*,*)str(5),str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
 end program string
 ```
 
