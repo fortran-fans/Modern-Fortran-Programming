@@ -1231,14 +1231,13 @@ write(io,*)a,b
 close(io)
 </code></pre>
 <p>当你读写的文件是二进制文件的时候，就不需要填写格式参数</p>
-<pre><code class="language-fortran">integer :: iread,iwrite
-integer :: a
-open(newunit=iread, file=&quot;r.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
-open(newunit=iwrite, file=&quot;w.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
-read(iread)  a
-write(iwrite) a+100
-close(iread)
-close(iwrite)
+<pre><code class="language-fortran">integer :: a
+open(10, file=&quot;r.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
+open(11, file=&quot;w.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
+read(10)  a
+write(11) a+100
+close(10)
+close(11)
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="格式化输出"><a class="header" href="#格式化输出">格式化输出</a></h1>
 <p>使用格式化使得读取和写入的数据更加美观,Fortran的格式描述符使用<code>&quot;()&quot;</code>包围</p>
