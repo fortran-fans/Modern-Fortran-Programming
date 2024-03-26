@@ -678,7 +678,7 @@ end program allocatable
   character(11)::str
   str=&quot;hello world&quot;
   write(*,*)str(:5)
-  !write(*,*)str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
+  !write(*,*)str(5),str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
 end program string
 </code></pre>
 <h2 id="可分配字符串"><a class="header" href="#可分配字符串">可分配字符串</a></h2>
