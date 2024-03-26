@@ -54,13 +54,12 @@ close(io)
 当你读写的文件是二进制文件的时候，就不需要填写格式参数
 
 ``` fortran
-integer :: iread,iwrite
 integer :: a
-open(newunit=iread, file="r.bin", form="unformatted",access="stream")
-open(newunit=iwrite, file="w.bin", form="unformatted",access="stream")
-read(iread)  a
-write(iwrite) a+100
-close(iread)
-close(iwrite)
+open(10, file="r.bin", form="unformatted",access="stream")
+open(11, file="w.bin", form="unformatted",access="stream")
+read(10)  a
+write(11) a+100
+close(10)
+close(11)
 ```
 
