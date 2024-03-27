@@ -1445,13 +1445,12 @@ end program main
 </code></pre>
 <ul>
 <li><code>pass</code>关键字用来指定在调用的过程中，被调用的类型会<strong>自动传递为第一个虚参</strong>，与之对应的还有<code>nopass</code></li>
-<li><code>pass(this)</code>关键字也可以带具体的参数，用于指定哪个虚参充当被自动传递，当你的函数中有多个虚参都是当前类型的时候，你可以指定任意一个。</li>
+<li><code>pass(this)</code>关键字也可以带具体的参数，用于指定哪个虚参被自动传递。当你的函数中有多个虚参都是当前类型的时候，你可以指定任意一个。</li>
 <li>使用<code>=&gt;</code>可以为绑定的过程重命名。</li>
 <li>变量名尽量使用<code>this</code>或者<code>self</code>(与其他语言的习惯相符)</li>
 </ul>
 <h2 id="函数和运算符重载"><a class="header" href="#函数和运算符重载">函数和运算符重载</a></h2>
-<p>函数中的接口非常复杂，有时候我们希望可以简化接口，这时候，使用重载是一个选择。例如对于<code>vector</code>类型，我们希望它也可以通过传入一个数组来初始化。使用<code>generic</code>关键字就可以
-对函数进行重载</p>
+<p>当定义的函数很多的时候，函数名会非常复杂，有时候我们希望可以简化，这时候，使用重载是一个选择。例如对于<code>vector</code>类型，我们希望它也可以通过传入一个数组来初始化。使用<code>generic</code>关键字就可以对函数进行重载</p>
 <pre><code class="language-fortran">module vector_mod
   implicit none
   type vector_t
