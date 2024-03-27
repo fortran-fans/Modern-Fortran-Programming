@@ -64,7 +64,9 @@ Fortran中的字面值拥有的是**对应变量类型的默认精度**，比如
 ## 变量赋值
 
 Fortran中的变量赋值使用的是`=`，使用`write`输出
+
 ``` fortran
+!文件名app/main.f90
 program main
    implicit none
    integer::i
@@ -76,17 +78,34 @@ program main
    write(*,*)i,pi,str
 end program main
 ```
+
+运行结果
+
+``` sh
+$ fpm run
+Project is up to date
+          42   3.14159012     Fortran
+```
+
 ## 常量属性
 
 在实际的编程中，有些数是不会变的，比如圆周率pi,重力加速度g，这时候就可以将其定义为常量。常量使用`parameter`来标记，是我们学习到的第一个属性。
 
 ``` fortran
+!文件名app/main.f90
 program main
    implicit none
    real,parameter::pi=3.1415926
    real,parameter::g=9.8
    write(*,*)pi,g
 end program main
+```
+运行结果
+
+``` sh
+$ fpm run
+Project is up to date
+   3.14159250       9.80000019
 ```
 常量是不可修改的。
 
@@ -100,6 +119,11 @@ program main
    write(*,*)a
 end program main
 ```
+``` sh
+$ fpm run
+Project is up to date
+   1.23399997
+```
 ## block语句
 
 Fortran2008之前，变量的定义必须在程序的开头完成，Fortran2008引入了`block`语句，这样我们就可以在程序任意位置定义变量
@@ -111,14 +135,29 @@ program main
     block
         real :: y ! 局部变量
         y = 2.0
-        x = y ** n
+        x = y ** 2
         write(*,*) y
     end block
     ! write(*,*) y !y出了作用域，已经不存在了
     write(*,*) x   ! 输出 4.00000000
 end program main
 ```
+``` sh
+$ fpm run
+Project is up to date
+   2.00000000
+   4.00000000
+```
+如果你取消注释，则会显式
+``` sh
+$ fpm run
+[ 66%] Compiling...
+app/main.f90:11:16:
 
+   11 |     write(*,*) y !y出了作用域，已经不存在了
+      |                1
+Error: Symbol 'y' at (1) has no IMPLICIT type
+```
 ## 注意事项
 
 - Fortran中的变量只能在程序块的开头定义，执行语句（比如赋值语句）不能出现在变量定义的部分。
