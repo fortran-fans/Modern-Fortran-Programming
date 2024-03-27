@@ -1112,7 +1112,7 @@ program main
 end program main
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="回调函数"><a class="header" href="#回调函数">回调函数</a></h1>
-<p>当我们想把过程传递给过程的时候，需要限制传递过程的类型，此时就需要回调函数。Fortran提供了抽象接口(<code>abstract interface</code>)来实现这个功能，使用<code>procedure</code>关键字来定义虚参</p>
+<p>将函数作为参数传递给函数，这个功能称为回调函数，例如我们写一个数值积分，我们希望传入一个函数，上下界。此时我们需要限制虚参的接口，Fortran提供了抽象接口(<code>abstract interface</code>)来实现这个功能，使用<code>procedure</code>关键字来定义虚参</p>
 <p>同样的，抽象接口也放在<code>module</code>中</p>
 <pre><code class="language-fortran">module trapz_mod
   implicit none
@@ -1146,6 +1146,10 @@ program main
   write(*,*)trapz(1.0,2.0,mycos)
 end program main
 </code></pre>
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<ul>
+<li>完成<code>trapz</code>数值积分，求解<code>sin(x)+cos(x)</code>在<code>[0,1]</code>上的积分</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="模块的其他特性"><a class="header" href="#模块的其他特性">模块的其他特性</a></h1>
 <p>我们也可以将变量存放在模块中。注意，模块中存放的<strong>都是定义</strong>，不能有执行语句。借助模块，我们可以对变量和过程进行封装，提高代码的可读性，一致性，可移植性。</p>
 <p>模块中的变量和过程有三种属性<code>private(私有),public(公有),protected(保护，模块内可以修改，模块外只能访问不能修改)</code>，默认的属性是<code>public</code></p>
@@ -1612,7 +1616,7 @@ program main
   s=string(&quot;456&quot;)
 end program main 
 </code></pre>
-<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<h2 id="习题-1"><a class="header" href="#习题-1">习题</a></h2>
 <ul>
 <li>请你尝试补充完所有的运算符</li>
 <li>尝试加入<code>gcd</code>对分数进行约分，补充<code>.reduce.</code>函数</li>

@@ -152,7 +152,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="回调函数"><a class="header" href="#回调函数">回调函数</a></h1>
-<p>当我们想把过程传递给过程的时候，需要限制传递过程的类型，此时就需要回调函数。Fortran提供了抽象接口(<code>abstract interface</code>)来实现这个功能，使用<code>procedure</code>关键字来定义虚参</p>
+<p>将函数作为参数传递给函数，这个功能称为回调函数，例如我们写一个数值积分，我们希望传入一个函数，上下界。此时我们需要限制虚参的接口，Fortran提供了抽象接口(<code>abstract interface</code>)来实现这个功能，使用<code>procedure</code>关键字来定义虚参</p>
 <p>同样的，抽象接口也放在<code>module</code>中</p>
 <pre><code class="language-fortran">module trapz_mod
   implicit none
@@ -186,6 +186,10 @@ program main
   write(*,*)trapz(1.0,2.0,mycos)
 end program main
 </code></pre>
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<ul>
+<li>完成<code>trapz</code>数值积分，求解<code>sin(x)+cos(x)</code>在<code>[0,1]</code>上的积分</li>
+</ul>
 
                     </main>
 
