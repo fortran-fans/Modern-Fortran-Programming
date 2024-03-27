@@ -11,7 +11,7 @@ module my_func_mod
     implicit none
 contains
   function vector_norm(vec) result(norm)
-    real, intent(in) :: vec(:)
+    real, intent(in) :: vec(:) !这里vec(:)表示我们传入的是一个数组
     real :: norm
   
     norm = sqrt(sum(vec**2))
@@ -29,6 +29,7 @@ end program main
 ```
 
 其中`result`表示函数的返回值是什么，同时我们还需要在函数体中定义返回的类型和属性。 
+- Fortran中有许多针对数组的内置函数，熟练使用他们，可以减少代码的冗余，提高效率，此处`sum`表示对数组进行求和，`sqrt`表示对元素进行开方
 
 如果返回值**没有属性，只有类型**，则可以将其写在函数的开头。
 
