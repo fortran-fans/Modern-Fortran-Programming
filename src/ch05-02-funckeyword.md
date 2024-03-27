@@ -80,6 +80,9 @@ end program main
       end if
    end function fib
 ```
+
+- 此处我们使用了`return`语句，注意Fortran中的`return`语句并不返回任何东西，所做的就是直接跳到子程序(函数)的末尾，然后退出。
+  
 ## 关键字参数
 Fortran中的子过程，它的参数可以通过关键字参数给定，即使用`虚参名=实参`的形式
 
