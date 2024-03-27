@@ -100,21 +100,18 @@ module frac_mod
     end type
 contains
     elemental function cancelling(this)result(z)
-        implicit none
         class(frac),intent(in)::this
         type(frac)           ::z
         ! do something
     end function cancelling
 
     type(frac) elemental function add(this,y)result(z)
-        implicit none
         class(frac),intent(in)::this,y
         z%num=this%num*y%den+y%num*this%den
         z%den=this%den*y%den
     end function add
 
     type(frac) elemental function add_frac_num(this,m)result(z)
-        implicit none
         class(frac),intent(in)::this
         integer,intent(in)    ::m
         z%num=this%num+this%den * m
@@ -122,7 +119,6 @@ contains
     end function add_frac_num
 
     type(frac) elemental function add_num_frac(m,this)result(z)
-        implicit none
         class(frac),intent(in)::this
         integer,intent(in)    ::m
         z%num=this%num+this%den * m
