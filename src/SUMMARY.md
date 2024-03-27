@@ -44,6 +44,7 @@
     - [格式化输出](ch06-01-format.md)
 - [自定义类型]()
     - [自定义类型的定义](ch07-00-type.md)
+    - [过程绑定和运算符重载](ch07-01-procbind.md)
 ## 附录
 
 - [mdBook参考](mdbook-cheat-sheet.md)
