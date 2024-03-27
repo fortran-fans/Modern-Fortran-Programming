@@ -54,6 +54,34 @@ program main
 end program main
 ```
 
+## 自定义类型的输出
+
+如果类型中的成员不带有特殊属性，则可以直接使用`write`输出，否则旧无法直接使用`write`输出，此时可以使用`%`对指定的成员输出
+
+``` fortran
+module test_mod
+  implicit none
+  type :: point
+    real :: x,y
+  end type point
+  type :: string
+    character(len=:),allocatable::str !allocatable为特殊属性
+  end type string
+end module test_mod
+
+program main
+  use test_mod
+  implicit none
+  type(point)::p
+  type(string)::s
+  p=point(1.0,2.0)
+  s=string("hello")
+  write(*,*)p
+  !write(*,*)s !错误
+  write(*,*)s%str !正确
+end program main
+```
+
 
 
 
