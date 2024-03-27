@@ -60,7 +60,7 @@ end module add_mod
 
 program main
   use add_mod
-  write(*,*,delim="quote")"hello   "+"world " !delim表示为字符串的标识，此处选择引号 
+  write(*,*)'"',"hello   "+"world ",'"'
 end program main
 ```
 - 运算符重载有时候会写出比较含糊的代码，建议要谨慎使用。
