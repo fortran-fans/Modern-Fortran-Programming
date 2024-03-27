@@ -154,30 +154,54 @@
                         <h1 id="select-选择语句"><a class="header" href="#select-选择语句">select 选择语句</a></h1>
 <p><code>select</code>语句可以对参数进行匹配判断，满足匹配条件的进入对应的<code>case</code>。 其中，只能用于<strong>整型，字符串，逻辑型</strong></p>
 <p>举例</p>
-<pre><code class="language-fortran">select case(move)              ! move有wasd四种可能性
-case(&quot;w&quot;);write(*,*)&quot;上&quot;       !使用;一行可以写多个语句，可读性更好
-case(&quot;a&quot;);write(*,*)&quot;左&quot;
-case(&quot;s&quot;);write(*,*)&quot;下&quot;
-case(&quot;d&quot;);write(*,*)&quot;右&quot;
-case default;write(*,*)&quot;错误的方向&quot; !默认的case,可以省略
-end select
+<pre><code class="language-fortran">program main
+   implicit none
+   character(len=1)::move
+   move=&quot;a&quot;
+   select case(move)              ! move有wasd四种可能性
+   case(&quot;w&quot;);write(*,*)&quot;上&quot;       !使用;一行可以写多个语句，可读性更好
+   case(&quot;a&quot;);write(*,*)&quot;左&quot;
+   case(&quot;s&quot;);write(*,*)&quot;下&quot;
+   case(&quot;d&quot;);write(*,*)&quot;右&quot;
+   case default;write(*,*)&quot;错误的方向&quot; !默认的case,可以省略
+   end select
+end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+ 左
+</code></pre>
+<ul>
+<li>练习：尝试修改<code>move</code>的值，观察输出</li>
+</ul>
 <p>同时，<code>case</code> 语句支持指定多个条件进行匹配，也支持范围</p>
-<pre><code class="language-fortran">!数字范围
-select case(i)      
-case(1:9)  ;write(*,*)&quot;一位数&quot; 
-case(10:99);write(*,*)&quot;两位数&quot;
-end select
-!字符范围
-select case(c)      
-case('a':'z')  ;write(*,*)&quot;小写字母&quot; 
-case('A':'Z')  ;write(*,*)&quot;大写字母&quot;
-end select
+<pre><code class="language-fortran">program main
+   implicit none
+   character(len=1)::c
+   integer::i,j
+   i=10
+   c=&quot;W&quot;
+   j=7
+   !数字范围
+   select case(i)      
+   case(1:9)  ;write(*,*)&quot;一位数&quot; 
+   case(10:99);write(*,*)&quot;两位数&quot;
+   end select
+   !字符范围
+   select case(c)      
+   case('a':'z')  ;write(*,*)&quot;小写字母&quot; 
+   case('A':'Z')  ;write(*,*)&quot;大写字母&quot;
+   end select
 
-select case(i)
-case(2,3,5,7)  ;write(*,*)&quot;质数&quot;
-case default   ;write(*,*)&quot;不是质数&quot;
-end select
+   select case(j)
+   case(2,3,5,7)  ;write(*,*)&quot;质数&quot;
+   case default   ;write(*,*)&quot;不是质数&quot;
+   end select
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+ 两位数
+ 大写字母
+ 质数
 </code></pre>
 <ul>
 <li>不支持<code>1:4:2</code>这类范围</li>
