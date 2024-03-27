@@ -205,7 +205,8 @@ end program main
 </ul>
 <h2 id="变量赋值"><a class="header" href="#变量赋值">变量赋值</a></h2>
 <p>Fortran中的变量赋值使用的是<code>=</code>，使用<code>write</code>输出</p>
-<pre><code class="language-fortran">program main
+<pre><code class="language-fortran">!文件名app/main.f90
+program main
    implicit none
    integer::i
    real::pi
@@ -216,14 +217,25 @@ end program main
    write(*,*)i,pi,str
 end program main
 </code></pre>
+<p>运行结果</p>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+          42   3.14159012     Fortran
+</code></pre>
 <h2 id="常量属性"><a class="header" href="#常量属性">常量属性</a></h2>
 <p>在实际的编程中，有些数是不会变的，比如圆周率pi,重力加速度g，这时候就可以将其定义为常量。常量使用<code>parameter</code>来标记，是我们学习到的第一个属性。</p>
-<pre><code class="language-fortran">program main
+<pre><code class="language-fortran">!文件名app/main.f90
+program main
    implicit none
    real,parameter::pi=3.1415926
    real,parameter::g=9.8
    write(*,*)pi,g
 end program main
+</code></pre>
+<p>运行结果</p>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+   3.14159250       9.80000019
 </code></pre>
 <p>常量是不可修改的。</p>
 <p>同时，我们也可以使用常量来为字面量设置精度</p>
@@ -235,6 +247,10 @@ end program main
    write(*,*)a
 end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+   1.23399997
+</code></pre>
 <h2 id="block语句"><a class="header" href="#block语句">block语句</a></h2>
 <p>Fortran2008之前，变量的定义必须在程序的开头完成，Fortran2008引入了<code>block</code>语句，这样我们就可以在程序任意位置定义变量</p>
 <pre><code class="language-fortran">program main
@@ -244,12 +260,26 @@ end program main
     block
         real :: y ! 局部变量
         y = 2.0
-        x = y ** n
+        x = y ** 2
         write(*,*) y
     end block
     ! write(*,*) y !y出了作用域，已经不存在了
     write(*,*) x   ! 输出 4.00000000
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+   2.00000000
+   4.00000000
+</code></pre>
+<p>如果你取消注释，则会显式</p>
+<pre><code class="language-sh">$ fpm run
+[ 66%] Compiling...
+app/main.f90:11:16:
+
+   11 |     write(*,*) y !y出了作用域，已经不存在了
+      |                1
+Error: Symbol 'y' at (1) has no IMPLICIT type
 </code></pre>
 <h2 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h2>
 <ul>
