@@ -189,7 +189,7 @@ write(io,*)a,b
 close(io)
 </code></pre>
 <p>当你读写的文件是二进制文件的时候，就不需要填写格式参数</p>
-<pre><code class="language-fortran">integer :: a
+<pre><code class="language-fortran">integer :: a(100,100) !a是一个数组
 open(10, file=&quot;r.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
 open(11, file=&quot;w.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
 read(10)  a
@@ -197,6 +197,9 @@ write(11) a+100
 close(10)
 close(11)
 </code></pre>
+<ul>
+<li>二进制文件的<strong>读写速度很快</strong></li>
+</ul>
 
                     </main>
 

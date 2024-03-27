@@ -1324,7 +1324,7 @@ write(io,*)a,b
 close(io)
 </code></pre>
 <p>当你读写的文件是二进制文件的时候，就不需要填写格式参数</p>
-<pre><code class="language-fortran">integer :: a
+<pre><code class="language-fortran">integer :: a(100,100) !a是一个数组
 open(10, file=&quot;r.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
 open(11, file=&quot;w.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
 read(10)  a
@@ -1332,6 +1332,9 @@ write(11) a+100
 close(10)
 close(11)
 </code></pre>
+<ul>
+<li>二进制文件的<strong>读写速度很快</strong></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="格式化输出"><a class="header" href="#格式化输出">格式化输出</a></h1>
 <p>使用格式化使得读取和写入的数据更加美观,Fortran的格式描述符使用<code>&quot;()&quot;</code>包围</p>
 <h2 id="常用格式描述符"><a class="header" href="#常用格式描述符">常用格式描述符</a></h2>
