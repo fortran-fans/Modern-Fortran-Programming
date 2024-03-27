@@ -938,7 +938,7 @@ end function vector_norm
 
 function double_vec(vec) result(vec2)
   real, intent(in) :: vec(:)
-  real :: vec2(size(vec))   !可以返回数组
+  real :: vec2(size(vec))   !可以返回数组，但是具有dimension属性，不能写在开头
 
   vec2=vec*2
 
