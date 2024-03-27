@@ -175,6 +175,8 @@ program main
   implicit none
   type(string)::s
   s="123"
+  !内置构造函数形式 
+  s=string("456")
 end program main 
 ```
 
