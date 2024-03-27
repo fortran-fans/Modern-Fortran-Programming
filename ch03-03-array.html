@@ -251,13 +251,13 @@ end program arrays
 <pre><code class="language-fortran">program arrays
   implicit none
   integer :: array1(10),idx(3)
-  array1=[1,2,3,4,5,6,7,8,9,10]
-  idx=[4,6,5]
+  array1=[10,9,8,7,6,5,4,3,2,1]
+  idx=[4,6,1]
   write(*,*)array1(idx) 
 end program arrays
 </code></pre>
 <pre><code class="language-sh">$ fpm run
-           4           6           5
+           7           5           10
 </code></pre>
 <h2 id="可分配数组动态数组"><a class="header" href="#可分配数组动态数组">可分配数组(动态数组)</a></h2>
 <p>有时候，数组的大小需要在计算中才能得出，前面使用的静态数组由于大小是固定的，有时候并不能满足相应的需求，这时候就需要动态数组。
