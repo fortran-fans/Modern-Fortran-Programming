@@ -155,27 +155,61 @@
 <p>当我们需要一段代码执行很多次的时候，就需要用到循环语句</p>
 <h2 id="普通的do循环"><a class="header" href="#普通的do循环">普通的do循环</a></h2>
 <p>Fortran中的循环使用<code>do i=start,end[,step]</code>，其中当<code>step</code>为1时，可以省略</p>
-<pre><code class="language-fortran">integer::i
-do i=1,10
-   write(*,*)i
-end do
-do i=1,10,2      !循环中1，到10，间隔为2
-    write(*,*)i  !输出奇数
-end do
-do i=10,1,-2      
-    write(*,*)i  !反向输出偶数
-end do
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::i
+   do i=1,4
+      write(*,*)i
+   end do
+   write(*,*)&quot;-------------------&quot;
+   do i=1,4,2      !循环中1，到4，间隔为2
+      write(*,*)i  !输出奇数
+   end do
+   write(*,*)&quot;-------------------&quot;
+   do i=4,1,-2      
+      write(*,*)i  !反向输出偶数
+   end do
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+           1
+           2
+           3
+           4
+ -------------------
+           1
+           3
+ -------------------
+           4
+           2
 </code></pre>
 <h2 id="带条件的循环"><a class="header" href="#带条件的循环">带条件的循环</a></h2>
 <p>如果要求循环在满足某些条件时执行，则需要使用<code>do while</code>语句</p>
-<pre><code class="language-fortran">integer :: i
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::i
 
-i = 1
-do while (i &lt; 11)
-  write(*,*)i
-  i = i + 1
-end do
-! 此处 i = 11
+   i = 1
+   do while (i &lt; 11)
+      write(*,*)i
+      i = i + 1
+   end do
+   ! 此处 i = 11
+   write(*,*)&quot;end:i=&quot;,i
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+           1
+           2
+           3
+           4
+           5
+           6
+           7
+           8
+           9
+          10
+ end:i=          11
 </code></pre>
 <h2 id="exit与cycle"><a class="header" href="#exit与cycle">exit与cycle</a></h2>
 <p>遇到<code>cycle</code>语句，后续的语句不再执行，会自动跳到循环的开头</p>
@@ -192,6 +226,9 @@ do i=1,6
    write(*,*)i    !输出1,2,3,4
 end do
 </code></pre>
+<ul>
+<li>练习：尝试补全如上程序并运行。</li>
+</ul>
 <h2 id="无限循环"><a class="header" href="#无限循环">无限循环</a></h2>
 <p>显然我们可以使用<code>do while(.true.)</code>构造一个无限循环，Fortran也为我们提供了如下的方式。</p>
 <pre><code class="language-fortran">integer :: i
@@ -234,18 +271,22 @@ end do
 print *, result_sin
 </code></pre>
 <ul>
-<li>支持在语句内定义循环变量<code>do concurrent(integer::i=1:5)</code> 目前<code>gfortran</code>不支持，<code>ifx,flang</code>支持</li>
+<li>支持在语句内定义循环变量<code>do concurrent(integer::i=1:5)</code> 目前<code>gfortran</code>不支持，<code>ifx,ifort,flang</code>支持</li>
 <li>Fortran2018中引入了<code>reduce,shared</code>等字句，可以进一步增强该语法</li>
 </ul>
 <h2 id="隐式循环"><a class="header" href="#隐式循环">隐式循环</a></h2>
 <p>在数组构造器中，我们可以使用隐式循环</p>
 <pre><code class="language-fortran">program main
   implicit none
-  integer::i
+  !integer::i
   integer::a(4)
-  a=[(i,i=1,4)]
-  a=[(j,integer::j=1,4)] !也可以内部定义循环变量，目前`gfortran`不支持，`ifx,flang`支持
+  !a=[(i,i=1,4)]
+  a=[(j,integer::j=1,4)] !也可以内部定义循环变量，目前`gfortran`不支持，`ifx,ifort,flang`支持
+  write(*,*)a
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run --compiler=&quot;ifort&quot;
+1 2 3 4
 </code></pre>
 <p>在输出的时候也可以使用隐式循环</p>
 <pre><code class="language-fortran">program main
