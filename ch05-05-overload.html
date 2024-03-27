@@ -203,7 +203,7 @@ end module add_mod
 
 program main
   use add_mod
-  write(*,*,delim=&quot;quote&quot;)&quot;hello   &quot;+&quot;world &quot; !delim表示为字符串的标识，此处选择引号 
+  write(*,*)'&quot;',&quot;hello   &quot;+&quot;world &quot;,'&quot;'
 end program main
 </code></pre>
 <ul>
