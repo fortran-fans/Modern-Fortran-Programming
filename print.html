@@ -833,11 +833,19 @@ end program string_array
 <p>Fortran中使用条件语句<code>if(&lt;condition&gt;)then</code>来表示某条语句在满足条件时被执行，其中<code>&lt;condition&gt;</code>必须是一个逻辑值。</p>
 <h2 id="单分支"><a class="header" href="#单分支">单分支</a></h2>
 <p>当<code>if</code>结构中的语句<strong>只有一行</strong>时，可是省略<code>then</code>和<code>end if</code>,写为一行</p>
-<pre><code class="language-fortran">if (angle &lt; 90) then
-    write(*,*)&quot;锐角&quot;
-end if
-!等价形式
-if(angle &lt; 90) write(*,*)&quot;锐角&quot; 
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::angle=10
+   if (angle &lt; 90) then
+      write(*,*)&quot;锐角&quot;
+   end if
+   !等价形式
+   if(angle &lt; 90) write(*,*)&quot;锐角&quot; 
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+ 锐角
+ 锐角
 </code></pre>
 <ul>
 <li>在 if 结构中缩进代码是一种很好的做法，以使代码更具可读性。 </li>
