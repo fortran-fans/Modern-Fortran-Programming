@@ -1554,6 +1554,34 @@ program main
   write(*,*)z
 end program main
 </code></pre>
+<ul>
+<li>除此之外，也可以对比较运算符进行重载，注意比较运算符中运算符和其对应的旧形式属于同一个函数，不能重载为不同的功能。</li>
+</ul>
+<h2 id="赋值运算符的重载"><a class="header" href="#赋值运算符的重载">赋值运算符的重载</a></h2>
+<p>赋值的运算符具有特有的形式<code>assignment(=)</code></p>
+<pre><code class="language-fortran">module string_mod
+  implicit none
+  type string
+    character(:),allocatable::str
+  contains
+    generic::assignment(=)=&gt;equal
+    procedure,pass::equal
+  end type string
+contains
+  subroutine equal(this,s)
+    class(string),intent(inout)::this
+    character(len=*),intent(in)::s
+    this%str=s
+  end subroutine equal
+end module string_mod
+
+program main
+  use string_mod
+  implicit none
+  type(string)::s
+  s=&quot;123&quot;
+end program main 
+</code></pre>
 <h2 id="习题"><a class="header" href="#习题">习题</a></h2>
 <ul>
 <li>请你尝试补充完所有的运算符</li>
