@@ -50,6 +50,7 @@ function double_vec(vec) result(vec2)
 
 end function double_vec
 ```
+- `size` 函数返回数组的大小，如果是多维数组，返回的是**所有维度的乘积**
 
 子过程的参数称为虚参，虚参一般会包含如下几个属性
 
