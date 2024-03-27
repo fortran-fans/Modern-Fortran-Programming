@@ -121,14 +121,14 @@ $ fpm run
 program arrays
   implicit none
   integer :: array1(10),idx(3)
-  array1=[1,2,3,4,5,6,7,8,9,10]
-  idx=[4,6,5]
+  array1=[10,9,8,7,6,5,4,3,2,1]
+  idx=[4,6,1]
   write(*,*)array1(idx) 
 end program arrays
 ```
 ``` sh
 $ fpm run
-           4           6           5
+           7           5           10
 ```
 ## 可分配数组(动态数组)
 
