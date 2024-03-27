@@ -898,7 +898,7 @@ end program main
  钝角
 </code></pre>
 <ul>
-<li>Fortran中的if语句<strong>并没有短路机制</strong>，所以例如<code>if( n &lt;= 10 .and. a(n) &gt; 1) </code>,数组a的大小为10，这样的语法并不能保证在运行时不出错。</li>
+<li>Fortran中的if语句<strong>并没有短路机制</strong>，所以例如<code>if( i &lt;= 10 .and. a(i) &gt; 1) </code>,数组a的大小为10，这样的语法并不能保证在运行时不出错。</li>
 </ul>
 <pre><code class="language-fortran">program main
    implicit none
