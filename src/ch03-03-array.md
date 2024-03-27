@@ -1,4 +1,4 @@
-![image](https://github.com/fortran-fans/Modern-Fortran-Programming/assets/64597797/318c2050-50b0-4c0f-a25e-ae2f145a7f8c)# 数组
+# 数组
 
 在实际的程序编写过程中，我们有时候需要存储和操作一长串数字，而不是单个标量变量，例如存储100个粒子的位置，50个城市的经纬度。在计算机编程中，此类数据结构称为数组`array` 。
 
