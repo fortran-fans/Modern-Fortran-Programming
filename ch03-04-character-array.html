@@ -162,6 +162,9 @@
   !write(*,*)str(5),str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
 end program string
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+ hello
+</code></pre>
 <h2 id="可分配字符串"><a class="header" href="#可分配字符串">可分配字符串</a></h2>
 <p>在Fortran2003引入了可分配的字符串，使用起来更加灵活，可以显式的分配内存，也可以自动分配内存。</p>
 <p>使用可分配字符串可以有效的避免字符串拼接之后尾部空格的问题</p>
@@ -183,6 +186,9 @@ end program string
   write(*,*)full_name
 end program allocatable_string
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+ John Smith
+</code></pre>
 <h2 id="字符串数组-1"><a class="header" href="#字符串数组-1">字符串数组</a></h2>
 <p>在Fortran中，字符串数组中的数组长度<strong>必须相同</strong>，使用数组构造器时也必须相同</p>
 <pre><code class="language-fortran">program string_array
@@ -196,6 +202,9 @@ end program allocatable_string
 
   allocate(character(len=4)::vals(4))           !显式分配内存
 end program string_array
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+ app
 </code></pre>
 
                     </main>
