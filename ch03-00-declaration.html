@@ -180,6 +180,9 @@
    logical::flag
 end program main
 </code></pre>
+<ul>
+<li>此处的<code>implicit none</code>表示变量未经定义不得使用，在程序中，应当<strong>总是使用</strong>该语句</li>
+</ul>
 <p>这些定义使用的都是默认精度，如果想使用更高的精度，可以在对应的类型后加括号，例如</p>
 <pre><code class="language-fortran">program main
    implicit none
