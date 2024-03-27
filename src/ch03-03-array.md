@@ -1,4 +1,4 @@
-# 数组
+![image](https://github.com/fortran-fans/Modern-Fortran-Programming/assets/64597797/318c2050-50b0-4c0f-a25e-ae2f145a7f8c)# 数组
 
 在实际的程序编写过程中，我们有时候需要存储和操作一长串数字，而不是单个标量变量，例如存储100个粒子的位置，50个城市的经纬度。在计算机编程中，此类数据结构称为数组`array` 。
 
@@ -35,7 +35,15 @@ end program arrays
 -  Fortran的数组**下标从1**开始，且定义的时候是左闭右闭，和其他语言不同
 -  此类静态数组声明时的大小只能是常数或者具有`parameter`属性的常量
 -  数组的上下标**不能超过定义时的大小**，这类错误称为**数组越界**，在科学计算中十分常见。
-  
+
+## 数组的列优先
+
+Fortran中数组是按照列优先的方式存储的，即**左边的指标更接近**
+``` fortran
+  integer::a(2,2)
+```
+排列的顺序为`a(1,1),a(2,1),a(1,2),a(2,2)`
+
 ## 数组初始化与构造器
 
 数组的初始化有多种方式。
@@ -55,6 +63,22 @@ program arrays
   array2=[real::1.0,2.1,3.2]    !使用real::语句可以设定数组构造器的类型
   array2=array2+[1.0,1.0,2.0]   
   array2=array2+2.3             !也可以是标量 
+end program arrays
+```
+注意 ,Fortran中**数组构造器只能产生一维数组**，如果要给多维数组赋值，则需要使用`reshape`函数，此时依旧是**列优先**.使用order关键字，可以进行**行优先**赋值
+
+``` fortran
+program arrays
+  implicit none
+  integer :: a(2,2),b(2,2)
+  a=reshape([1,2,3,4],shape=[2,2])
+  b=reshape([1,2,3,4],shape=[2,2],order=[2,1])
+  write(*,*)"---------- a ------------"
+  write(*,*)a(1,1),a(1,2)
+  write(*,*)a(2,1),a(2,2)
+  write(*,*)"---------- b ------------"
+  write(*,*)b(1,1),b(1,2)
+  write(*,*)b(2,1),b(2,2)
 end program arrays
 ```
 
