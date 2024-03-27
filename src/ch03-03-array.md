@@ -116,6 +116,17 @@ end program allocatable
 - 可分配数组的大小可以不确定，但是维数必须确定
 - 可分配数组分配之后就可以像普通数组一样使用，但是有一个**重分配**的机制，即`a=[1,2,3]`如果`a`是一个可分配数组，那么此时a就会重新分配内存，变成一个具有3个元素的数组
 
+Fortran为带有可分配属性的变量提供了一个内置的子程序`call move_alloc(from,to)`,使用这个子程序，可以将`from`的分配属性**转移**到`to`,此时`from`将被释放
+
+``` fortran
+real,allocatable:: a(:),b(:)
+a=[real::1,2,3]
+write(*,*)allocated(a),allocated(b) !使用allocated函数检查分配属性
+call move_alloc(a,b)
+write(*,*)allocated(a),allocated(b)
+write(*,*)b
+```
+
 ## 数组常量
 
 因为常量在定义之后就不能更改了，所以数组常量的定义可以不写具体的大小，只使用`(*)`代替
