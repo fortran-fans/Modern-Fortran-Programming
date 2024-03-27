@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>自定义类型中的重载 - 现代Fortran程序设计</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+                <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li><li class="chapter-item expanded "><a href="ch04-01-select.html"><strong aria-hidden="true">4.2.</strong> select选择语句</a></li><li class="chapter-item expanded "><a href="ch04-02-do.html"><strong aria-hidden="true">4.3.</strong> do循环</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-00-function.html"><strong aria-hidden="true">5.1.</strong> 函数</a></li><li class="chapter-item expanded "><a href="ch05-01-subroutine.html"><strong aria-hidden="true">5.2.</strong> 子程序</a></li><li class="chapter-item expanded "><a href="ch05-02-funckeyword.html"><strong aria-hidden="true">5.3.</strong> 过程的其他特性</a></li><li class="chapter-item expanded "><a href="ch05-03-callback.html"><strong aria-hidden="true">5.4.</strong> 回调函数</a></li><li class="chapter-item expanded "><a href="ch05-04-module.html"><strong aria-hidden="true">5.5.</strong> 模块的其他特性</a></li><li class="chapter-item expanded "><a href="ch05-05-overload.html"><strong aria-hidden="true">5.6.</strong> 重载</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 文件与格式</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-00-file.html"><strong aria-hidden="true">6.1.</strong> 文件读写</a></li><li class="chapter-item expanded "><a href="ch06-01-format.html"><strong aria-hidden="true">6.2.</strong> 格式化输出</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 自定义类型</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-00-type.html"><strong aria-hidden="true">7.1.</strong> 自定义类型的定义</a></li><li class="chapter-item expanded "><a href="ch07-01-procbind.html"><strong aria-hidden="true">7.2.</strong> 过程绑定</a></li><li class="chapter-item expanded "><a href="ch07-02-typeoverload.html" class="active"><strong aria-hidden="true">7.3.</strong> 自定义类型中的重载</a></li></ol></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">8.</strong> mdBook参考</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">现代Fortran程序设计</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/tree/main/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch07-02-typeoverload.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="自定义类型的重载"><a class="header" href="#自定义类型的重载">自定义类型的重载</a></h1>
+<h2 id="函数重载"><a class="header" href="#函数重载">函数重载</a></h2>
+<p>当定义的函数很多的时候，函数名会非常复杂，有时候我们希望可以简化，这时候，使用重载是一个选择。例如对于<code>vector</code>类型，我们希望它也可以通过传入一个数组来初始化。使用<code>generic</code>关键字就可以对函数进行重载</p>
+<pre><code class="language-fortran">module vector_mod
+  implicit none
+  type vector_t
+    real,allocatable::x(:)
+  contains
+    generic::init=&gt;vector_init,vector_init_array
+    procedure,pass:: vector_init,vector_init_array
+  end type vector_t
+contains
+  subroutine vector_init(this,n)
+    class(vector_t),intent(inout)::this
+    integer,intent(in)::n
+    allocate(this%x(n))
+  end subroutine vector_init
+
+  subroutine vector_init_array(this,a)
+    class(vector_t),intent(inout)::this
+    real,intent(in)::a(:)
+    allocate(this%x,source=a)
+  end subroutine vector_init_array
+end module vector_mod
+
+program main
+  use vector_mod
+  implicit none
+  type(vector_t)::v
+  type(vector_t)::va
+  call v%init(10)
+  call va%init([real::1,2,3,4])
+end program main
+</code></pre>
+<p>此时使用两种方式均可以对其进行初始化。</p>
+<h2 id="运算符重载"><a class="header" href="#运算符重载">运算符重载</a></h2>
+<p>有时候，我们也希望对内置的运算符进行重载，用来提高代码的一致性。例如我们有一个分数类型，它有<code>+-*/</code>和<code>**</code>的操作，但是如果使用过程绑定的函数则显得代码过于臃肿。此时就可以使用运算符重载</p>
+<pre><code class="language-fortran">module frac_mod
+    implicit none
+    type frac
+        integer(8)::num!numerator
+        integer(8)::den!denominator
+    contains
+        generic::operator(.reduce.)=&gt;cancelling !也可以使用自定义运算符
+        generic::operator(+)=&gt;add,add_frac_num,add_num_frac
+        !generic::operator(-)=&gt;sub
+        !generic::operator(*)=&gt;mult
+        !generic::operator(/)=&gt;div
+        !generic::operator(**)=&gt;pow
+        !
+        procedure,pass      ::add,add_frac_num
+        procedure,pass(this)::add_num_frac
+        procedure,pass      ::cancelling
+        !procedure,pass::sub
+        !procedure,pass::mult
+        !procedure,pass::divi
+    end type
+contains
+    elemental function cancelling(this)result(z)
+        class(frac),intent(in)::this
+        type(frac)           ::z
+        ! do something
+    end function cancelling
+
+    type(frac) elemental function add(this,y)result(z)
+        class(frac),intent(in)::this,y
+        z%num=this%num*y%den+y%num*this%den
+        z%den=this%den*y%den
+    end function add
+
+    type(frac) elemental function add_frac_num(this,m)result(z)
+        class(frac),intent(in)::this
+        integer,intent(in)    ::m
+        z%num=this%num+this%den * m
+        z%den=this%den
+    end function add_frac_num
+
+    type(frac) elemental function add_num_frac(m,this)result(z)
+        class(frac),intent(in)::this
+        integer,intent(in)    ::m
+        z%num=this%num+this%den * m
+        z%den=this%den
+    end function add_num_frac
+end module frac_mod
+
+program main
+  use frac_mod
+  implicit none
+  type(frac)::x,y,z,w(2)
+  x=frac(1,2)
+  y=frac(2,3)
+  w=[frac(1,4),frac(1,3)] !自定义类型数组初始化
+  z=x+y
+  write(*,*)z
+  z=x+1
+  write(*,*)z
+  z=2+y
+  write(*,*)z
+  write(*,*)w+2 !也支持数组
+end program main
+</code></pre>
+<ul>
+<li>除此之外，也可以对比较运算符进行重载，注意比较运算符中运算符和其对应的旧形式属于同一个函数，不能重载为不同的功能。</li>
+</ul>
+<h2 id="赋值运算符的重载"><a class="header" href="#赋值运算符的重载">赋值运算符的重载</a></h2>
+<p>赋值的运算符具有特有的形式<code>assignment(=)</code></p>
+<pre><code class="language-fortran">module string_mod
+  implicit none
+  type string
+    character(:),allocatable::str
+  contains
+    generic::assignment(=)=&gt;equal
+    procedure,pass::equal
+  end type string
+contains
+  subroutine equal(this,s)
+    class(string),intent(inout)::this
+    character(len=*),intent(in)::s
+    this%str=s
+  end subroutine equal
+end module string_mod
+
+program main
+  use string_mod
+  implicit none
+  type(string)::s
+  s=&quot;123&quot;
+  !内置构造函数形式 
+  s=string(&quot;456&quot;)
+end program main 
+</code></pre>
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<ul>
+<li>请你尝试补充完所有的运算符</li>
+<li>尝试加入<code>gcd</code>对分数进行约分，补充<code>.reduce.</code>函数</li>
+<li>(附加题)完成分数类，并使用高斯消元法求解希尔伯特矩阵的行列式和逆矩阵</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="ch07-01-procbind.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="mdbook-cheat-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="ch07-01-procbind.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="mdbook-cheat-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
