@@ -9,7 +9,7 @@ Fortran使用`open`语句打开文件，其中有两个必填的参数，一个�
   close(10)
 ```
 - 文件通道号一般设置大于10的数
-- Fortran2003提供了一个新的参数，称为`newunit`,可是让编译器帮你自动设置文件通道号，不过带来的不便之处就是你可能需要在子程序中引入这个虚参。
+- Fortran2003提供了一个新的参数，称为`newunit`,可以让编译器帮你自动设置文件通道号，不过带来的不便之处就是你可能需要在子程序中引入这个虚参。
   
 ``` fortran
   integer::myunit
@@ -32,7 +32,7 @@ integer :: io
 open(newunit=io, file="log.bin", form="unformatted",access="stream")
 close(io)
 ```
-
+- 二进制文件中，元素是按照其二进制表示逐个保存的，没有分隔符
 
 ## 文件读写
 
