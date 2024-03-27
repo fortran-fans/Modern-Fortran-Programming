@@ -157,7 +157,8 @@
 <p>当<code>if</code>结构中的语句<strong>只有一行</strong>时，可是省略<code>then</code>和<code>end if</code>,写为一行</p>
 <pre><code class="language-fortran">program main
    implicit none
-   integer::angle=10
+   integer::angle
+   angle=10
    if (angle &lt; 90) then
       write(*,*)&quot;锐角&quot;
    end if
@@ -174,36 +175,68 @@ end program main
 </ul>
 <h2 id="两个分支"><a class="header" href="#两个分支">两个分支</a></h2>
 <p>当有两个分支时，需要增加<code>else</code>语句或<code>else if</code>语句</p>
-<pre><code class="language-fortran">if (angle &lt; 90) then
-  write(*,*)&quot;锐角&quot;
-else
-  write(*,*)&quot;不是锐角&quot;
-end if
-!
-if (angle &lt; 90) then
-  write(*,*)&quot;锐角&quot;
-else if(angle == 90) then
-  write(*,*)&quot;直角&quot;
-end if
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::angle
+   angle=90
+   if (angle &lt; 90) then
+      write(*,*)&quot;锐角&quot;
+   else
+      write(*,*)&quot;不是锐角&quot;
+   end if
+   !
+   if (angle &lt; 90) then
+      write(*,*)&quot;锐角&quot;
+   else if(angle == 90) then
+      write(*,*)&quot;直角&quot;
+   end if
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+ 不是锐角
+ 直角
 </code></pre>
 <ul>
 <li><strong>注意</strong><code>else if</code>后面还有一个<code>then</code></li>
 </ul>
 <h2 id="多个分支"><a class="header" href="#多个分支">多个分支</a></h2>
 <p>可以使用多个<code>else if</code>一直连接下去</p>
-<pre><code class="language-fortran">if (angle &lt; 90) then
-  write(*,*)&quot;锐角&quot;
-else if(angle == 90) then
-  write(*,*)&quot;直角&quot;
-else if(angle &lt; 180) then
-  write(*,*)&quot;钝角&quot;
-else if(angle == 180) then
-  write(*,*)&quot;平角&quot;
-end if
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::angle
+   angle=120
+   if (angle &lt; 90) then
+      write(*,*)&quot;锐角&quot;
+   else if(angle == 90) then
+      write(*,*)&quot;直角&quot;
+   else if(angle &lt; 180) then
+      write(*,*)&quot;钝角&quot;
+   else if(angle == 180) then
+      write(*,*)&quot;平角&quot;
+   end if
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+ 钝角
 </code></pre>
 <ul>
-<li>Fortran中的if语句并没有短路机制，所以例如<code>if( n &lt; 11 .and. a(n) &gt; 1) </code>这样的语法并不能保证a(n)的下标不会越界</li>
+<li>Fortran中的if语句<strong>并没有短路机制</strong>，所以例如<code>if( n &lt;= 10 .and. a(n) &gt; 1) </code>,数组a的大小为10，这样的语法并不能保证在运行时不出错。</li>
 </ul>
+<pre><code class="language-fortran">program main
+   implicit none
+   integer::a(10)
+   integer::i
+   i=11
+   a=2
+   if (i&lt;=10 .and.a(i)&gt;1)then
+      write(*,*)&quot;hello&quot;
+   end if
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+At line 7 of file app/main.f90
+Fortran runtime error: Index '11' of dimension 1 of array 'a' above upper bound of 10
+</code></pre>
 
                     </main>
 
