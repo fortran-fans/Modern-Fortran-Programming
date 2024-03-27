@@ -70,5 +70,6 @@ end program main
 - vector的`append` 函数并没有考虑超过`capacity`的情况。重写这个函数，使其可以在元素超出的时候自动扩容。
 - (附加题)使用`move_alloc`子程序完成上述功能。
 - 使用我们之前提到的函数重载功能重载`size`函数，使得`size(v)`返回`v%size`
+- 使用`size(v)`返回`v%size`会带来什么问题,提示(定义`vector_t`类型的数组)
 
 
