@@ -159,7 +159,7 @@
 </code></pre>
 <ul>
 <li>文件通道号一般设置大于10的数</li>
-<li>Fortran2003提供了一个新的参数，称为<code>newunit</code>,可是让编译器帮你自动设置文件通道号，不过带来的不便之处就是你可能需要在子程序中引入这个虚参。</li>
+<li>Fortran2003提供了一个新的参数，称为<code>newunit</code>,可以让编译器帮你自动设置文件通道号，不过带来的不便之处就是你可能需要在子程序中引入这个虚参。</li>
 </ul>
 <pre><code class="language-fortran">  integer::myunit
   open(newunit=myunit,file=&quot;1.txt&quot;)!newunit不能省略
@@ -175,6 +175,9 @@ close(io)
 open(newunit=io, file=&quot;log.bin&quot;, form=&quot;unformatted&quot;,access=&quot;stream&quot;)
 close(io)
 </code></pre>
+<ul>
+<li>二进制文件中，元素是按照其二进制表示逐个保存的，没有分隔符</li>
+</ul>
 <h2 id="文件读写-1"><a class="header" href="#文件读写-1">文件读写</a></h2>
 <p>使用<code>read</code>来读入文件，第一个参数是文件的通道号，第二个参数是文件的格式</p>
 <pre><code class="language-fortran">integer :: io
