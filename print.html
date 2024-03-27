@@ -1509,6 +1509,9 @@ program main
   block
     type(vector_t)::v
     call v%init(10)
+    call v%append(1.0)
+    call v%append(2.0)
+    write(*,*)v%x(1:v%size)
   end block !离开作用域时会调用析构函数
   write(*,*)&quot;done&quot;
 end program main
@@ -1523,6 +1526,7 @@ end program main
 <ul>
 <li>vector的<code>append</code> 函数并没有考虑超过<code>capacity</code>的情况。重写这个函数，使其可以在元素超出的时候自动扩容。</li>
 <li>(附加题)使用<code>move_alloc</code>子程序完成上述功能。</li>
+<li>使用我们之前提到的函数重载功能重载<code>size</code>函数，使得<code>size(v)</code>返回<code>v%size</code></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="自定义类型的重载"><a class="header" href="#自定义类型的重载">自定义类型的重载</a></h1>
 <h2 id="函数重载"><a class="header" href="#函数重载">函数重载</a></h2>
