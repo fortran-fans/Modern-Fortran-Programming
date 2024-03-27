@@ -81,7 +81,14 @@ program arrays
   write(*,*)b(2,1),b(2,2)
 end program arrays
 ```
-
+``` fpm run
+ ---------- a ------------
+           1           3
+           2           4
+ ---------- b ------------
+           1           2
+           3           4
+```
 ## 数组的切片
 
 数组的切片使用的语法是`(start:end[:step])`，其中step可以是任意的整数，包括负数。
@@ -98,9 +105,14 @@ program arrays
   integer :: array1(10)
   array1=[1,2,3,4,5,6,7,8,9,10]
   write(*,*)array1(1:10:2)               !输出所有的奇数位
-  array1(6:)=array(:5)+array(1:10:2)     !利用数组切片加整体运算
+  array1(6:)=array1(:5)+array1(1:10:2)     !利用数组切片加整体运算
   write(*,*)array1(10:1:-1)              !倒序输出
 end program arrays
+```
+``` sh
+$ fpm run
+           1           3           5           7           9
+          14          11           8           5           2           5           4           3           2           1
 ```
 
 同时Fortran还支持使用数组作为数组的下标，**此时会产生临时数组**
@@ -113,6 +125,10 @@ program arrays
   idx=[4,6,5]
   write(*,*)array1(idx) 
 end program arrays
+```
+``` sh
+$ fpm run
+           4           6           5
 ```
 ## 可分配数组(动态数组)
 
@@ -143,14 +159,22 @@ end program allocatable
 Fortran为带有可分配属性的变量提供了一个内置的子程序`call move_alloc(from,to)`,使用这个子程序，可以将`from`的分配属性**转移**到`to`,此时`from`将被释放
 
 ``` fortran
-real,allocatable:: a(:),b(:)
-a=[real::1,2,3]
-write(*,*)allocated(a),allocated(b) !使用allocated函数检查分配属性
-call move_alloc(a,b)
-write(*,*)allocated(a),allocated(b)
-write(*,*)b
+program arrays
+   implicit none
+   real,allocatable:: a(:),b(:)
+   a=[real::1,2,3]
+   write(*,*)allocated(a),allocated(b) !使用allocated函数检查分配属性
+   call move_alloc(a,b)
+   write(*,*)allocated(a),allocated(b)
+   write(*,*)b
+end program arrays
 ```
-
+``` sh
+$ fpm run
+ T F
+ F T
+   1.00000000       2.00000000       3.00000000
+```
 ## 数组常量
 
 因为常量在定义之后就不能更改了，所以数组常量的定义可以不写具体的大小，只使用`(*)`代替
