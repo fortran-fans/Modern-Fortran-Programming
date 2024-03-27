@@ -1416,6 +1416,30 @@ program main
   p=particle_t(v=[1.0,-2.0,3.0],x=[1.0,1.0,2.0],mass=1.0) !也可以使用关键字参数
 end program main
 </code></pre>
+<h2 id="自定义类型的输出"><a class="header" href="#自定义类型的输出">自定义类型的输出</a></h2>
+<p>如果类型中的成员不带有特殊属性，则可以直接使用<code>write</code>输出，否则旧无法直接使用<code>write</code>输出，此时可以使用<code>%</code>对指定的成员输出</p>
+<pre><code class="language-fortran">module test_mod
+  implicit none
+  type :: point
+    real :: x,y
+  end type point
+  type :: string
+    character(len=:),allocatable::str !allocatable为特殊属性
+  end type string
+end module test_mod
+
+program main
+  use test_mod
+  implicit none
+  type(point)::p
+  type(string)::s
+  p=point(1.0,2.0)
+  s=string(&quot;hello&quot;)
+  write(*,*)p
+  !write(*,*)s !错误
+  write(*,*)s%str !正确
+end program main
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="过程绑定"><a class="header" href="#过程绑定">过程绑定</a></h1>
 <p>Fortran2003开始支持过程绑定，将子程序或者函数与对应的类型相关联，使用的方法和访问成员类似。这样的做法可以提高代码的一致性。</p>
 <h2 id="过程绑定的语法"><a class="header" href="#过程绑定的语法">过程绑定的语法</a></h2>
