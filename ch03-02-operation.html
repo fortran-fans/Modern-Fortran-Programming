@@ -168,6 +168,11 @@
    write(*,*)&quot;circumference=&quot;,circumference
 end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+ area=   12.5663605
+ circumference=   12.5663605
+</code></pre>
 <ul>
 <li><strong>特别的，<code>**</code>是从右往左的运算顺序</strong>，例如<code>2**3**3=2**(3**3)=2**27</code></li>
 <li>如果对运算的顺序没有把握，则多加小括号来保证运算顺序</li>
@@ -181,6 +186,11 @@ end program main
    write(*,*)1&gt;2,2&gt;=2,3==4,4/=3
    write(*,*)2.0&gt;3.0
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+ F T F T
+ F
 </code></pre>
 <ul>
 <li>由于浮点数的精度问题，一般不建议用浮点数进行相等比较。比如判断x是否等于0，
@@ -204,6 +214,11 @@ end program main
    write(*,*) x&lt;0 .or.  x&gt;1
 end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+ T
+ F
+</code></pre>
 <ul>
 <li>可以自己加小括号来保证运算顺序</li>
 </ul>
@@ -215,6 +230,10 @@ end program main
    implicit none
    write(*,*)&quot;hello &quot;//&quot;world!&quot; 
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+Project is up to date
+ hello world!
 </code></pre>
 <p>字符串还有一些操作是通过内置函数来完成的，我们在函数的章节里再讨论</p>
 <h3 id="字符串的比较"><a class="header" href="#字符串的比较">字符串的比较</a></h3>
