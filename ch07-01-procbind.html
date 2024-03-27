@@ -248,28 +248,25 @@ contains
         ! do something
     end function cancelling
 
-    elemental function add(this,y)result(z)
+    type(frac) elemental function add(this,y)result(z)
         implicit none
         class(frac),intent(in)::this,y
-        type(frac)           ::z
         z%num=this%num*y%den+y%num*this%den
         z%den=this%den*y%den
     end function add
 
-    elemental function add_frac_num(this,m)result(z)
+    type(frac) elemental function add_frac_num(this,m)result(z)
         implicit none
         class(frac),intent(in)::this
         integer,intent(in)    ::m
-        type(frac)           ::z
         z%num=this%num+this%den * m
         z%den=this%den
     end function add_frac_num
 
-    elemental function add_num_frac(m,this)result(z)
+    type(frac) elemental function add_num_frac(m,this)result(z)
         implicit none
         class(frac),intent(in)::this
         integer,intent(in)    ::m
-        type(frac)           ::z
         z%num=this%num+this%den * m
         z%den=this%den
     end function add_num_frac
@@ -278,15 +275,17 @@ end module frac_mod
 program main
   use frac_mod
   implicit none
-  type(frac)::x,y,z
+  type(frac)::x,y,z,w(2)
   x=frac(1,2)
   y=frac(2,3)
+  w=[frac(1,4),frac(1,3)] !自定义类型数组初始化
   z=x+y
   write(*,*)z
   z=x+1
   write(*,*)z
   z=2+y
   write(*,*)z
+  write(*,*)w+2 !也支持数组
 end program main
 </code></pre>
 <ul>
