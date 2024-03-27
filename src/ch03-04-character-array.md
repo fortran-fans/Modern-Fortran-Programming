@@ -12,6 +12,10 @@ program string
   !write(*,*)str(5),str(1:11:2) ,str(11:1:-1) !以上均不符合语法规范
 end program string
 ```
+``` sh
+$ fpm run
+ hello
+```
 
 ## 可分配字符串
 在Fortran2003引入了可分配的字符串，使用起来更加灵活，可以显式的分配内存，也可以自动分配内存。
@@ -36,7 +40,10 @@ program allocatable_string
   write(*,*)full_name
 end program allocatable_string
 ```
-
+``` sh
+$ fpm run
+ John Smith
+```
 ## 字符串数组
 
 在Fortran中，字符串数组中的数组长度**必须相同**，使用数组构造器时也必须相同
@@ -53,4 +60,8 @@ program string_array
 
   allocate(character(len=4)::vals(4))           !显式分配内存
 end program string_array
-``` 
+```
+``` sh
+$ fpm run
+ app
+```
