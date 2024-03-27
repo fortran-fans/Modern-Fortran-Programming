@@ -1,6 +1,6 @@
 # 回调函数
 
-当我们想把过程传递给过程的时候，需要限制传递过程的类型，此时就需要回调函数。Fortran提供了抽象接口(`abstract interface`)来实现这个功能，使用`procedure`关键字来定义虚参
+将函数作为参数传递给函数，这个功能称为回调函数，例如我们写一个数值积分，我们希望传入一个函数，上下界。此时我们需要限制虚参的接口，Fortran提供了抽象接口(`abstract interface`)来实现这个功能，使用`procedure`关键字来定义虚参
 
 同样的，抽象接口也放在`module`中
 
@@ -37,3 +37,6 @@ program main
   write(*,*)trapz(1.0,2.0,mycos)
 end program main
 ```
+
+## 习题
+- 完成`trapz`数值积分，求解`sin(x)+cos(x)`在`[0,1]`上的积分
