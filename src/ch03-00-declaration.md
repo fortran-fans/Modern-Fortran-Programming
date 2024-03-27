@@ -36,6 +36,8 @@ program main
 end program main
 ```
 
+- 此处的`implicit none`表示变量未经定义不得使用，在程序中，应当**总是使用**该语句
+
 这些定义使用的都是默认精度，如果想使用更高的精度，可以在对应的类型后加括号，例如
 ``` fortran
 program main
