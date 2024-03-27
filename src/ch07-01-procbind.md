@@ -147,6 +147,37 @@ program main
   write(*,*)z
 end program main
 ```
+- 除此之外，也可以对比较运算符进行重载，注意比较运算符中运算符和其对应的旧形式属于同一个函数，不能重载为不同的功能。
+
+## 赋值运算符的重载
+
+赋值的运算符具有特有的形式`assignment(=)`
+
+``` fortran
+module string_mod
+  implicit none
+  type string
+    character(:),allocatable::str
+  contains
+    generic::assignment(=)=>equal
+    procedure,pass::equal
+  end type string
+contains
+  subroutine equal(this,s)
+    class(string),intent(inout)::this
+    character(len=*),intent(in)::s
+    this%str=s
+  end subroutine equal
+end module string_mod
+
+program main
+  use string_mod
+  implicit none
+  type(string)::s
+  s="123"
+end program main 
+```
+
 ## 习题
 - 请你尝试补充完所有的运算符
 - 尝试加入`gcd`对分数进行约分，补充`.reduce.`函数
