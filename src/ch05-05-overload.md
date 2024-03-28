@@ -9,6 +9,7 @@
 Fortran 2018引入了`generic`关键字，也可以对函数进行重载，语法大大简化(`gfortran`不支持，`ifx,flang`支持)
 
 ``` fortran
+! src/add_mod.f90
 module add_mod
   implicit none
   interface add
@@ -27,7 +28,7 @@ contains
     c=a+b
   end function add_real
 end module add_mod
-
+! app/main.f90
 program main
   use add_mod
   write(*,*)add(1,2)
@@ -36,6 +37,12 @@ program main
  
 end program main
 ```
+```
+$ fpm run
+           3
+   3.00000000 
+```
+如果使用`generic`语法，则使用`fpm run --compiler ifort`
 
 ## 运算符重载
 
@@ -62,6 +69,10 @@ program main
   use add_mod
   write(*,*)'"',"hello   "+"world ",'"'
 end program main
+```
+```sh
+$ fpm run
+ "hello,world"
 ```
 - 运算符重载有时候会写出比较含糊的代码，建议要谨慎使用。
 - 不可以对运算符二次重载，例如我们无法对整数的加法进行再进行重载
@@ -100,3 +111,9 @@ program main
   write(*,*) 5 .in. [1,2,3,4]
 end program main
 ```
+``` sh
+$ fpm run
+ T
+ F
+```
+- 重载的函数和运算符**不能用于**Fortran的回调函数中。Fortran目前也没有`lambda`表达式。
