@@ -43,6 +43,13 @@ program main
 end program main
 ```
 
+```sh
+$ fpm run
+           5
+           2           4
+           2           4
+```
+
 - `impure` 非纯过程
 
 逐元过程默认是`pure`的，但是你可以使用`impure`关键字将其定义为非纯过程
@@ -111,5 +118,12 @@ program main
   write(*,*)area(4.0,5.0) !长方形面积
   write(*,*)area(y=4.0,x=5.0) !可以使用关键字参数
 end program main
+```
+
+``` sh
+$ fpm run
+   16.0000000    
+   20.0000000    
+   20.0000000 
 ```
 
