@@ -4,9 +4,11 @@
 
 ## 函数的定义
 
-Fortran中，函数一般定义在`module`中，使用的时候，`use`这个`module`即可
+Fortran中，函数一般定义在`module`中，置于`contains`的后面，使用的时候，`use`这个`module`就可以导入这个函数。
+
+首先用`fpm new my_func_mod`创建一个新的项目，然后将`module`文件放在`src/my_func_mod.f90`中
 ``` fortran
-! 内积
+! 文件名src/my_func_mod.f90
 module my_func_mod
     implicit none
 contains
@@ -19,6 +21,7 @@ contains
   end function vector_norm
 end module my_func_mod
 
+!文件名 app/main.f90
 program main
   use my_func_mod
   implicit none
@@ -27,20 +30,24 @@ program main
   write(*,*)vector_norm(a)
 end program main
 ```
-
+运行之后
+``` sh
+$ fpm run
+ 3.95600796
+```
 其中`result`表示函数的返回值是什么，同时我们还需要在函数体中定义返回的类型和属性。 
 - Fortran中有许多针对数组的内置函数，熟练使用他们，可以减少代码的冗余，提高效率，此处`sum`表示对数组进行求和，`sqrt`表示对元素进行开方
 
 如果返回值**没有属性，只有类型**，则可以将其写在函数的开头。
 
+将如下的两个文件也放在`module`中，即`vector_norm2`的后面
 ``` fortran
-! 内积
-real function vector_norm(vec) result(norm) !类型写在开头
+real function vector_norm2(vec) result(norm) !类型写在开头
   real, intent(in) :: vec(:)
 
   norm = sqrt(sum(vec**2))
 
-end function vector_norm
+end function vector_norm2
 
 function double_vec(vec) result(vec2)
   real, intent(in) :: vec(:)
@@ -49,6 +56,25 @@ function double_vec(vec) result(vec2)
   vec2=vec*2
 
 end function double_vec
+```
+修改主函数
+
+``` fortran
+program main
+  use my_func_mod
+  implicit none
+  real::a(3)
+  a=[real::1.0,2.1,3.2]
+  write(*,*)vector_norm(a)
+  write(*,*)vector_norm2(a)
+  write(*,*)double_vec(a)
+end program main
+```
+``` sh
+$ fpm run
+  3.95600796    
+  3.95600796    
+  2.00000000       4.19999981       6.40000010
 ```
 - `size` 函数返回数组的大小，如果是多维数组，返回的是**所有维度的乘积**
 
