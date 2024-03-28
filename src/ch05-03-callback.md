@@ -37,6 +37,11 @@ program main
   write(*,*)trapz(1.0,2.0,mycos)
 end program main
 ```
+``` sh
+$ fpm run
+   0.875384212    
+   6.20777160E-02
+```
 
 ## 习题
 - 完成`trapz`数值积分，求解`sin(x)+cos(x)`在`[0,1]`上的积分
