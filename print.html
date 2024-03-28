@@ -1127,8 +1127,9 @@ end program main
 <p>在实际的代码编写过程中，有一些操作是重复的，我们可以将它们提取出来，进行封装，在之后需要使用的时候直接调用。实现这类功能的结构叫做过程(procedure)。
 在 Fortran中，具有返回值的过程称为函数(function)</p>
 <h2 id="函数的定义"><a class="header" href="#函数的定义">函数的定义</a></h2>
-<p>Fortran中，函数一般定义在<code>module</code>中，使用的时候，<code>use</code>这个<code>module</code>即可</p>
-<pre><code class="language-fortran">! 内积
+<p>Fortran中，函数一般定义在<code>module</code>中，置于<code>contains</code>的后面，使用的时候，<code>use</code>这个<code>module</code>就可以导入这个函数。</p>
+<p>首先用<code>fpm new my_func_mod</code>创建一个新的项目，然后将<code>module</code>文件放在<code>src/my_func_mod.f90</code>中</p>
+<pre><code class="language-fortran">! 文件名src/my_func_mod.f90
 module my_func_mod
     implicit none
 contains
@@ -1141,6 +1142,7 @@ contains
   end function vector_norm
 end module my_func_mod
 
+!文件名 app/main.f90
 program main
   use my_func_mod
   implicit none
@@ -1149,18 +1151,22 @@ program main
   write(*,*)vector_norm(a)
 end program main
 </code></pre>
+<p>运行之后</p>
+<pre><code class="language-sh">$ fpm run
+ 3.95600796
+</code></pre>
 <p>其中<code>result</code>表示函数的返回值是什么，同时我们还需要在函数体中定义返回的类型和属性。 </p>
 <ul>
 <li>Fortran中有许多针对数组的内置函数，熟练使用他们，可以减少代码的冗余，提高效率，此处<code>sum</code>表示对数组进行求和，<code>sqrt</code>表示对元素进行开方</li>
 </ul>
 <p>如果返回值<strong>没有属性，只有类型</strong>，则可以将其写在函数的开头。</p>
-<pre><code class="language-fortran">! 内积
-real function vector_norm(vec) result(norm) !类型写在开头
+<p>将如下的两个文件也放在<code>module</code>中，即<code>vector_norm2</code>的后面</p>
+<pre><code class="language-fortran">real function vector_norm2(vec) result(norm) !类型写在开头
   real, intent(in) :: vec(:)
 
   norm = sqrt(sum(vec**2))
 
-end function vector_norm
+end function vector_norm2
 
 function double_vec(vec) result(vec2)
   real, intent(in) :: vec(:)
@@ -1169,6 +1175,22 @@ function double_vec(vec) result(vec2)
   vec2=vec*2
 
 end function double_vec
+</code></pre>
+<p>修改主函数</p>
+<pre><code class="language-fortran">program main
+  use my_func_mod
+  implicit none
+  real::a(3)
+  a=[real::1.0,2.1,3.2]
+  write(*,*)vector_norm(a)
+  write(*,*)vector_norm2(a)
+  write(*,*)double_vec(a)
+end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+  3.95600796    
+  3.95600796    
+  2.00000000       4.19999981       6.40000010
 </code></pre>
 <ul>
 <li><code>size</code> 函数返回数组的大小，如果是多维数组，返回的是<strong>所有维度的乘积</strong></li>
