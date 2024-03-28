@@ -1311,6 +1311,11 @@ program main
   write(*,*)gcd([10,20],[4,8]) !参数可以都是数组 
 end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+           5
+           2           4
+           2           4
+</code></pre>
 <ul>
 <li><code>impure</code> 非纯过程</li>
 </ul>
@@ -1376,6 +1381,11 @@ program main
   write(*,*)area(4.0,5.0) !长方形面积
   write(*,*)area(y=4.0,x=5.0) !可以使用关键字参数
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+   16.0000000    
+   20.0000000    
+   20.0000000 
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="回调函数"><a class="header" href="#回调函数">回调函数</a></h1>
 <p>将函数作为参数传递给函数，这个功能称为回调函数，例如我们写一个数值积分，我们希望传入积分的上下界，以及一个一元函数。此时我们需要限制虚参的接口，防止别人传入一个多元函数。Fortran提供了抽象接口(<code>abstract interface</code>)来实现这个功能，使用<code>procedure</code>关键字来定义虚参</p>

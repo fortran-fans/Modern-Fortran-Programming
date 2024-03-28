@@ -191,6 +191,11 @@ program main
   write(*,*)gcd([10,20],[4,8]) !参数可以都是数组 
 end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+           5
+           2           4
+           2           4
+</code></pre>
 <ul>
 <li><code>impure</code> 非纯过程</li>
 </ul>
@@ -256,6 +261,11 @@ program main
   write(*,*)area(4.0,5.0) !长方形面积
   write(*,*)area(y=4.0,x=5.0) !可以使用关键字参数
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+   16.0000000    
+   20.0000000    
+   20.0000000 
 </code></pre>
 
                     </main>
