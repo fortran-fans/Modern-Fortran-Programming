@@ -5,6 +5,7 @@ Fortran中不具有返回值的过程称为子程序(`subroutine`)，使用`call
 子程序的定义和函数类似
 
 ``` fortran
+!文件名 src/my_sub_mod.f90
 module my_sub_mod
   implicit none
 contains
@@ -29,14 +30,16 @@ contains
   end subroutine axpy
 end module my_sub_mod
 
+!文件名 app/main.f90
 program main
   use my_sub_mod
   implicit none
-  real::a(10,10),b(10,10)
+  integer,parameter::n=4
+  real::a(n,n),b(n,n)
   integer::i,j
   !使用循环赋值
-  do i=1,10
-    do j=1,10
+  do i=1,n
+    do j=1,n
        a(j,i)=real(i+j)
     end do
   end do
@@ -44,9 +47,23 @@ program main
   call print_matrix(a)
   b=0.0
   call axpy(2.0,a,b)
+  write(*,*)"--------------------"
   call print_matrix(b)
 end program main
 ```
+``` sh
+$ fpm run
+   2.00000000       3.00000000       4.00000000       5.00000000    
+   3.00000000       4.00000000       5.00000000       6.00000000    
+   4.00000000       5.00000000       6.00000000       7.00000000    
+   5.00000000       6.00000000       7.00000000       8.00000000    
+ --------------------
+   4.00000000       6.00000000       8.00000000       10.0000000    
+   6.00000000       8.00000000       10.0000000       12.0000000    
+   8.00000000       10.0000000       12.0000000       14.0000000    
+   10.0000000       12.0000000       14.0000000       16.0000000 
+```
+
 
 - 子程序的参数也具有`intent`属性，合理使用`intent`属性可以使得代码更加稳健
 - 子程序中纯过程的定义更加灵活，参数可以是`intent(inout)`属性。如果函数不能写成纯的，可以考虑写成子程序
