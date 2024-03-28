@@ -156,7 +156,8 @@
 <h2 id="过程重载"><a class="header" href="#过程重载">过程重载</a></h2>
 <p>使用<code>interface</code>就可以对相关的过程进行重载</p>
 <p>Fortran 2018引入了<code>generic</code>关键字，也可以对函数进行重载，语法大大简化(<code>gfortran</code>不支持，<code>ifx,flang</code>支持)</p>
-<pre><code class="language-fortran">module add_mod
+<pre><code class="language-fortran">! src/add_mod.f90
+module add_mod
   implicit none
   interface add
     module procedure add_int
@@ -174,7 +175,7 @@ contains
     c=a+b
   end function add_real
 end module add_mod
-
+! app/main.f90
 program main
   use add_mod
   write(*,*)add(1,2)
@@ -183,6 +184,11 @@ program main
  
 end program main
 </code></pre>
+<pre><code>$ fpm run
+           3
+   3.00000000 
+</code></pre>
+<p>如果使用<code>generic</code>语法，则使用<code>fpm run --compiler ifort</code></p>
 <h2 id="运算符重载"><a class="header" href="#运算符重载">运算符重载</a></h2>
 <p>对内置的运算符进行重载，有时候可以提高代码的一致性。</p>
 <pre><code class="language-fortran">module add_mod
@@ -205,6 +211,9 @@ program main
   use add_mod
   write(*,*)'&quot;',&quot;hello   &quot;+&quot;world &quot;,'&quot;'
 end program main
+</code></pre>
+<pre><code class="language-sh">$ fpm run
+ &quot;hello,world&quot;
 </code></pre>
 <ul>
 <li>运算符重载有时候会写出比较含糊的代码，建议要谨慎使用。</li>
@@ -241,6 +250,13 @@ program main
   write(*,*) 5 .in. [1,2,3,4]
 end program main
 </code></pre>
+<pre><code class="language-sh">$ fpm run
+ T
+ F
+</code></pre>
+<ul>
+<li>重载的函数和运算符<strong>不能用于</strong>Fortran的回调函数中。Fortran目前也没有<code>lambda</code>表达式。</li>
+</ul>
 
                     </main>
 
