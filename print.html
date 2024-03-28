@@ -1204,6 +1204,7 @@ end program main
 </tbody></table>
 <ul>
 <li>在我们使用函数的过程中，尽量要保证函数的参数是<code>intent(in)</code>或者<code>value</code>的，这类过程也被称为<strong>纯函数</strong>，这类函数不存在副作用，编译器可以提供更好的优化。</li>
+<li><code>intent(in)</code>也可以和<code>value</code>一起使用，此时值传递的虚参也<strong>不可修改</strong>。</li>
 <li>如果不能保证纯函数，那可以使用我们下节提到的<strong>子程序</strong></li>
 <li>在代码中应当<strong>总是使用</strong><code>intent</code>属性，这样可以更好的让编译器检查我们的代码</li>
 </ul>
