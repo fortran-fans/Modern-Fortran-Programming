@@ -1659,6 +1659,10 @@ close(11)
   write(*,&quot;(3f10.4)&quot;)[1.0,2.0,3.0]
   write(*,&quot;(*(g0,1x)&quot;))1.0,&quot;hello&quot;,2 
 </code></pre>
+<ul>
+<li><code>&quot;(*(g0,1x)&quot;)</code>和Fortran的默认输出<code>*</code>看起来似乎是相同的功能。事实上不同的编译器对于<code>*</code>的实现各不相同，例如<code>gfortran</code>的输出中有大量的空格,<code>ifort,ifx</code>在80个字符后会自动换行，使用这个格式就可以保证用最小的宽度输出。</li>
+<li></li>
+</ul>
 <p>如果格式的次数比后面需要输出的参数要少，那此时会自动换行</p>
 <pre><code class="language-fortran">  real::a(3,3)
   write(*,&quot;(3f10.4)&quot;)a !此时输出的是一个3*3的矩阵形式
