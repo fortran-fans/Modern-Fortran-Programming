@@ -2131,6 +2131,7 @@ nullify(pa)
 ! 2.
 pa=&gt;null()
 </code></pre>
+<p>例如具有<code>allocatable</code>属性的局部变量，出了作用域会被自动释放，如果用指针指向它，也会造成指针悬垂</p>
 <h2 id="关联associate"><a class="header" href="#关联associate">关联(<code>associate</code>)</a></h2>
 <p>Fortran2003中引入了<code>associate</code>语句，可以简化在代码编写过程中的临时变量问题，基本的语法是</p>
 <pre><code class="language-fortran">integer::point(3)
