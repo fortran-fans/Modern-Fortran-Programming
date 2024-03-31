@@ -16,8 +16,21 @@ write(*,*)pa(1::size(a,dim=1)+1) !获取对角项
 ```
 
 如果在子程序或者函数中，我们则需要为数组设置`contiguous`关键字
-```
+``` fortran
+module diag_mod
+    implicit none
+contains
+    function diag(a)result(ptr)
+        real,intent(in),target,contiguous::a(:,:) !需要加contiguous属性
+        real,pointer::ptr(:)
+        ptr(1:size(a))=>a
+        ptr=>ptr(1::size(a,dim=1)+1) !取对角项
+    end function diag
+end module diag_mod
+
 program main
+    use diag_mod
+    implicit none
     real,target::a(10,10)
     integer::i
     real,pointer::p(:)
@@ -28,13 +41,6 @@ program main
     do i=1,10
         write(*,*)a(i,i)
     end do
-contains
-    function diag(a)result(ptr)
-        real,intent(in),target,contiguous::a(:,:) !需要加contiguous属性
-        real,pointer::ptr(:)
-        ptr(1:size(a))=>a
-        ptr=>ptr(1::size(a,dim=1)+1) !取对角项
-    end function diag
 end program main
 ```
 - `contiguous`属性对于数组的连续性做了强制要求，有时候**可以使得编译器做出更好的优化，提高代码运行速度**，因此在普通的含数组的过程中，也可以选择使用
