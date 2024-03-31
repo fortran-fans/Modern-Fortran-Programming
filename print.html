@@ -2151,10 +2151,15 @@ write(*,*)a
 </code></pre>
 <ul>
 <li>当我们具有一些比较层数比较深的自定义类型的时候，在代码中使用<code>associate</code>会大大提高代码的可读性</li>
-<li><code>associate</code>的不足之处就是同一个语句中不能连续定义，这一定程度的限制了该语句的灵活性</li>
+<li>同一个语句中不能连续定义</li>
 </ul>
-<pre><code class="language-fortran">associate(x=&gt;pointer(1),x2=&gt;x*x ) !错误
+<pre><code class="language-fortran">associate(x=&gt;point(1),x2=&gt;x*x ) !错误
 </code></pre>
+<p>需要改成</p>
+<pre><code class="language-fortran">associate(x=&gt;point(1))
+associate(x2=&gt;x*x)
+</code></pre>
+<p>这是<code>associate</code>结构的不足之处</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="内存安全"><a class="header" href="#内存安全">内存安全</a></h1>
 <p>现代Fortran在不引入指针的情况下，是一个内存安全的语言(但是Fortran编译器可能不安全)，但是还有一个简单的情况是无法处理的，即变量的别名。</p>
 <p>在Fortran中，对于处于同一个作用域内的变量，一般不存在别名，但是Fortran中假设子程序的虚参也是不含别名的，这带来了一定的危险</p>
