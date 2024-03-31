@@ -1184,12 +1184,19 @@ end program main
 end program main
 </code></pre>
 <p>我们使用release模式运行，release模式相对于之前的默认模式(通常是debug模式)，运行速度更快</p>
-<pre><code class="language-sh">ime(ijk)=   1.3653479070000001      s
+<pre><code class="language-sh"> time(ijk)=   1.3653479070000001      s
  c(n,n)=   240.96782832895653
  time(jki)=  0.16677901700000000      s
  c(n,n)=   240.96782832895653
 </code></pre>
 <p>可以看出，两者的运行时间大概相差了8倍。所以在实际的计算中，我们需要<strong>注意数组的列优先带来的收益</strong>。</p>
+<h2 id="列优先和矩阵的行列"><a class="header" href="#列优先和矩阵的行列">列优先和矩阵的行列</a></h2>
+<p><strong>数组的列优先和矩阵的行列没有关系</strong>，例如<code>a(1,2)</code>表示的就是矩阵的第一行第二列。所谓列优先只是数组存储和输出的时候按照自己的排布规则，和我们如何理解矩阵无关。</p>
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<ul>
+<li>写一个选列主元高斯消元法</li>
+<li>(提高)以列优先的规则写一个选列主元的高斯消元法，比较和行高斯消元法的速度</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="函数"><a class="header" href="#函数">函数</a></h1>
 <p>在实际的代码编写过程中，有一些操作是重复的，我们可以将它们提取出来，进行封装，在之后需要使用的时候直接调用。实现这类功能的结构叫做过程(procedure)。
 在 Fortran中，具有返回值的过程称为函数(function)</p>
@@ -1494,7 +1501,7 @@ end program main
    0.875384212    
    6.20777160E-02
 </code></pre>
-<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<h2 id="习题-1"><a class="header" href="#习题-1">习题</a></h2>
 <ul>
 <li>完成<code>trapz</code>数值积分，求解<code>sin(x)+cos(x)</code>在<code>[0,1]</code>上的积分</li>
 </ul>
@@ -1891,7 +1898,7 @@ end program main
 <li>使用<code>=&gt;</code>可以为绑定的过程重命名。</li>
 <li>被绑定的变量名尽量使用<code>this</code>或者<code>self</code>(与其他语言的习惯相符)</li>
 </ul>
-<h2 id="习题-1"><a class="header" href="#习题-1">习题</a></h2>
+<h2 id="习题-2"><a class="header" href="#习题-2">习题</a></h2>
 <ul>
 <li>vector的<code>append</code> 函数并没有考虑超过<code>capacity</code>的情况。重写这个函数，使其可以在元素超出的时候自动扩容。</li>
 <li>(附加题)使用<code>move_alloc</code>子程序完成上述功能。</li>
@@ -2029,7 +2036,7 @@ program main
   s=string(&quot;456&quot;)
 end program main 
 </code></pre>
-<h2 id="习题-2"><a class="header" href="#习题-2">习题</a></h2>
+<h2 id="习题-3"><a class="header" href="#习题-3">习题</a></h2>
 <ul>
 <li>请你尝试补充完所有的运算符</li>
 <li>尝试加入<code>gcd</code>对分数进行约分，补充<code>.reduce.</code>函数</li>
