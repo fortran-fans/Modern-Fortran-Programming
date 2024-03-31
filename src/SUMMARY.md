@@ -33,6 +33,7 @@
     - [if条件语句](ch04-00-if.md)
     - [select选择语句](ch04-01-select.md)
     - [do循环](ch04-02-do.md)
+    - [数组与循环](ch04-03-do-array.md)
 - [函数与子程序]()
     - [函数](ch05-00-function.md)
     - [子程序](ch05-01-subroutine.md)
