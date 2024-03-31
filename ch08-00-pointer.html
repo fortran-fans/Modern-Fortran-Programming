@@ -252,10 +252,13 @@ write(*,*)a
 <li>同一个语句中不能连续定义</li>
 </ul>
 <pre><code class="language-fortran">associate(x=&gt;point(1),x2=&gt;x*x ) !错误
+end associate
 </code></pre>
 <p>需要改成</p>
 <pre><code class="language-fortran">associate(x=&gt;point(1))
 associate(x2=&gt;x*x)
+end associate
+end associate
 </code></pre>
 <p>这是<code>associate</code>结构的不足之处</p>
 
