@@ -110,7 +110,13 @@ end associate
 write(*,*)a
 ```
 - 当我们具有一些比较层数比较深的自定义类型的时候，在代码中使用`associate`会大大提高代码的可读性
-- `associate`的不足之处就是同一个语句中不能连续定义，这一定程度的限制了该语句的灵活性
+- 同一个语句中不能连续定义
 ``` fortran
-associate(x=>pointer(1),x2=>x*x ) !错误
+associate(x=>point(1),x2=>x*x ) !错误
 ```
+需要改成
+``` fortran
+associate(x=>point(1))
+associate(x2=>x*x)
+```
+这是`associate`结构的不足之处
