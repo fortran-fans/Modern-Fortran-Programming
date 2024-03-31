@@ -48,6 +48,9 @@
     - [自定义类型的定义](ch07-00-type.md)
     - [过程绑定](ch07-01-procbind.md)
     - [自定义类型中的重载](ch07-02-typeoverload.md)
+- [指针]()
+    - [指针](ch08-00-pointer.md)
+    - [内存安全](ch08-01-memory.md)
 ## 附录
 
 - [mdBook参考](mdbook-cheat-sheet.md)
