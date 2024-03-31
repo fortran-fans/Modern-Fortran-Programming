@@ -113,10 +113,13 @@ write(*,*)a
 - 同一个语句中不能连续定义
 ``` fortran
 associate(x=>point(1),x2=>x*x ) !错误
+end associate
 ```
 需要改成
 ``` fortran
 associate(x=>point(1))
 associate(x2=>x*x)
+end associate
+end associate
 ```
 这是`associate`结构的不足之处
