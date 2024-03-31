@@ -43,6 +43,19 @@ open(newunit=io, file="log.txt", status="old", action="read")
 read(io,*)a,b
 close(io)
 ```
+read语句有一个很有用的选项是`iostat`，它表示当前的读取是否正常，当其等于0时表示读取正常，否则表示读取不正常。我们可以使用这个选项来读取是否错误，或者是否遇到了文件末尾。
+
+``` fortran
+integer :: io,ios
+character(len=100)::line
+open(newunit=io, file="log.txt", status="old", action="read")
+do
+  read(io,"(A)",iostat=ios)line
+  if(ios/=0)exit !读取不正常，跳出循环
+end do
+close(io)
+```
+
 使用`write`来写入文件，第一个参数是文件的通道号，第二个参数是文件的格式
 ``` fortran
 integer :: io
