@@ -46,6 +46,16 @@ deallocate(pa)
 ```
 - 需要注意的是，**在使用函数的时候，作为局部变量，可分配变量离开了作用域会自动释放，但是指针不会**
 
+使用`associated`可以查看指针的关联属性
+``` fortran
+integer,pointer::pa(:)
+integer,allocatable,target::a(:)
+allocate(a(3),source=[1,2,3])
+pa=>a
+write(*,*)associated(pa) !检查pa是否被关联
+write(*,*)associated(pa,a)!检查pa是否和a关联
+```
+
 ## 内存泄漏
 
 如果对指针进行了分配，但是同时有用它指向了其他的内存，那么就会出现内存泄漏。
@@ -81,15 +91,7 @@ pa=>null()
 ```
 
 ## 关联(`associate`)
-使用`associated`可以查看指针的关联属性
-``` fortran
-integer,pointer::pa(:)
-integer,allocatable,target::a(:)
-allocate(a(3),source=[1,2,3])
-pa=>a
-write(*,*)associated(pa) !检查pa是否被关联
-write(*,*)associated(pa,a)!检查pa是否和a关联
-```
+
 Fortran2003中引入了`associate`语句，可以简化在代码编写过程中的临时变量问题，基本的语法是
 ``` fortran
 integer::point(3)
@@ -99,7 +101,7 @@ associate(x=>point(1),y=>point(2),z=>point(3))
 l=x**2+y**2+z**2
 end associate
 ```
-需要注意的是，此时，如果`x=>p`的右边是变量，**那么`x`相当于是`p`的别名，修改了`x`，`p`也会随之改变**。如果右边是变量，那么相当于**自动创建一个临时变量**。
+需要注意的是，此时，如果`x=>p`的右边是变量，**那么`x`相当于是`p`的别名，修改了`x`，`p`也会随之改变。如果右边是表达式，那么相当于自动创建一个临时变量**。
 ``` fortran
 integer::a(10)
 integer::i
