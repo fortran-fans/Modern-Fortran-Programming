@@ -175,14 +175,14 @@
 <pre><code class="language-fortran">  real::a(3,3)
   write(*,&quot;(3f10.4)&quot;)a !此时输出的是一个3*3的矩阵形式
 </code></pre>
-<p>在默认格式<code>*</code>中，每个<code>read</code>会<strong>至少读取一行</strong>，所以一个空的<code>read</code>可以<strong>跳过当前行</strong>，一个非空的<code>read</code>可以<strong>跳过连续的空行</strong>，而<code>read</code>后如果是一个数组或者多个元素，则它会一直向后读取直到所有元素全部读取。</p>
+<p>在默认格式<code>*</code>中，每个<code>read</code>会<strong>至少读取一行</strong>，所以一个空的<code>read</code>可以<strong>跳过当前行</strong>，而<code>read</code>后如果是一个数组或者多个元素，则它会一直读取直到所有元素全部读取</p>
 <pre><code class="language-fortran">  !读取一个数组
   real::a(10,10)
   read(10,*)a  !文件中至少需要100个real型数字
 </code></pre>
 <ul>
 <li>建议在<code>read</code>的过程中尽量不要使用格式，因为它要求你的格式和你的文件内容<strong>完全符合</strong>，这样丧失了一定的灵活性。直接使用表控格式读取更加灵活。</li>
-<li>在读取字符串的时候，默认会按照分隔符分割，此时使用格式<code>A</code>就可以读取一行中所有的字符<code>read(10,&quot;(A)&quot;)</code>，使用<code>&quot;(A)&quot;</code>格式就可以解决我们上一节提到的空行的问题。</li>
+<li>在读取字符串的时候，默认会按照分隔符分割，此时使用格式<code>A</code>就可以读取一行中所有的字符<code>read(10,&quot;(A)&quot;)</code></li>
 </ul>
 <h3 id="内部文件读写数字和字符串互转"><a class="header" href="#内部文件读写数字和字符串互转">内部文件读写(数字和字符串互转)</a></h3>
 <p><code>write(*,*)</code>和<code>read(*,*)</code>的第一个位置也可以填写字符串，用于数字和字符串的相互转换</p>
