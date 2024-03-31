@@ -2093,6 +2093,14 @@ deallocate(pa)
 <ul>
 <li>需要注意的是，<strong>在使用函数的时候，作为局部变量，可分配变量离开了作用域会自动释放，但是指针不会</strong></li>
 </ul>
+<p>使用<code>associated</code>可以查看指针的关联属性</p>
+<pre><code class="language-fortran">integer,pointer::pa(:)
+integer,allocatable,target::a(:)
+allocate(a(3),source=[1,2,3])
+pa=&gt;a
+write(*,*)associated(pa) !检查pa是否被关联
+write(*,*)associated(pa,a)!检查pa是否和a关联
+</code></pre>
 <h2 id="内存泄漏"><a class="header" href="#内存泄漏">内存泄漏</a></h2>
 <p>如果对指针进行了分配，但是同时有用它指向了其他的内存，那么就会出现内存泄漏。</p>
 <pre><code class="language-fortran">integer,pointer::pa(:)
@@ -2124,14 +2132,6 @@ nullify(pa)
 pa=&gt;null()
 </code></pre>
 <h2 id="关联associate"><a class="header" href="#关联associate">关联(<code>associate</code>)</a></h2>
-<p>使用<code>associated</code>可以查看指针的关联属性</p>
-<pre><code class="language-fortran">integer,pointer::pa(:)
-integer,allocatable,target::a(:)
-allocate(a(3),source=[1,2,3])
-pa=&gt;a
-write(*,*)associated(pa) !检查pa是否被关联
-write(*,*)associated(pa,a)!检查pa是否和a关联
-</code></pre>
 <p>Fortran2003中引入了<code>associate</code>语句，可以简化在代码编写过程中的临时变量问题，基本的语法是</p>
 <pre><code class="language-fortran">integer::point(3)
 integer::l
@@ -2140,7 +2140,7 @@ associate(x=&gt;point(1),y=&gt;point(2),z=&gt;point(3))
 l=x**2+y**2+z**2
 end associate
 </code></pre>
-<p>需要注意的是，此时，如果<code>x=&gt;p</code>的右边是变量，<strong>那么<code>x</code>相当于是<code>p</code>的别名，修改了<code>x</code>，<code>p</code>也会随之改变</strong>。如果右边是变量，那么相当于<strong>自动创建一个临时变量</strong>。</p>
+<p>需要注意的是，此时，如果<code>x=&gt;p</code>的右边是变量，<strong>那么<code>x</code>相当于是<code>p</code>的别名，修改了<code>x</code>，<code>p</code>也会随之改变。如果右边是表达式，那么相当于自动创建一个临时变量</strong>。</p>
 <pre><code class="language-fortran">integer::a(10)
 integer::i
 a=[(i,i=1,10)]
