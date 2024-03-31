@@ -199,6 +199,9 @@ close(io)
 write(*,*)&quot;linenum&quot;,n
 </code></pre>
 <p>例如通过这样读取文件，就可以判断一个文件的行数。</p>
+<ul>
+<li>上述方法在文件中有空行的时候就失效了，如果要计算空行的话，则需要下一节的格式化读取。</li>
+</ul>
 <p>使用<code>write</code>来写入文件，第一个参数是文件的通道号，第二个参数是文件的格式</p>
 <pre><code class="language-fortran">integer :: io
 open(newunit=io, file=&quot;log.txt&quot;)
