@@ -89,6 +89,7 @@ nullify(pa)
 ! 2.
 pa=>null()
 ```
+例如具有`allocatable`属性的局部变量，出了作用域会被自动释放，如果用指针指向它，也会造成指针悬垂
 
 ## 关联(`associate`)
 
