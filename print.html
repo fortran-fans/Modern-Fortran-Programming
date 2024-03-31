@@ -2165,9 +2165,21 @@ end associate
 <p>这是<code>associate</code>结构的不足之处</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="内存安全"><a class="header" href="#内存安全">内存安全</a></h1>
 <p>现代Fortran在不引入指针的情况下，是一个内存安全的语言(但是Fortran编译器可能不安全)，但是还有一个简单的情况是无法处理的，即变量的别名。</p>
-<p>在Fortran中，对于处于同一个作用域内的变量，一般不存在别名，但是Fortran中假设子程序的虚参也是不含别名的，这带来了一定的危险</p>
+<p>在Fortran中，对于处于同一个作用域内的变量，一般不存在别名(不引入指针的情况下)，但是Fortran的标准中规定子程序的虚参是不含别名的，但是在实际的代码编写过程中不一定能保证这件事。</p>
 <p>一个典型的内存别名的例子是</p>
-<pre><code class="language-fortran">program main
+<pre><code class="language-fortran">module test_mod
+    implicit none
+contains
+    subroutine test(a,b)
+        integer,intent(in)::a
+        integer,intent(inout)::b
+        b=a+b
+        b=b+b
+    end subroutine test
+end module test_mod
+
+program main
+    use test_mod
     implicit none
     integer::a,b
     a=2
@@ -2177,17 +2189,10 @@ end associate
     b=0
     call test(a,b)
     write(*,*)b
-contains
-    subroutine test(a,b)
-        integer,intent(in)::a
-        integer,intent(inout)::b
-        b=a+b
-        b=b+b
-    end subroutine test
 end program main
 </code></pre>
 <p>此时,第一个例子<code>test</code>中传入的参数均为<code>a</code>,那么在<code>test</code>中<code>a</code>即使<code>intent(in)</code>属性又是<code>intent(inout)</code>属性。而在<code>test</code>的作用域中，变量<code>a</code>和<code>b</code>实际上表示的是同一块内存。这为我们实际的代码调试检查
-带来了一定的难度，所以在实际的代码编写中，一定要杜绝这类代码。</p>
+带来了一定的难度，所以在实际的代码编写中，尽量要杜绝这类代码。</p>
 <p>同时，在使用我们前一节提到的<code>associate</code>的时候,要注意同时操作两个别名对数据进行处理的情况。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="过程指针"><a class="header" href="#过程指针">过程指针</a></h1>
 <p>指针也可以指向过程，这时候需要先声明指针的接口，用于限制指针的类型，也就是在之前的章节中我们提到的<code>abstract interface</code></p>
