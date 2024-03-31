@@ -12,7 +12,7 @@ pa(1:size(a))=>a !此时需要设置指针的宽度，且右边只能是一维�
 ``` fortran
 integer::i
 pa=[(i,i=1,16)]
-write(*,*)pa(1::size(a,dim=1)) !获取对角项
+write(*,*)pa(1::size(a,dim=1)+1) !获取对角项
 ```
 
 如果在子程序或者函数中，我们则需要为数组设置`contiguous`关键字
