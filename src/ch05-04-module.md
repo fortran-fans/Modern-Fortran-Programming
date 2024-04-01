@@ -65,4 +65,17 @@ use my_mod, only: printMat=>print_matrix
 
 可以将不同的`module`保存到不同的文件中，这样在使用的时候可以编译对应的模块，也可以提高移植性。可以提前编写一些通用的模块，提高代码的复用程度。
 
+例如，我们可以定义一个`parameter_mod`模块，用于封装一些常量，方便后续使用
+```fortran
+module parameter_mod
+  implicit none
+  integer,parameter     :: wp = 8
+  real(wp),parameter    :: pi = acos(-1.0_wp)
+  real(wp),parameter    :: e  = exp(1.0_wp)
+  complex(wp),parameter :: imag1 = (0.0_wp, 1.0_wp)
+  real(wp),parameter    :: hbar = 6.62607015e-34_wp
+end module parameter_mod
+```
+
 - 现代的Fortran程序应当是**一个主程序和多个`module`组成**
+
