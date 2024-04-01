@@ -41,6 +41,7 @@
     - [回调函数](ch05-03-callback.md)
     - [模块的其他特性](ch05-04-module.md)
     - [重载](ch05-05-overload.md)
+    - [内置函数](ch05-06-intrinsic.md)
 - [文件与格式]()
     - [文件读写](ch06-00-file.md)
     - [格式化输出](ch06-01-format.md)
