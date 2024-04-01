@@ -67,6 +67,7 @@ end program main
 ```
 我们使用release模式运行，release模式相对于之前的默认模式(通常是debug模式)，运行速度更快
 ``` sh
+$ fpm run --profile release
  time(ijk)=   1.3653479070000001      s
  c(n,n)=   240.96782832895653
  time(jki)=  0.16677901700000000      s
