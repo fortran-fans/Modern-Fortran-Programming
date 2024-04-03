@@ -150,7 +150,7 @@ Project is up to date
    2.00000000
    4.00000000
 ```
-如果你取消注释，则会显式
+如果你取消注释，则会显示
 ``` sh
 $ fpm run
 [ 66%] Compiling...
