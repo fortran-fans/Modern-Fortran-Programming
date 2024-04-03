@@ -111,7 +111,7 @@ Project is up to date
 ```
 常量是不可修改的。
 
-同时，我们也可以使用常量来为字面量设置精度
+同时，我们也可以将变量的`kind`值定义为常量，用来给字面量设置精度，这样当我们想修改精度的时候，只需要修改常量的值即可
 ``` fortran
 program main
    implicit none
