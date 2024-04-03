@@ -437,7 +437,7 @@ Project is up to date
    3.14159250       9.80000019
 </code></pre>
 <p>常量是不可修改的。</p>
-<p>同时，我们也可以使用常量来为字面量设置精度</p>
+<p>同时，我们也可以将变量的<code>kind</code>值定义为常量，用来给字面量设置精度，这样当我们想修改精度的时候，只需要修改常量的值即可</p>
 <pre><code class="language-fortran">program main
    implicit none
    integer,parameter::sp=4
