@@ -57,6 +57,7 @@
     - [链表](ch08-04-list.md)
 - [coarray并行]()
     - [coarray](ch09-00-coarray.md)
+    - [coarray内置函数](ch09-01-cointrinsic.md)
 ## 附录
 
 - [mdBook参考](mdbook-cheat-sheet.md)
