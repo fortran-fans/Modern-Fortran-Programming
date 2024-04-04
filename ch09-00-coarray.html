@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>coarray - 现代Fortran程序设计</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+                <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">现代Fortran程序设计</a></li><li class="chapter-item expanded affix "><a href="preface.html">序言</a></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">1.</strong> 初识Fortran</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01-install-compiler.html"><strong aria-hidden="true">1.1.</strong> 安装Fortran开发环境</a></li><li class="chapter-item expanded "><a href="ch01-02-gfortran.html"><strong aria-hidden="true">1.2.</strong> gfortran基本操作</a></li><li class="chapter-item expanded "><a href="ch01-03-fpm.html"><strong aria-hidden="true">1.3.</strong> fpm基本操作</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00-first-fortran.html"><strong aria-hidden="true">2.</strong> 第一个Fortran程序</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01-program-unit.html"><strong aria-hidden="true">2.1.</strong> Fortran语言单元</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 变量与数组</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-00-declaration.html"><strong aria-hidden="true">3.1.</strong> 变量的定义</a></li><li class="chapter-item expanded "><a href="ch03-01-precision.html"><strong aria-hidden="true">3.2.</strong> 变量的表示范围和精度</a></li><li class="chapter-item expanded "><a href="ch03-02-operation.html"><strong aria-hidden="true">3.3.</strong> 运算符</a></li><li class="chapter-item expanded "><a href="ch03-03-array.html"><strong aria-hidden="true">3.4.</strong> 数组</a></li><li class="chapter-item expanded "><a href="ch03-04-character-array.html"><strong aria-hidden="true">3.5.</strong> 字符串数组</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 流程控制</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-00-if.html"><strong aria-hidden="true">4.1.</strong> if条件语句</a></li><li class="chapter-item expanded "><a href="ch04-01-select.html"><strong aria-hidden="true">4.2.</strong> select选择语句</a></li><li class="chapter-item expanded "><a href="ch04-02-do.html"><strong aria-hidden="true">4.3.</strong> do循环</a></li><li class="chapter-item expanded "><a href="ch04-03-do-array.html"><strong aria-hidden="true">4.4.</strong> 数组与循环</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 函数与子程序</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch05-00-function.html"><strong aria-hidden="true">5.1.</strong> 函数</a></li><li class="chapter-item expanded "><a href="ch05-01-subroutine.html"><strong aria-hidden="true">5.2.</strong> 子程序</a></li><li class="chapter-item expanded "><a href="ch05-02-funckeyword.html"><strong aria-hidden="true">5.3.</strong> 过程的其他特性</a></li><li class="chapter-item expanded "><a href="ch05-03-callback.html"><strong aria-hidden="true">5.4.</strong> 回调函数</a></li><li class="chapter-item expanded "><a href="ch05-04-module.html"><strong aria-hidden="true">5.5.</strong> 模块的其他特性</a></li><li class="chapter-item expanded "><a href="ch05-05-overload.html"><strong aria-hidden="true">5.6.</strong> 重载</a></li><li class="chapter-item expanded "><a href="ch05-06-intrinsic.html"><strong aria-hidden="true">5.7.</strong> 内置函数</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 文件与格式</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch06-00-file.html"><strong aria-hidden="true">6.1.</strong> 文件读写</a></li><li class="chapter-item expanded "><a href="ch06-01-format.html"><strong aria-hidden="true">6.2.</strong> 格式化输出</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> 自定义类型</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-00-type.html"><strong aria-hidden="true">7.1.</strong> 自定义类型的定义</a></li><li class="chapter-item expanded "><a href="ch07-01-procbind.html"><strong aria-hidden="true">7.2.</strong> 过程绑定</a></li><li class="chapter-item expanded "><a href="ch07-02-typeoverload.html"><strong aria-hidden="true">7.3.</strong> 自定义类型中的重载</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> 指针</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-00-pointer.html"><strong aria-hidden="true">8.1.</strong> 指针</a></li><li class="chapter-item expanded "><a href="ch08-01-memory.html"><strong aria-hidden="true">8.2.</strong> 内存安全</a></li><li class="chapter-item expanded "><a href="ch08-02-procpointer.html"><strong aria-hidden="true">8.3.</strong> 过程指针</a></li><li class="chapter-item expanded "><a href="ch08-03-pointertips.html"><strong aria-hidden="true">8.4.</strong> 指针的小技巧</a></li><li class="chapter-item expanded "><a href="ch08-04-list.html"><strong aria-hidden="true">8.5.</strong> 链表</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> coarray并行</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch09-00-coarray.html" class="active"><strong aria-hidden="true">9.1.</strong> coarray</a></li></ol></li><li class="chapter-item expanded "><a href="mdbook-cheat-sheet.html"><strong aria-hidden="true">10.</strong> mdBook参考</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">现代Fortran程序设计</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/tree/main/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                                        <a href="https://github.com/fortran-fans/modern-fortran-programming/edit/main/src/ch09-00-coarray.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="coarray"><a class="header" href="#coarray">Coarray</a></h1>
+<p>Coarray是Fortran原生支持的用于并行计算的结构，通过使用Coarray可以比较简单的写出并行计算的程序。</p>
+<h2 id="images"><a class="header" href="#images">images</a></h2>
+<p>在Coarray中，每一个并行的最小单元称为image，Fortran中有两个内置函数<code>this_image()</code>和<code>num_images()</code>来获取当前的image和总的<code>image</code>的数量(<strong>image的编号是从1开始的</strong>)。</p>
+<pre><code class="language-fortran">program main
+  implicit none
+  write(*,*)&quot;this image=&quot;,this_image(),&quot;num images&quot;,num_images()
+end program main
+</code></pre>
+<p>需要使用这样的方式设置fpm</p>
+<pre><code class="language-sh">$ fpm run --compiler=&quot;caf&quot; --runner=&quot;cafrun -n 4&quot;
+ this image=           1 num images           4
+ this image=           3 num images           4
+ this image=           2 num images           4
+ this image=           4 num images           4
+</code></pre>
+<p>其中image的输出顺序并不确定，因为哪一个images先运行到<code>write</code>位置本身是不确定的。</p>
+<h2 id="codimension"><a class="header" href="#codimension"><code>codimension</code></a></h2>
+<p>如果需要在不同image之间进行交互，那就要引入<code>codimension</code>属性,用中括号表示。通过将一个变量引入该属性，他就获得了在不同的<code>image</code>之间交换数据的能力。</p>
+<p>一些简单的定义如下</p>
+<pre><code class="language-fortran">integer::a[*] !可以用于标量
+integer,codimension(*)::b(10,10)!可以用于数组,可以使用codimension关键字
+real,allocatable::c(:)[:] !可以用于可分配类型
+type(submatrix):: a[*]  !可以用于自定义类型
+complex(8)::a(10,10)[2,2:3,*] !也可以设置多维的，自定义边界
+allocate(c(10)[*]) 
+</code></pre>
+<p>如果是可分配的，分配的时候<strong>必须分配为</strong><code>[*]</code>,这是因为实际的image的数量是在运行的时候设置的，编译的时候并不确定。</p>
+<h2 id="运算"><a class="header" href="#运算">运算</a></h2>
+<p>如果直接对一个变量进行赋值，那么表示对所有image都赋值。如果添加了<code>[]</code>则表示对指定的image赋值</p>
+<pre><code>program main
+  implicit none
+  integer::me[*]
+  me=3
+  write(*,*)this_image(),&quot;me1=&quot;,me
+  me[2]=100
+  me[3]=me[4]+7
+  write(*,*)this_image(),&quot;me2=&quot;,me
+end program main
+</code></pre>
+<pre><code class="language-sh">           1 me1=           3
+           2 me1=           3
+           2 me2=         100
+           3 me1=           3
+           3 me2=          10
+           4 me1=           3
+           4 me2=           3
+           1 me2=           3
+</code></pre>
+<ul>
+<li><code>me[2:3]=[4,5]</code>这样的语法是<strong>不合法</strong>的</li>
+<li>可以用<code>me=this_image()</code>为不同image设置存在规律的不同的数。</li>
+</ul>
+<p>同时我们还可以用<code>if</code>结构来控制当前执行哪个image.</p>
+<pre><code class="language-fortran">if (this_images()==1)then
+    read(*,*)me
+    do i=2,nums_images()
+      me[i]=me
+    end do
+end if
+</code></pre>
+<h2 id="同步"><a class="header" href="#同步">同步</a></h2>
+<p>此时我们在<code>image 1</code>中修改了其他image的值 ，如果此时不考虑在if后面添加输出，我们发现程序并没有按照我们的想法运行。</p>
+<pre><code class="language-fortran">integer::z[*],i
+if (this_images()==1)then
+    read(*,*)z
+    do i=2,nums_images()
+      z[i]=z
+    end do
+end if
+write(*,*)&quot;image=&quot;,this_images(),z
+</code></pre>
+<p>我们读入10</p>
+<pre><code class="language-sh"> image=           3           0
+ image=           4           0
+ image=           2           0
+10
+ image=           1          10
+</code></pre>
+<p>这是因为，其他的image率先执行完毕了。所以此时我们需要对不同的image进行控制，此处就需要用到<code>sync all</code>,即所有的image都运行到此处时，程序再执行，提前运行到的先等待</p>
+<pre><code class="language-fortran">integer::z[*],i
+if (this_images()==1)then
+    read(*,*)z
+    do i=2,nums_images()
+      z[i]=z
+    end do
+end if
+sync all
+write(*,*)&quot;image=&quot;,this_images(),z
+</code></pre>
+<p>此时</p>
+<pre><code class="language-sh">2
+ image=           1           2
+ image=           2           2
+ image=           3           2
+ image=           4           2
+</code></pre>
+<p>同时，还有精确控制单个images的同步语句<code>sync images(a)</code>,这里<code>a</code>可以时标量，也可以时一维数组，也可以是<code>*</code>,表示同步等待该线程。<strong>为了避免死锁，执行<code>sync images()</code>语句时，images Q 等待images P的次数
+要和images P 等待images Q的次数相等</strong>。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="ch08-04-list.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="mdbook-cheat-sheet.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="ch08-04-list.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="mdbook-cheat-sheet.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
