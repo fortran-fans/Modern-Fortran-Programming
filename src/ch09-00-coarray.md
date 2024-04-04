@@ -38,7 +38,7 @@ allocate(c(10)[*])
 
 ## 运算
 如果直接对一个变量进行赋值，那么表示对所有image都赋值。如果添加了`[]`则表示对指定的image赋值
-```
+``` fortran
 program main
   implicit none
   integer::me[*]
