@@ -181,7 +181,7 @@ allocate(c(10)[*])
 <p>如果是可分配的，分配的时候<strong>必须分配为</strong><code>[*]</code>,这是因为实际的image的数量是在运行的时候设置的，编译的时候并不确定。</p>
 <h2 id="运算"><a class="header" href="#运算">运算</a></h2>
 <p>如果直接对一个变量进行赋值，那么表示对所有image都赋值。如果添加了<code>[]</code>则表示对指定的image赋值</p>
-<pre><code>program main
+<pre><code class="language-fortran">program main
   implicit none
   integer::me[*]
   me=3
