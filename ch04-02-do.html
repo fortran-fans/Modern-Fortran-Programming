@@ -295,13 +295,15 @@ end program main
 <pre><code class="language-sh">$ fpm run --compiler=&quot;ifort&quot;
 1 2 3 4
 </code></pre>
-<p>在输出的时候也可以使用隐式循环</p>
+<p>在输出的时候也可以使用隐式循环，同时隐式循环还支持嵌套</p>
 <pre><code class="language-fortran">program main
   implicit none
-  integer::a(4)
-  integer::i
+  integer::a(4),b(3,3)
+  integer::i,j
   a=[(i,i=1,4)]
   write(*,*)(a(i),i=1,4)
+  b=reshape([( [( i+3*j,i=1,3 )] ,j=1,3 )],[3,3])
+  write(*,*)((b(i,j),i=1,3),j=1,3)
 end program main
 </code></pre>
 
