@@ -164,13 +164,44 @@
 <h2 id="一些易错点"><a class="header" href="#一些易错点">一些易错点</a></h2>
 <p>内置函数中有一些易错点，有一些属于设计缺陷。</p>
 <ul>
-<li><code>cmplx(a [,b] [,kind])</code>函数，<code>cmplx</code>函数用于构造一个复数，但是在实际的计算中，<code>cmplx(1.0_8,1.0_8)</code>的返回值并不是一个<code>complex(8)</code>的类型，而是一个<code>complex(4)</code>的类型，
-<code>cmplx(1.0_8,1.0_8,8)</code>这样才能返回合适的类型。</li>
-<li><code>minloc(array [,dim] [,mask])</code>,<code>maxloc(array [,dim] [,mask])</code>,这两个函数用于返回数组中最小值，最大值的位置。当你传入的是一个一维数组的时候，
+<li>
+<p><code>cmplx(a [,b] [,kind])</code>函数，<code>cmplx</code>函数用于构造一个复数，但是在实际的计算中，<code>cmplx(1.0_8,1.0_8)</code>的返回值并不是一个<code>complex(8)</code>的类型，而是一个<code>complex(4)</code>的类型，
+<code>cmplx(1.0_8,1.0_8,8)</code>这样才能返回合适的类型。</p>
+</li>
+<li>
+<p><code>minloc(array [,dim] [,mask])</code>,<code>maxloc(array [,dim] [,mask])</code>,这两个函数用于返回数组中最小值，最大值的位置。当你传入的是一个一维数组的时候，
 它实际的返回值式<code>integer::idx(1)</code>类型，是一个数组而不是一个数。
-<code>minloc(array,dim=1)</code>这样写可以返回一个数。</li>
-<li><code>dot_product(a,b)</code>这个函数用于计算两个一维数组的内积，需要注意的是，当传入的是<code>complex</code>类型的时候，它实际上计算的是\(a^{H}b\)而不是\(a^{T}b\)</li>
-<li><code>reshape，mamtul</code>这些返回数组的内置函数，在<code>ifort/ifx</code>中优化很差，会造成栈溢出<code>stack overflow</code>,需要谨慎使用。</li>
+<code>minloc(array,dim=1)</code>这样写可以返回一个数。</p>
+</li>
+<li>
+<p><code>dot_product(a,b)</code>这个函数用于计算两个一维数组的内积，需要注意的是，当传入的是<code>complex</code>类型的时候，它实际上计算的是\(a^{H}b\)而不是\(a^{T}b\)</p>
+</li>
+<li>
+<p><code>reshape，mamtul</code>这些返回数组的内置函数，在<code>ifort/ifx</code>中优化很差，会造成栈溢出<code>stack overflow</code>,需要谨慎使用。</p>
+</li>
+<li>
+<p><code>reduce</code>,<code>reduce</code>接收一个数组，并对数组元素做相对应的规约操作(目前仅<code>ifx/ifort</code>支持)</p>
+<p>规约操作是指对于矩阵<code>a</code>和运算<code>f(x,y)</code>,假设有初始值<code>id</code></p>
+<pre><code class="language-fortran">do i=1,n
+  id = f(id,a(i))
+end do
+</code></pre>
+<p>例如计算一个数组的模</p>
+<pre><code class="language-fortran">program main
+    implicit none
+    write(*,*)reduce([real::1,2,3],add_pow)
+contains
+    pure real function add_pow(x,y)result(f)
+        real,intent(in)::x,y
+        f=sqrt(x**2+y**2)
+    end function add_pow
+end program main
+</code></pre>
+<ul>
+<li>练习：查询相关函数的文档，思考如何计算一个数组的模平方</li>
+<li>练习：使用reduce计算数组的最大公约数，最小公倍数</li>
+</ul>
+</li>
 </ul>
 
                     </main>
