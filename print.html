@@ -2222,17 +2222,23 @@ associate(x=&gt;point(1),y=&gt;point(2),z=&gt;point(3))
 l=x**2+y**2+z**2
 end associate
 </code></pre>
-<p>需要注意的是，此时，如果<code>x=&gt;p</code>的右边是变量，<strong>那么<code>x</code>相当于是<code>p</code>的别名，修改了<code>x</code>，<code>p</code>也会随之改变。如果右边是表达式，那么相当于自动创建一个临时变量</strong>。</p>
+<p>需要注意的是，此时，如果<code>x=&gt;p</code>的右边是变量，<strong>那么<code>x</code>相当于是<code>p</code>的别名，修改了<code>x</code>，<code>p</code>也会随之改变。如果右边是表达式，那么相当于自动创建一个临时变量</strong>。此时其中的变量不需要额外的声明</p>
 <pre><code class="language-fortran">integer::a(10)
 integer::i
 a=[(i,i=1,10)]
-associate(odd=&gt;a(1:10:2))
-    odd=odd*2
+associate(odd=&gt;a(1:10:2),x=&gt;2*2) !前者为引用，后者为直接创建的临时变量
+    odd=odd+x
 end associate
 write(*,*)a
 </code></pre>
 <ul>
 <li>当我们具有一些比较层数比较深的自定义类型的时候，在代码中使用<code>associate</code>会大大提高代码的可读性</li>
+</ul>
+<pre><code class="language-fortran">associate(px=&gt;this%particle%x,py=&gt;this%particle%y)
+    dis=px**2+py**2
+end associate
+</code></pre>
+<ul>
 <li>同一个语句中不能连续定义</li>
 </ul>
 <pre><code class="language-fortran">associate(x=&gt;point(1),x2=&gt;x*x ) !错误
