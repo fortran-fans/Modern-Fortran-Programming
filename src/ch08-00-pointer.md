@@ -102,17 +102,22 @@ associate(x=>point(1),y=>point(2),z=>point(3))
 l=x**2+y**2+z**2
 end associate
 ```
-需要注意的是，此时，如果`x=>p`的右边是变量，**那么`x`相当于是`p`的别名，修改了`x`，`p`也会随之改变。如果右边是表达式，那么相当于自动创建一个临时变量**。
+需要注意的是，此时，如果`x=>p`的右边是变量，**那么`x`相当于是`p`的别名，修改了`x`，`p`也会随之改变。如果右边是表达式，那么相当于自动创建一个临时变量**。此时其中的变量不需要额外的声明
 ``` fortran
 integer::a(10)
 integer::i
 a=[(i,i=1,10)]
-associate(odd=>a(1:10:2))
-    odd=odd*2
+associate(odd=>a(1:10:2),x=>2*2) !前者为引用，后者为直接创建的临时变量
+    odd=odd+x
 end associate
 write(*,*)a
 ```
 - 当我们具有一些比较层数比较深的自定义类型的时候，在代码中使用`associate`会大大提高代码的可读性
+``` fortran
+associate(px=>this%particle%x,py=>this%particle%y)
+    dis=px**2+py**2
+end associate
+```
 - 同一个语句中不能连续定义
 ``` fortran
 associate(x=>point(1),x2=>x*x ) !错误
