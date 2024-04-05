@@ -115,3 +115,35 @@ write(*,*)"image=",this_images(),z
 ```
 同时，还有精确控制单个images的同步语句`sync images(a)`,这里`a`可以时标量，也可以时一维数组，也可以是`*`,表示同步等待该线程。**为了避免死锁，执行`sync images()`语句时，images Q 等待images P的次数
 要和images P 等待images Q的次数相等**。
+
+## 事件(event)
+Fortran2018中引入了`event`,可以更加优雅的控制不同的任务。每个`image`都可以通过`event post`发布一个事件，image可以通过`event wait`等待事件执行到当前位置之后，再继续执行。
+
+``` fortran
+! 代码取自 Milan Curcic/Modern Fortran
+program push_notification
+   use iso_fortran_env, only: event_type
+   implicit none
+   type(event_type) :: notification[*]
+   if (num_images() /= 2) error stop &
+      'This program must be run on 2 images'
+   if (this_image() == 1) then
+      print *, 'Image', this_image(), 'working a long job'
+      call execute_command_line('sleep 5')
+      print *, 'Image', this_image(), 'done and notifying image 2'
+      event post(notification[2])
+   else
+      print *, 'Image', this_image(), 'waiting for image 1'
+      event wait(notification)
+      print *, 'Image', this_image(), 'notified from image 1'
+   end if
+end program push_notification
+```
+``` sh
+$ fpm run --compiler="caf" --runner="cafrun -n 2"
+ Image           1 working a long job
+ Image           2 waiting for image 1
+ Image           1 done and notifying image 2
+ Image           2 notified from image 1
+```
+同时使用`call event_query(event_var, count[, stat])`子程序可以查询事件的发布次数。
