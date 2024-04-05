@@ -59,6 +59,7 @@
     - [coarray](ch09-00-coarray.md)
     - [coarray内置函数](ch09-01-cointrinsic.md)
     - [team分组并行](ch09-02-team.md)
+    - [数据竞争](ch09-03-datarace.md)
 ## 附录
 
 - [mdBook参考](mdbook-cheat-sheet.md)
