@@ -2574,13 +2574,13 @@ end program push_notification
 <div style="break-before: page; page-break-before: always;"></div><h1 id="coarray的内置函数"><a class="header" href="#coarray的内置函数">coarray的内置函数</a></h1>
 <p>coarray 中提供了内置函数用于处理不同image之间的数据交换问题。</p>
 <h2 id="co_reduce"><a class="header" href="#co_reduce"><code>co_reduce</code></a></h2>
-<p><code>co_reduce</code>可以表示对不同images的数据做归约操作，支持自定义运算</p>
+<p><code>co_reduce</code>可以表示对不同images的数据做归约操作，支持自定义运算(关于规约的定义，可以查看内置函数一节中，<code>reduce</code>函数的介绍)。</p>
 <pre><code class="language-fortran">module pure_func_mod
   implicit none
 contains
   pure real function pow_add(a,b)result(c)
       real,intent(in)::a,b
-      c=a**2+b**2
+      c=sqrt(a**2+b**2)
   end function pow_add
 end module pure_func_mod
 
@@ -2595,16 +2595,16 @@ end program main
 </code></pre>
 <p>其中的<code>operation</code>是一个自定义的函数，<strong>且必须是纯函数</strong></p>
 <pre><code class="language-sh">$ fpm run --compiler=&quot;caf&quot; --runner=&quot;cafrun -n 4&quot;
-           2   650.000000
-           3   650.000000
-           4   650.000000
-           1   650.000000
+           3   5.47722578
+           4   5.47722578
+           1   5.47722578
+           2   5.47722578
 </code></pre>
 <p>同时<code>co_reduce</code>还支持<code>result_images</code>选项，表示只将结果输出到对应的imgaes</p>
 <ul>
-<li>练习：编写函数<code>f(a,b)=sqrt(a**2+b**2)</code>，将结果输出到编号为2的image, 并验证结果是否正确</li>
+<li>练习：编写函数<code>f(a,b)=lcm(a,b)</code>，将结果输出到编号为2的image, 并验证结果是否正确，此处<code>lcm</code>指的是最小公倍数。</li>
 </ul>
-<p>同时直接提供了使用较多的几类函数<code>co_max,co_min,co_sum</code></p>
+<p>同时直接提供了使用较多的几类函数<code>co_max,co_min,co_sum</code>，不需要自行编写函数。</p>
 <h2 id="co_broadcast"><a class="header" href="#co_broadcast"><code>co_broadcast</code></a></h2>
 <p>这是广播函数，用于将对应image的值广播到所有的image上</p>
 <pre><code class="language-fortran">program main
