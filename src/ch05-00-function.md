@@ -1,6 +1,6 @@
 # 函数
 在实际的代码编写过程中，有一些操作是重复的，我们可以将它们提取出来，进行封装，在之后需要使用的时候直接调用。实现这类功能的结构叫做过程(procedure)。
-在 Fortran中，具有返回值的过程称为函数(function)
+在 Fortran中，具有返回值的过程称为函数(`function`)，不具有返回值的叫做子程序`subroutine`,在不混淆的情况下，我们可以将其统称为函数。
 
 ## 函数的定义
 
@@ -91,3 +91,25 @@ $ fpm run
 - `intent(in)`也可以和`value`一起使用，此时值传递的虚参也**不可修改**。
 - 如果不能保证纯函数，那可以使用我们下节提到的**子程序**
 - 在代码中应当**总是使用**`intent`属性，这样可以更好的让编译器检查我们的代码
+
+## 其他位置声明函数
+除了在`module`的`contains`中定义函数，`program,function`以及我们接下来要学习的`subroutine`中都可以使用`contains`来定义函数，
+
+``` fortran
+program main
+  implicit none
+  real::a(3)
+  a=[real::1.0,2.1,3.2]
+  write(*,*)vec_norm(a)
+contains
+  real function vec_norm(a)result(res)
+    real,intent(in)::a(:)
+    res=norm2(a)!内置函数norm2
+  end function vec_norm
+end program main
+```
+
+但是这些位置定义的函数都**只在其对应的作用域内有效**，出了作用域就无法访问。
+
+
+
