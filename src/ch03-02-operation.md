@@ -111,3 +111,31 @@ Project is up to date
 
 - Fortran字符串中的尾部空格不会计入比较，即`"abc"=="abc   "`,两者是相等的
 
+## 一些内置函数
+由于Fortran中有一部分内置功能是通过函数来实现的，所以我们在此处先介绍一些用于数值的内部函数。后面的章节中我们会具体介绍函数。
+
+在数值运算中，输入一些值，返回一个值被称为函数。
+
+- 三角函数和反三角函数
+  - 弧度三角函数:`sin(x),cos(x),tan(x),asin(x),acos(x),atan(x),atan2(y,x)`
+  - 角度三角函数(Fortran 2003):`sind(x),cosd(x),tand(x),asind(x),acosd(x),atand(x),atan2d(y,x)`
+- 常用数学函数
+  `exp(x),log(x),log10(x),min(x,y,....),max(x,y,....),mod(x,n)`,其中mod表示关于n取模。
+- 特殊函数
+  - bessel函数 :`bessel_j0(x),bessel_j1(x),bessel_jn(x),bessel_y0(x),bessel_y1(x),bessel_yn(x)`
+  - 误差函数: `erf(x),erfc(x),gamma(x),log_gamma(x)`
+- 转换函数
+  - 整数转换函数:`int(n),nint(n)`
+  - 浮点转换函数:`real(x),aint(n),anint(x)`
+  - 复数转换函数:`cmplx(x,y,kind)`
+- 字符串函数
+  - 去除字符串空格:`trim(s)`
+  - 字符串长度：`len(s),len_trim(s)`
+  - 字符串查找函数: `index(str,sub)`
+
+更多详细的介绍和示例可以在[fortran-lang 内置函数](https://fortran-lang.org/zh_CN/learn/intrinsics/)中查看
+
+### 练习
+- 根据三角形的边长`a,b,c`,利用海伦公式计算三角形的面积
+- 使用内置函数，计算3个数的最大值
+- 使用内置函数，计算3个数的中间值
