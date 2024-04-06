@@ -79,3 +79,9 @@ end module parameter_mod
 
 - 现代的Fortran程序应当是**一个主程序和多个`module`组成**
 
+## 内置模块
+
+语法标准目前支持五个内置的模块
+- `iso_fortran_env`中提供了一些常量的定义，包括数值的精度,输入输出错误流,等等
+- `iso_c_binding`中定义了用于和`c`语言交互的一些函数，定义等等
+- `ieee_exceptions, ieee_arithmetic, ieee_features`支持了ieee异常和算数
