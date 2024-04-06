@@ -241,6 +241,46 @@ Project is up to date
 <ul>
 <li>Fortran字符串中的尾部空格不会计入比较，即<code>&quot;abc&quot;==&quot;abc   &quot;</code>,两者是相等的</li>
 </ul>
+<h2 id="一些内置函数"><a class="header" href="#一些内置函数">一些内置函数</a></h2>
+<p>由于Fortran中有一部分内置功能是通过函数来实现的，所以我们在此处先介绍一些用于数值的内部函数。后面的章节中我们会具体介绍函数。</p>
+<p>在数值运算中，输入一些值，返回一个值被称为函数。</p>
+<ul>
+<li>三角函数和反三角函数
+<ul>
+<li>弧度三角函数:<code>sin(x),cos(x),tan(x),asin(x),acos(x),atan(x),atan2(y,x)</code></li>
+<li>角度三角函数(Fortran 2003):<code>sind(x),cosd(x),tand(x),asind(x),acosd(x),atand(x),atan2d(y,x)</code></li>
+</ul>
+</li>
+<li>常用数学函数
+<code>exp(x),log(x),log10(x),min(x,y,....),max(x,y,....),mod(x,n)</code>,其中mod表示关于n取模。</li>
+<li>特殊函数
+<ul>
+<li>bessel函数 :<code>bessel_j0(x),bessel_j1(x),bessel_jn(x),bessel_y0(x),bessel_y1(x),bessel_yn(x)</code></li>
+<li>误差函数: <code>erf(x),erfc(x),gamma(x),log_gamma(x)</code></li>
+</ul>
+</li>
+<li>转换函数
+<ul>
+<li>整数转换函数:<code>int(n),nint(n)</code></li>
+<li>浮点转换函数:<code>real(x),aint(n),anint(x)</code></li>
+<li>复数转换函数:<code>cmplx(x,y,kind)</code></li>
+</ul>
+</li>
+<li>字符串函数
+<ul>
+<li>去除字符串空格:<code>trim(s)</code></li>
+<li>字符串长度：<code>len(s),len_trim(s)</code></li>
+<li>字符串查找函数: <code>index(str,sub)</code></li>
+</ul>
+</li>
+</ul>
+<p>更多详细的介绍和示例可以在<a href="https://fortran-lang.org/zh_CN/learn/intrinsics/">fortran-lang 内置函数</a>中查看</p>
+<h3 id="练习"><a class="header" href="#练习">练习</a></h3>
+<ul>
+<li>根据三角形的边长<code>a,b,c</code>,利用海伦公式计算三角形的面积</li>
+<li>使用内置函数，计算3个数的最大值</li>
+<li>使用内置函数，计算3个数的中间值</li>
+</ul>
 
                     </main>
 
