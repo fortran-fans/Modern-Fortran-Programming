@@ -1633,6 +1633,13 @@ end module parameter_mod
 <ul>
 <li>现代的Fortran程序应当是<strong>一个主程序和多个<code>module</code>组成</strong></li>
 </ul>
+<h2 id="内置模块"><a class="header" href="#内置模块">内置模块</a></h2>
+<p>语法标准目前支持五个内置的模块</p>
+<ul>
+<li><code>iso_fortran_env</code>中提供了一些常量的定义，包括数值的精度,输入输出错误流,等等</li>
+<li><code>iso_c_binding</code>中定义了用于和<code>c</code>语言交互的一些函数，定义等等</li>
+<li><code>ieee_exceptions, ieee_arithmetic, ieee_features</code>支持了ieee异常和算数</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="过程和运算符重载"><a class="header" href="#过程和运算符重载">过程和运算符重载</a></h1>
 <p>在实际的函数编写过程中，有时候需要涉及多重类型，不同维度的数组。我们通常希望提供更加简单一致的接口，方便调用，这时候就需要用到重载。</p>
 <h2 id="过程重载"><a class="header" href="#过程重载">过程重载</a></h2>
