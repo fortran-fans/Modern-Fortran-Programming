@@ -117,8 +117,8 @@ Project is up to date
 在数值运算中，输入一些值，返回一个值被称为函数。
 
 - 三角函数和反三角函数
-  - 弧度三角函数:`sin(x),cos(x),tan(x),asin(x),acos(x),atan(x),atan2(y,x)`
-  - 角度三角函数(Fortran 2003):`sind(x),cosd(x),tand(x),asind(x),acosd(x),atand(x),atan2d(y,x)`
+  - 弧度三角函数 :`sin(x),cos(x),tan(x),asin(x),acos(x),atan(x),atan2(y,x)`
+  - 角度三角函数`(Fortran 2023)` :`sind(x),cosd(x),tand(x),asind(x),acosd(x),atand(x),atan2d(y,x)`
 - 常用数学函数
   `exp(x),log(x),log10(x),min(x,y,....),max(x,y,....),mod(x,n)`,其中mod表示关于n取模。
 - 特殊函数
